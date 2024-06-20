@@ -14,12 +14,16 @@ on:
       - develop
 
 jobs:
-
-  build:
+  build-deploy:
     runs-on: self-hosted
     timeout-minutes: 30
+    environment:
+      name: ${{ github.ref_name }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Copy ENV file
+        run: echo "${{ vars.APP_ENV_FILE }}" > .env
 
       - name: Build Docker image
         if: inputs.only_env == false
