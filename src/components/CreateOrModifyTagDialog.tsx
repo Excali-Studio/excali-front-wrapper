@@ -45,6 +45,12 @@ export default function CreateOrModifyTagDialog({
     },
   });
 
+  useEffect(() => {
+    if (!isOpen) {
+      form.reset();
+    }
+  }, [form, isOpen]);
+
   const { tagDetails, createTagHandler, updateTagHandler } =
     useCreateOrModifyTag(currentTagId, () => setCurrentTagId(null), form.reset);
 
