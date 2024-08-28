@@ -20,6 +20,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog.tsx";
 import { createCanvasFormSchema } from "@/schema/createcanvas.ts";
+import { useEffect } from 'react';
 
 interface CreateCanvasDialogProps {
   isOpen: boolean;
@@ -38,6 +39,12 @@ export default function CreateCanvasDialog({
       name: "",
     },
   });
+
+  useEffect(() => {
+    if (!isOpen) {
+      form.reset();
+    }
+  }, [form, isOpen]);
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
