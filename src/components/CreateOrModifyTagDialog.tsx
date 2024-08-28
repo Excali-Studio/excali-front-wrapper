@@ -24,19 +24,16 @@ import {
 import { Textarea } from "@/components/ui/textarea.tsx";
 import { useEffect } from "react";
 import { useCreateOrModifyTag } from "@/hooks/useCreateOrModifyTag.ts";
+import {useModalStore} from '@/store/modalStore.ts';
 
 type CurrentTagId = string | null;
 
 interface CreateOrModifyCanvasDialogProps {
   currentTagId: CurrentTagId;
-  setCurrentTagId: (tagId: CurrentTagId) => void;
 }
 
-export default function CreateOrModifyTagDialog({
-  currentTagId,
-  setCurrentTagId,
-}: CreateOrModifyCanvasDialogProps) {
-  const isOpen = currentTagId !== null;
+export default function CreateOrModifyTagDialog({currentTagId}: CreateOrModifyCanvasDialogProps) {
+  const {closeModal, isModalOpen, modalState } = useModalStore()
 
   const form = useForm<CreateOrModifyTagFormSchema>({
     resolver: zodResolver(createOrModifyTagFormSchema),
@@ -46,13 +43,13 @@ export default function CreateOrModifyTagDialog({
   });
 
   useEffect(() => {
-    if (!isOpen) {
+    if (currentTagId === null) {
       form.reset();
     }
-  }, [form, isOpen]);
+  }, [currentTagId, form]);
 
   const { tagDetails, createTagHandler, updateTagHandler } =
-    useCreateOrModifyTag(currentTagId, () => setCurrentTagId(null), form.reset);
+    useCreateOrModifyTag(currentTagId, form.reset);
 
   useEffect(() => {
     if (tagDetails) {
@@ -64,16 +61,20 @@ export default function CreateOrModifyTagDialog({
   }, [form, tagDetails]);
 
   function onSubmit(formValues: CreateOrModifyTagFormSchema) {
-    currentTagId === "new"
+    currentTagId === null
       ? createTagHandler(formValues)
       : updateTagHandler(formValues);
   }
 
   return (
-    <Dialog open={isOpen} onOpenChange={() => setCurrentTagId(null)}>
+    <Dialog open={isModalOpen} onOpenChange={() => {
+      closeModal();
+    }}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Create new tag</DialogTitle>
+          <DialogTitle>{
+            modalState === 'ADD_TAG' && 'Create new tag' || modalState === 'EDIT_TAG' && 'Edit tag'
+          }</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <Form {...form}>

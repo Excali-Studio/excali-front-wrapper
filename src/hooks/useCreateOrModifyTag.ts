@@ -2,13 +2,14 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ExcaliApi } from "@/lib/api/excali-api.ts";
 import { CreateOrModifyTagFormSchema } from "@/schema/create-or-modify-tag.ts";
 import { toast } from "@/components/ui/use-toast.ts";
+import {useModalStore} from '@/store/modalStore.ts';
 
 export function useCreateOrModifyTag(
   currentTagId: string | null,
-  closeDialog: () => void,
   resetForm: () => void,
 ) {
   const queryClient = useQueryClient();
+  const { closeModal, resetState } = useModalStore();
 
   const { data: tagDetails } = useQuery({
     queryKey: ["canvas-tag-details", currentTagId],
@@ -20,8 +21,9 @@ export function useCreateOrModifyTag(
     toast({
       description: "Your canvas has been saved.",
     });
-    closeDialog();
     resetForm();
+    closeModal()
+    resetState()
     return queryClient.invalidateQueries({ queryKey: ["canvas-tags"] });
   }
 
@@ -29,7 +31,8 @@ export function useCreateOrModifyTag(
     toast({
       description: "An error occurred while saving the canvas.",
     });
-    closeDialog();
+    closeModal()
+    resetState()
   }
 
   const { mutate: createTagHandler } = useMutation({
