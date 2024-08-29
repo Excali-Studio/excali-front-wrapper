@@ -20,17 +20,16 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog.tsx";
 import { createCanvasFormSchema } from "@/schema/createcanvas.ts";
-import { useEffect } from 'react';
 
 interface CreateCanvasDialogProps {
   isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
+  onClose: () => void;
   onSubmit: (data: z.infer<typeof createCanvasFormSchema>) => void;
 }
 
 export default function CreateCanvasDialog({
   isOpen,
-  setIsOpen,
+  onClose,
   onSubmit,
 }: CreateCanvasDialogProps) {
   const form = useForm<z.infer<typeof createCanvasFormSchema>>({
@@ -40,14 +39,14 @@ export default function CreateCanvasDialog({
     },
   });
 
-  useEffect(() => {
-    if (!isOpen) {
-      form.reset();
-    }
-  }, [form, isOpen]);
-
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog
+      open={isOpen}
+      onOpenChange={() => {
+        onClose();
+        form.reset();
+      }}
+    >
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Create new canvas</DialogTitle>

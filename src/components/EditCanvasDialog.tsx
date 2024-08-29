@@ -18,7 +18,6 @@ import {
 } from "@/components/ui/dialog.tsx";
 import { ComboBox } from "@/components/ComboBox.tsx";
 import { useEditCanvasForm } from "@/hooks/useEditCanvasForm.ts";
-import { useEffect } from 'react';
 
 type CanvasIdValue = string | null;
 
@@ -36,14 +35,11 @@ export default function EditCanvasDialog({
 
   const isOpen = typeof canvasId === "string";
 
-  useEffect(() => {
-    if (!isOpen) {
-      form.reset();
-    }
-  }, [form, isOpen]);
-
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={isOpen} onOpenChange={() => {
+      form.reset();
+      onClose()
+    }}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Edit canvas</DialogTitle>
