@@ -4,9 +4,9 @@ import {
 	Tooltip,
 	TooltipContent,
 	TooltipTrigger,
-} from '@/components/ui/tooltip.tsx';
-import { ModeToggle } from '@/components/ThemeToggle.tsx';
-import { useUserAuth } from '@/lib/useUserAuth.ts';
+} from '@/components/ui/tooltip';
+import { ModeToggle } from '@/components/ThemeToggle';
+import { useUserAuth } from '@/lib/useUserAuth';
 
 export default function DesktopSidebar() {
 	const { data: user } = useUserAuth();

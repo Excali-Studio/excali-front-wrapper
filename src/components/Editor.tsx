@@ -1,9 +1,9 @@
 import { Excalidraw, Footer } from '@excalidraw/excalidraw';
 import { Theme } from '@excalidraw/excalidraw/types/element/types';
-import { useTheme } from '@/components/ThemeProvider.tsx';
-import { Badge } from '@/components/ui/badge.tsx';
-import CanvasBackButton from '@/components/buttons/CanvasBackButton.tsx';
-import { useEditor } from '@/hooks/useEditor.ts';
+import { useTheme } from '@/components/ThemeProvider';
+import { Badge } from '@/components/ui/badge';
+import CanvasBackButton from '@/components/buttons/CanvasBackButton';
+import { useEditor } from '@/hooks/useEditor';
 
 export default function Editor() {
 	const theme = useTheme();

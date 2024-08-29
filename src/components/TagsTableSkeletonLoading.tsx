@@ -1,5 +1,5 @@
-import { TableCell, TableRow } from '@/components/ui/table.tsx';
-import { Skeleton } from '@/components/ui/skeleton.tsx';
+import { TableCell, TableRow } from '@/components/ui/table';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const TAGS_TABLE_SKELETON_ROWS = 5;
 

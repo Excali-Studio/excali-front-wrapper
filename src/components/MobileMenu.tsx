@@ -1,5 +1,5 @@
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet.tsx';
-import { Button } from '@/components/ui/button.tsx';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Button } from '@/components/ui/button';
 import { Home, ListChecksIcon, PanelLeft, Tags, Users2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 

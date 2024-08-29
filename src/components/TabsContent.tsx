@@ -4,17 +4,17 @@ import {
 	CardDescription,
 	CardHeader,
 	CardTitle,
-} from '@/components/ui/card.tsx';
-import ContentTable from '@/components/ContentTable.tsx';
-import { ExcaliApi } from '@/lib/api/excali-api.ts';
-import { TabsContent } from '@/components/ui/tabs.tsx';
+} from '@/components/ui/card';
+import ContentTable from '@/components/ContentTable';
+import { ExcaliApi } from '@/lib/api/excali-api';
+import { TabsContent } from '@/components/ui/tabs';
 import {
 	TagsFilterStoreProvider,
 	useTagsFilterStore,
-} from '@/providers/TagsFilterProvider/TagsFilterProvider.tsx';
+} from '@/providers/TagsFilterProvider/TagsFilterProvider';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
-import EditCanvasDialog from '@/components/EditCanvasDialog.tsx';
+import EditCanvasDialog from '@/components/EditCanvasDialog';
 
 interface TabsContentProps {
 	title: string;

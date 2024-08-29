@@ -4,7 +4,7 @@ import { type StoreApi, useStore } from 'zustand';
 import {
 	type TagsFilterStore,
 	createFilterTagsStore,
-} from './tags-filter-store.ts';
+} from './tags-filter-store';
 
 export const TagsFilterStoreContext =
 	createContext<StoreApi<TagsFilterStore> | null>(null);

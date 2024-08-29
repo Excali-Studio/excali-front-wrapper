@@ -5,23 +5,23 @@ import {
 	TableHead,
 	TableHeader,
 	TableRow,
-} from '@/components/ui/table.tsx';
+} from '@/components/ui/table';
 import React, { useState } from 'react';
-import { Badge } from '@/components/ui/badge.tsx';
-import { getContrastText } from '@/lib/contrast-text.ts';
+import { Badge } from '@/components/ui/badge';
+import { getContrastText } from '@/lib/contrast-text';
 import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
 	DropdownMenuLabel,
 	DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu.tsx';
-import { Button } from '@/components/ui/button.tsx';
+} from '@/components/ui/dropdown-menu';
+import { Button } from '@/components/ui/button';
 import { MoreHorizontal } from 'lucide-react';
-import { CanvasTagDTO, ExcaliApi } from '@/lib/api/excali-api.ts';
-import { TagsTableSkeletonLoading } from '@/components/TagsTableSkeletonLoading.tsx';
+import { CanvasTagDTO, ExcaliApi } from '@/lib/api/excali-api';
+import { TagsTableSkeletonLoading } from '@/components/TagsTableSkeletonLoading';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { DeleteTagDialog } from '@/components/DeleteTagDialog.tsx';
+import { DeleteTagDialog } from '@/components/DeleteTagDialog';
 
 interface TagsTableProps {
 	tags: CanvasTagDTO[] | undefined;

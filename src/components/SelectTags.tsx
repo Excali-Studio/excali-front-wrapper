@@ -1,7 +1,7 @@
-import { ExcaliApi } from '@/lib/api/excali-api.ts';
-import { useTagsFilterStore } from '@/providers/TagsFilterProvider/TagsFilterProvider.tsx';
+import { ExcaliApi } from '@/lib/api/excali-api';
+import { useTagsFilterStore } from '@/providers/TagsFilterProvider/TagsFilterProvider';
 import { useQuery } from '@tanstack/react-query';
-import { ComboBox } from '@/components/ComboBox.tsx';
+import { ComboBox } from '@/components/ComboBox';
 
 export function SelectTags() {
 	const { selectedTags, onSelect, getSelectedTagsName } = useTagsFilterStore(

@@ -7,9 +7,9 @@ import {
 	CardTitle,
 } from '@/components/ui/card';
 
-import { useUserAuth } from '../lib/useUserAuth.ts';
+import { useUserAuth } from '../lib/useUserAuth';
 import { Link, Navigate } from 'react-router-dom';
-import { GoogleIcon } from '@/components/icons/GoogleIcon.tsx';
+import { GoogleIcon } from '@/components/icons/GoogleIcon';
 
 function Homepage() {
 	const { data: user } = useUserAuth();

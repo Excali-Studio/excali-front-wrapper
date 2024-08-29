@@ -1,5 +1,5 @@
 import { Link, useRouteError } from 'react-router-dom';
-import { Button } from '@/components/ui/button.tsx';
+import { Button } from '@/components/ui/button';
 
 export default function ErrorPage() {
 	const error = useRouteError();

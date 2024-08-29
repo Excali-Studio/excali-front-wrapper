@@ -1,5 +1,5 @@
 import { createStore } from 'zustand/vanilla';
-import { CanvasTagDTO } from '@/lib/api/excali-api.ts';
+import { CanvasTagDTO } from '@/lib/api/excali-api';
 
 export type CanvasTagId = CanvasTagDTO['id'];
 

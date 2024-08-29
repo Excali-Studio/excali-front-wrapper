@@ -1,13 +1,13 @@
-import { Button } from '@/components/ui/button.tsx';
+import { Button } from '@/components/ui/button';
 import { ListFilter } from 'lucide-react';
 import {
 	Popover,
 	PopoverContent,
 	PopoverTrigger,
-} from '@/components/ui/popover.tsx';
-import { SelectTags } from '@/components/SelectTags.tsx';
+} from '@/components/ui/popover';
+import { SelectTags } from '@/components/SelectTags';
 import { XIcon } from 'lucide-react';
-import { useTagsFilterStore } from '@/providers/TagsFilterProvider/TagsFilterProvider.tsx';
+import { useTagsFilterStore } from '@/providers/TagsFilterProvider/TagsFilterProvider';
 
 export default function DashboardFilters() {
 	const unselectAll = useTagsFilterStore((s) => s.unselectAll);

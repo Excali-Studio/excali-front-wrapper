@@ -1,20 +1,20 @@
 import { PlusCircle } from 'lucide-react';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useState } from 'react';
-import { ExcaliApi } from '@/lib/api/excali-api.ts';
-import CreateCanvasDialog from '@/components/CreateCanvasDialog.tsx';
-import { useUserAuth } from '@/lib/useUserAuth.ts';
+import { ExcaliApi } from '@/lib/api/excali-api';
+import CreateCanvasDialog from '@/components/CreateCanvasDialog';
+import { useUserAuth } from '@/lib/useUserAuth';
 import { z } from 'zod';
-import { createCanvasFormSchema } from '@/schema/createcanvas.ts';
-import { useToast } from '@/components/ui/use-toast.ts';
-import { Toaster } from '@/components/ui/toaster.tsx';
-import PrimaryActionButton from '@/components/buttons/PrimaryActionButton.tsx';
+import { createCanvasFormSchema } from '@/schema/createcanvas';
+import { useToast } from '@/components/ui/use-toast';
+import { Toaster } from '@/components/ui/toaster';
+import PrimaryActionButton from '@/components/buttons/PrimaryActionButton';
 import TabsContentWrapper, {
 	CANVASES_QUERY_KEY,
-} from '@/components/TabsContent.tsx';
-import ContentWrapper from '@/components/ContentWrapper.tsx';
-import DashboardFilters from '@/components/DashboardFilters.tsx';
-import { TagsFilterStoreProvider } from '@/providers/TagsFilterProvider/TagsFilterProvider.tsx';
+} from '@/components/TabsContent';
+import ContentWrapper from '@/components/ContentWrapper';
+import DashboardFilters from '@/components/DashboardFilters';
+import { TagsFilterStoreProvider } from '@/providers/TagsFilterProvider/TagsFilterProvider';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 //TODO Add modal store in this section - No jira task yet.

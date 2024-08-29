@@ -14,7 +14,7 @@ import {
 	PopoverTrigger,
 } from '@/components/ui/popover';
 import { useMemo, useState } from 'react';
-import { Input } from '@/components/ui/input.tsx';
+import { Input } from '@/components/ui/input';
 
 interface DataItem {
 	label: string;

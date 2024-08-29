@@ -5,9 +5,9 @@ import {
 	DropdownMenuLabel,
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu.tsx';
-import { Button } from '@/components/ui/button.tsx';
-import { useLogout } from '@/lib/useUserAuth.ts';
+} from '@/components/ui/dropdown-menu';
+import { Button } from '@/components/ui/button';
+import { useLogout } from '@/lib/useUserAuth';
 
 export default function UserDropdownMenu() {
 	const { mutate: logoutHandler } = useLogout();

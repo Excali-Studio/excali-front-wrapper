@@ -1,7 +1,7 @@
-import { router } from '../router.tsx';
+import { router } from '../router';
 import { RouterProvider } from 'react-router-dom';
-import { ThemeProvider } from '@/components/ThemeProvider.tsx';
-import { QueryProvider } from '@/providers/QueryProvider/QueryProvider.tsx';
+import { ThemeProvider } from '@/components/ThemeProvider';
+import { QueryProvider } from '@/providers/QueryProvider/QueryProvider';
 
 export default function App() {
 	return (

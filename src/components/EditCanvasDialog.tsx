@@ -1,5 +1,5 @@
-import { Input } from '@/components/ui/input.tsx';
-import { Button } from '@/components/ui/button.tsx';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 import {
 	Form,
 	FormControl,
@@ -7,7 +7,7 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from '@/components/ui/form.tsx';
+} from '@/components/ui/form';
 import {
 	Dialog,
 	DialogContent,
@@ -15,9 +15,9 @@ import {
 	DialogFooter,
 	DialogHeader,
 	DialogTitle,
-} from '@/components/ui/dialog.tsx';
-import { ComboBox } from '@/components/ComboBox.tsx';
-import { useEditCanvasForm } from '@/hooks/useEditCanvasForm.ts';
+} from '@/components/ui/dialog';
+import { ComboBox } from '@/components/ComboBox';
+import { useEditCanvasForm } from '@/hooks/useEditCanvasForm';
 
 type CanvasIdValue = string | null;
 

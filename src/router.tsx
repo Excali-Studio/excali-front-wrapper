@@ -1,10 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
-import Homepage from './components/Homepage.tsx';
-import ErrorPage from './components/ErrorPage.tsx';
-import Editor from './components/Editor.tsx';
-import UserDashboard from './components/UserDashboard.tsx';
-import ProtectedRoute from './components/ProtectedRoute.tsx';
-import TagsManager from '@/components/TagsManager.tsx';
+import Homepage from './components/Homepage';
+import ErrorPage from './components/ErrorPage';
+import Editor from './components/Editor';
+import UserDashboard from './components/UserDashboard';
+import ProtectedRoute from './components/ProtectedRoute';
+import TagsManager from '@/components/TagsManager';
 
 export const router = createBrowserRouter([
 	{

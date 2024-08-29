@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
-import DesktopSidebar from '@/components/DesktopSidebar.tsx';
-import MobileMenu from '@/components/MobileMenu.tsx';
-import Breadcrumbs from '@/components/Breadcrumbs.tsx';
-import SearchInput from '@/components/SearchInput.tsx';
-import UserDropdownMenu from '@/components/UserDropdownMenu.tsx';
-import { TooltipProvider } from '@/components/ui/tooltip.tsx';
+import DesktopSidebar from '@/components/DesktopSidebar';
+import MobileMenu from '@/components/MobileMenu';
+import Breadcrumbs from '@/components/Breadcrumbs';
+import SearchInput from '@/components/SearchInput';
+import UserDropdownMenu from '@/components/UserDropdownMenu';
+import { TooltipProvider } from '@/components/ui/tooltip';
 
 interface ContentWrapperProps {
 	children: ReactNode;

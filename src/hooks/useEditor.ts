@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { CanvasStateUpdateDTO, ExcaliApi } from '@/lib/api/excali-api.ts';
+import { CanvasStateUpdateDTO, ExcaliApi } from '@/lib/api/excali-api';
 import { ExcalidrawElement } from '@excalidraw/excalidraw/types/element/types';
 import {
 	AppState,

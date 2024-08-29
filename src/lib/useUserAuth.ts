@@ -1,4 +1,4 @@
-import { ExcaliApi } from './api/excali-api.ts';
+import { ExcaliApi } from './api/excali-api';
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 
 const USER_AUTH_KEY = ['user', 'me'];

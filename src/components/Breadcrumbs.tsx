@@ -4,7 +4,7 @@ import {
 	BreadcrumbList,
 	BreadcrumbPage,
 	BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb.tsx';
+} from '@/components/ui/breadcrumb';
 
 interface BreadcrumbsProps {
 	pagePaths: string[];

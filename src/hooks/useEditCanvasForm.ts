@@ -2,12 +2,12 @@ import { useForm } from 'react-hook-form';
 import {
 	editCanvasFormSchema,
 	EditCanvasFormSchema,
-} from '@/schema/edit-canvas.ts';
+} from '@/schema/edit-canvas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
-import { ExcaliApi } from '@/lib/api/excali-api.ts';
+import { ExcaliApi } from '@/lib/api/excali-api';
 import { useEffect } from 'react';
-import { useEditCanvas } from '@/hooks/useEditCanvas.ts';
+import { useEditCanvas } from '@/hooks/useEditCanvas';
 
 export function useEditCanvasForm(
 	canvasId: string | null,

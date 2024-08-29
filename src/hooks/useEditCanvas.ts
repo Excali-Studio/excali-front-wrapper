@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { EditCanvasFormSchema } from '@/schema/edit-canvas.ts';
-import { CanvasDTO, ExcaliApi } from '@/lib/api/excali-api.ts';
-import { toast } from '@/components/ui/use-toast.ts';
-import { CANVASES_QUERY_KEY } from '@/components/TabsContent.tsx';
+import { EditCanvasFormSchema } from '@/schema/edit-canvas';
+import { CanvasDTO, ExcaliApi } from '@/lib/api/excali-api';
+import { toast } from '@/components/ui/use-toast';
+import { CANVASES_QUERY_KEY } from '@/components/TabsContent';
 
 export function useEditCanvas(
 	canvasData: CanvasDTO | undefined,

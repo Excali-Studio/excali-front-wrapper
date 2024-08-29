@@ -1,5 +1,5 @@
-import { Input } from '@/components/ui/input.tsx';
-import { Button } from '@/components/ui/button.tsx';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import {
@@ -9,7 +9,7 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from '@/components/ui/form.tsx';
+} from '@/components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
 	Dialog,
@@ -18,8 +18,8 @@ import {
 	DialogFooter,
 	DialogHeader,
 	DialogTitle,
-} from '@/components/ui/dialog.tsx';
-import { createCanvasFormSchema } from '@/schema/createcanvas.ts';
+} from '@/components/ui/dialog';
+import { createCanvasFormSchema } from '@/schema/createcanvas';
 
 interface CreateCanvasDialogProps {
 	isOpen: boolean;

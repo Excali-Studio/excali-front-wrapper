@@ -1,5 +1,5 @@
 import { Search } from 'lucide-react';
-import { Input } from '@/components/ui/input.tsx';
+import { Input } from '@/components/ui/input';
 
 export default function SearchInput() {
 	return (
