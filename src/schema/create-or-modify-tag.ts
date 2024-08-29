@@ -6,7 +6,7 @@ export const createOrModifyTagFormSchema = z.object({
     message: "Tag name must be at least 2 characters.",
   }),
   color: z.string(),
-  description: z.string(),
+  description: z.string().optional(),
 });
 
 export type CreateOrModifyTagFormSchema = z.infer<

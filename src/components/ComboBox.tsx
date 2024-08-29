@@ -82,7 +82,7 @@ export function ComboBox<T extends DataItem>({
                   key={tag.value}
                   value={tag.value}
                   onSelect={onSelect}
-                  className="capitalize"
+                  className="uppercase"
                 >
                   {tag.label.toLowerCase()}
                   <CheckIcon
