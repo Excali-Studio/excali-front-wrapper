@@ -30,18 +30,10 @@ const initialState = {
 };
 
 export type ModalPayload =
-	| {
-			modalState: typeof MODAL_STATE.ADD_TAG;
-			params: ModalProps;
-	  }
-	| {
-			modalState: typeof MODAL_STATE.EDIT_TAG;
-			params: ModalProps;
-	  }
-	| {
-			modalState: typeof MODAL_STATE.REMOVE_TAG;
-			params: ModalProps;
-	  };
+	{
+		modalState: typeof MODAL_STATE.ADD_TAG | typeof MODAL_STATE.EDIT_TAG |  typeof MODAL_STATE.REMOVE_TAG;
+		params: ModalProps;
+	};
 
 const useModalStore = create<ModalState, [['zustand/immer', never]]>(
 	immer((set) => ({

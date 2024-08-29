@@ -44,11 +44,6 @@ export default function CreateOrModifyTagDialog({
 		},
 	});
 
-	useEffect(() => {
-		if (modalState === 'ADD_TAG') {
-			form.reset();
-		}
-	}, [form, modalState]);
 
 	const { tagDetails, createTagHandler, updateTagHandler } =
 		useCreateOrModifyTag(currentTagId, form.reset);
@@ -71,9 +66,12 @@ export default function CreateOrModifyTagDialog({
 	return (
 		<Dialog
 			open={isModalOpen}
-			onOpenChange={() => {
-				closeModal();
-			}}
+      onOpenChange={() => {
+        if (modalState === "EDIT_TAG") {
+          form.reset();
+        }
+        closeModal();
+      }}
 		>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
