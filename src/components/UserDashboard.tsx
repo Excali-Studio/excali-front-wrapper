@@ -41,38 +41,38 @@ export default function UserDashboard() {
 		},
 	});
 
-	return (
-		<TagsFilterStoreProvider>
-			<CreateCanvasDialog
-				isOpen={isCreateCanvasOpen}
-				setIsOpen={setIsCreateCanvasOpen}
-				onSubmit={createCanvasHandler}
-			/>
-			<Toaster />
-			<ContentWrapper pagePaths={['Dashboard', 'Canvases']}>
-				<Tabs defaultValue="all">
-					<div className="flex items-center">
-						<TabsList>
-							<TabsTrigger value="all">All</TabsTrigger>
-							{/*<TabsTrigger value="draft">Draft</TabsTrigger>*/}
-							{/*<TabsTrigger value="archived">Archived</TabsTrigger>*/}
-						</TabsList>
-						<div className="ml-auto flex items-center gap-2">
-							<DashboardFilters />
-							<PrimaryActionButton
-								onClickHandler={() => setIsCreateCanvasOpen(true)}
-								icon={<PlusCircle className="h-3.5 w-3.5" />}
-							>
-								Create new canvas
-							</PrimaryActionButton>
-						</div>
-					</div>
-					<TabsContentWrapper
-						title={'Canvases'}
-						description={'Your projects list (private & shared)'}
-					/>
-				</Tabs>
-			</ContentWrapper>
-		</TagsFilterStoreProvider>
-	);
+  return (
+    <TagsFilterStoreProvider>
+      <CreateCanvasDialog
+        isOpen={isCreateCanvasOpen}
+        onClose={() => setIsCreateCanvasOpen(false)}
+        onSubmit={createCanvasHandler}
+      />
+      <Toaster />
+      <ContentWrapper pagePaths={["Dashboard", "Canvases"]}>
+        <Tabs defaultValue="all">
+          <div className="flex items-center">
+            <TabsList>
+              <TabsTrigger value="all">All</TabsTrigger>
+              {/*<TabsTrigger value="draft">Draft</TabsTrigger>*/}
+              {/*<TabsTrigger value="archived">Archived</TabsTrigger>*/}
+            </TabsList>
+            <div className="ml-auto flex items-center gap-2">
+              <DashboardFilters />
+              <PrimaryActionButton
+                onClickHandler={() => setIsCreateCanvasOpen(true)}
+                icon={<PlusCircle className="h-3.5 w-3.5" />}
+              >
+                Create new canvas
+              </PrimaryActionButton>
+            </div>
+          </div>
+          <TabsContentWrapper
+            title={"Canvases"}
+            description={"Your projects list (private & shared)"}
+          />
+        </Tabs>
+      </ContentWrapper>
+    </TagsFilterStoreProvider>
+  );
 }

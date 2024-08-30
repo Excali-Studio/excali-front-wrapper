@@ -1,0 +1,34 @@
+name: Docker Image and Deployment CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      only_env:
+        description: "Only update .env"
+        type: boolean
+        required: false
+        default: false
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build-deploy:
+    runs-on: self-hosted
+    timeout-minutes: 30
+    environment:
+      name: ${{ github.ref_name }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Copy ENV file
+        run: echo "${{ vars.APP_ENV_FILE }}" > .env
+
+      - name: Build Docker image
+        if: inputs.only_env == false
+        run: sudo docker build . --tag excali-front-dev:latest -f Dockerfile
+
+      - name: Run Docker image
+        working-directory: ${{ secrets.DESTINATION_PATH }}
+        run: docker compose up -d

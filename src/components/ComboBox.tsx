@@ -51,52 +51,52 @@ export function ComboBox<T extends DataItem>({
 		return selectedData.some((selectedId) => selectedId === id);
 	}
 
-	return (
-		<>
-			<Popover open={open} onOpenChange={setOpen}>
-				<PopoverTrigger asChild>
-					<Button
-						variant="outline"
-						role="combobox"
-						aria-expanded={open}
-						className="w-full justify-between text-left"
-					>
-						<span className="w-full truncate">
-							{selectedData.length > 0 ? selectedValueLabel : placeholder}
-						</span>
-						<CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-					</Button>
-				</PopoverTrigger>
-				<PopoverContent className="w-[215px] p-0">
-					<Command>
-						<Input
-							onChange={(e) => setSearch(e.target.value)}
-							value={search}
-							className="focus-visible:ring-0"
-							placeholder="Find tag..."
-						/>
-						<CommandEmpty>No tags found.</CommandEmpty>
-						<CommandGroup>
-							{filteredData.map((tag) => (
-								<CommandItem
-									key={tag.value}
-									value={tag.value}
-									onSelect={onSelect}
-									className="capitalize"
-								>
-									{tag.label.toLowerCase()}
-									<CheckIcon
-										className={cn(
-											'ml-auto h-4 w-4',
-											isIdSelected(tag.value) ? 'opacity-100' : 'opacity-0'
-										)}
-									/>
-								</CommandItem>
-							))}
-						</CommandGroup>
-					</Command>
-				</PopoverContent>
-			</Popover>
-		</>
-	);
+  return (
+    <>
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild>
+          <Button
+            variant="outline"
+            role="combobox"
+            aria-expanded={open}
+            className="w-full justify-between text-left"
+          >
+            <span className="w-full truncate">
+              {selectedData.length > 0 ? selectedValueLabel : placeholder}
+            </span>
+            <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-[215px] p-0">
+          <Command>
+            <Input
+              onChange={(e) => setSearch(e.target.value)}
+              value={search}
+              className="focus-visible:ring-0"
+              placeholder="Find tag..."
+            />
+            <CommandEmpty>No tags found.</CommandEmpty>
+            <CommandGroup>
+              {filteredData.map((tag) => (
+                <CommandItem
+                  key={tag.value}
+                  value={tag.value}
+                  onSelect={onSelect}
+                  className="uppercase"
+                >
+                  {tag.label.toLowerCase()}
+                  <CheckIcon
+                    className={cn(
+                      "ml-auto h-4 w-4",
+                      isIdSelected(tag.value) ? "opacity-100" : "opacity-0",
+                    )}
+                  />
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          </Command>
+        </PopoverContent>
+      </Popover>
+    </>
+  );
 }

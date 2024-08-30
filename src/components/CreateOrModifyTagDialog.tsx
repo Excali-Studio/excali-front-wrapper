@@ -24,19 +24,18 @@ import {
 import { Textarea } from '@/components/ui/textarea';
 import { useEffect } from 'react';
 import { useCreateOrModifyTag } from '@/hooks/useCreateOrModifyTag';
+import { useModalStore } from '@/store/modalStore';
 
 type CurrentTagId = string | null;
 
 interface CreateOrModifyCanvasDialogProps {
 	currentTagId: CurrentTagId;
-	setCurrentTagId: (tagId: CurrentTagId) => void;
 }
 
 export default function CreateOrModifyTagDialog({
 	currentTagId,
-	setCurrentTagId,
 }: CreateOrModifyCanvasDialogProps) {
-	const isOpen = currentTagId !== null;
+	const { closeModal, isModalOpen, modalState } = useModalStore();
 
 	const form = useForm<CreateOrModifyTagFormSchema>({
 		resolver: zodResolver(createOrModifyTagFormSchema),
@@ -45,8 +44,9 @@ export default function CreateOrModifyTagDialog({
 		},
 	});
 
+
 	const { tagDetails, createTagHandler, updateTagHandler } =
-		useCreateOrModifyTag(currentTagId, () => setCurrentTagId(null), form.reset);
+		useCreateOrModifyTag(currentTagId, form.reset);
 
 	useEffect(() => {
 		if (tagDetails) {
@@ -57,17 +57,33 @@ export default function CreateOrModifyTagDialog({
 		}
 	}, [form, tagDetails]);
 
-	function onSubmit(formValues: CreateOrModifyTagFormSchema) {
-		currentTagId === 'new'
-			? createTagHandler(formValues)
-			: updateTagHandler(formValues);
-	}
+  function onSubmit(formValues: CreateOrModifyTagFormSchema) {
+    const formData = {
+      ...formValues,
+      description: formValues.description || undefined,
+    };
+
+    currentTagId === "new"
+      ? createTagHandler(formData)
+      : updateTagHandler(formData);
+  }
 
 	return (
-		<Dialog open={isOpen} onOpenChange={() => setCurrentTagId(null)}>
+		<Dialog
+			open={isModalOpen}
+      onOpenChange={() => {
+        if (modalState === "EDIT_TAG") {
+          form.reset();
+        }
+        closeModal();
+      }}
+		>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>Create new tag</DialogTitle>
+					<DialogTitle>
+						{(modalState === 'ADD_TAG' && 'Create new tag') ||
+							(modalState === 'EDIT_TAG' && 'Edit tag')}
+					</DialogTitle>
 				</DialogHeader>
 				<div className="grid gap-4 py-4">
 					<Form {...form}>
