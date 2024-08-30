@@ -36,7 +36,10 @@ export default function EditCanvasDialog({
   const isOpen = typeof canvasId === "string";
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={isOpen} onOpenChange={() => {
+      form.reset();
+      onClose()
+    }}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Edit canvas</DialogTitle>

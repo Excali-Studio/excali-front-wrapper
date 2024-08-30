@@ -44,7 +44,7 @@ export default function UserDashboard() {
     <TagsFilterStoreProvider>
       <CreateCanvasDialog
         isOpen={isCreateCanvasOpen}
-        setIsOpen={setIsCreateCanvasOpen}
+        onClose={() =>setIsCreateCanvasOpen(false)}
         onSubmit={createCanvasHandler}
       />
       <Toaster />
