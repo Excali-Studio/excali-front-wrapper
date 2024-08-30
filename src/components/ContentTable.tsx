@@ -71,7 +71,7 @@ export default function ContentTable({
                       {new Date(value.dateCreated).toLocaleString()}
                     </TableCell>
                     <TableCell className="hidden md:table-cell">
-                      {new Date(value.dateCreated).toLocaleString()}
+                      {new Date(value.dateUpdated).toLocaleString()}
                     </TableCell>
                     <TableCell className="hidden lg:table-cell">
                       <div className="flex gap-1">

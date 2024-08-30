@@ -57,11 +57,16 @@ export default function CreateOrModifyTagDialog({
 		}
 	}, [form, tagDetails]);
 
-	function onSubmit(formValues: CreateOrModifyTagFormSchema) {
-		currentTagId === null
-			? createTagHandler(formValues)
-			: updateTagHandler(formValues);
-	}
+  function onSubmit(formValues: CreateOrModifyTagFormSchema) {
+    const formData = {
+      ...formValues,
+      description: formValues.description || undefined,
+    };
+
+    currentTagId === "new"
+      ? createTagHandler(formData)
+      : updateTagHandler(formData);
+  }
 
 	return (
 		<Dialog
