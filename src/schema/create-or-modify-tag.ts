@@ -10,7 +10,7 @@ export const createOrModifyTagFormSchema = z.object({
 		.max(12, {
 			message: "Tag name can't be longer than 12 characters.",
 		}),
-	color: z.string(),
+	color: z.string().optional(),
 	description: z.string().optional(),
 });
 
