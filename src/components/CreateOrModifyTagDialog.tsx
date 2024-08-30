@@ -1,5 +1,5 @@
-import { Input } from '@/components/ui/input.tsx';
-import { Button } from '@/components/ui/button.tsx';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 import { useForm } from 'react-hook-form';
 import {
 	Form,
@@ -8,7 +8,7 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from '@/components/ui/form.tsx';
+} from '@/components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
 	Dialog,
@@ -16,15 +16,15 @@ import {
 	DialogFooter,
 	DialogHeader,
 	DialogTitle,
-} from '@/components/ui/dialog.tsx';
+} from '@/components/ui/dialog';
 import {
 	CreateOrModifyTagFormSchema,
 	createOrModifyTagFormSchema,
-} from '@/schema/create-or-modify-tag.ts';
-import { Textarea } from '@/components/ui/textarea.tsx';
+} from '@/schema/create-or-modify-tag';
+import { Textarea } from '@/components/ui/textarea';
 import { useEffect } from 'react';
-import { useCreateOrModifyTag } from '@/hooks/useCreateOrModifyTag.ts';
-import { useModalStore } from '@/store/modalStore.ts';
+import { useCreateOrModifyTag } from '@/hooks/useCreateOrModifyTag';
+import { useModalStore } from '@/store/modalStore';
 
 type CurrentTagId = string | null;
 
@@ -44,7 +44,6 @@ export default function CreateOrModifyTagDialog({
 		},
 	});
 
-
 	const { tagDetails, createTagHandler, updateTagHandler } =
 		useCreateOrModifyTag(currentTagId, form.reset);
 
@@ -57,26 +56,26 @@ export default function CreateOrModifyTagDialog({
 		}
 	}, [form, tagDetails]);
 
-  function onSubmit(formValues: CreateOrModifyTagFormSchema) {
-    const formData = {
-      ...formValues,
-      description: formValues.description || undefined,
-    };
+	function onSubmit(formValues: CreateOrModifyTagFormSchema) {
+		const formData = {
+			...formValues,
+			description: formValues.description || undefined,
+		};
 
-    currentTagId === "new"
-      ? createTagHandler(formData)
-      : updateTagHandler(formData);
-  }
+		currentTagId === 'new'
+			? createTagHandler(formData)
+			: updateTagHandler(formData);
+	}
 
 	return (
 		<Dialog
 			open={isModalOpen}
-      onOpenChange={() => {
-        if (modalState === "EDIT_TAG") {
-          form.reset();
-        }
-        closeModal();
-      }}
+			onOpenChange={() => {
+				if (modalState === 'EDIT_TAG') {
+					form.reset();
+				}
+				closeModal();
+			}}
 		>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
