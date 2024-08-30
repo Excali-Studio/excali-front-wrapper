@@ -6,6 +6,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog.tsx";
 import { Button } from "@/components/ui/button.tsx";
+import { useTranslation } from 'react-i18next';
 
 interface DeleteTagDialogProps {
   deleteTagId: string | null;
@@ -18,17 +19,20 @@ export function DeleteTagDialog({
   deleteTagId,
   onSubmit,
 }: DeleteTagDialogProps) {
+  const {t} = useTranslation();
   return (
     <Dialog open={deleteTagId !== null}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Are you sure you want delete this tag?</DialogTitle>
+          <DialogTitle>
+            {t("dashboardPage.tags.modal.delete.title")}
+          </DialogTitle>
         </DialogHeader>
         <DialogFooter className="flex justify-between">
           <Button onClick={closeDialog} variant="ghost">
-            Cancel
+            {t('components.buttons.cancel')}
           </Button>
-          <Button onClick={onSubmit}>Delete</Button>
+          <Button onClick={onSubmit}>{t('components.buttons.delete')}</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

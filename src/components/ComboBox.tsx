@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/popover";
 import { useMemo, useState } from "react";
 import { Input } from "@/components/ui/input.tsx";
+import { useTranslation } from "react-i18next";
 
 interface DataItem {
   label: string;
@@ -38,6 +39,7 @@ export function ComboBox<T extends DataItem>({
 }: ComboBoxProps<T>) {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
+  const { t } = useTranslation();
 
   const filteredData = useMemo(() => {
     return (
@@ -73,7 +75,7 @@ export function ComboBox<T extends DataItem>({
               onChange={(e) => setSearch(e.target.value)}
               value={search}
               className="focus-visible:ring-0"
-              placeholder="Find tag..."
+              placeholder={t("components.dataEntry.comboBox.placeholder")}
             />
             <CommandEmpty>No tags found.</CommandEmpty>
             <CommandGroup>

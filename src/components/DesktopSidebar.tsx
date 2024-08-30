@@ -7,10 +7,11 @@ import {
 } from "@/components/ui/tooltip.tsx";
 import { ModeToggle } from "@/components/ThemeToggle.tsx";
 import { useUserAuth } from "@/lib/useUserAuth.ts";
+import { useTranslation } from 'react-i18next';
 
 export default function DesktopSidebar() {
   const { data: user } = useUserAuth();
-
+  const{t} = useTranslation();
   return (
     <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
       <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
@@ -27,10 +28,10 @@ export default function DesktopSidebar() {
               className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
             >
               <Home className="h-5 w-5" />
-              <span className="sr-only">Dashboard</span>
+              <span className="sr-only">{t('components.sidebar.dashboard')}</span>
             </Link>
           </TooltipTrigger>
-          <TooltipContent side="right">Dashboard</TooltipContent>
+          <TooltipContent side="right">{t('components.sidebar.dashboard')}</TooltipContent>
         </Tooltip>
         {import.meta.env.VITE_DISABLE_TAGS_MANAGER === "false" &&
           user &&
@@ -42,10 +43,10 @@ export default function DesktopSidebar() {
                   className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                 >
                   <Tags className="h-5 w-5" />
-                  <span className="sr-only">Tags</span>
+                  <span className="sr-only">{t('components.sidebar.tags')}</span>
                 </Link>
               </TooltipTrigger>
-              <TooltipContent side="right">Tags</TooltipContent>
+              <TooltipContent side="right">{t('components.sidebar.tags')}</TooltipContent>
             </Tooltip>
           )}
 
@@ -59,10 +60,10 @@ export default function DesktopSidebar() {
                   className="disabled flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                 >
                   <Users2 className="h-5 w-5" />
-                  <span className="sr-only">Users</span>
+                  <span className="sr-only">{t('components.sidebar.users')}</span>
                 </Link>
               </TooltipTrigger>
-              <TooltipContent side="right">Users</TooltipContent>
+              <TooltipContent side="right">{t('components.sidebar.users')}</TooltipContent>
             </Tooltip>
           )}
 

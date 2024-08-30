@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/dialog.tsx";
 import { ComboBox } from "@/components/ComboBox.tsx";
 import { useEditCanvasForm } from "@/hooks/useEditCanvasForm.ts";
+import { useTranslation } from "react-i18next";
 
 type CanvasIdValue = string | null;
 
@@ -30,6 +31,7 @@ export default function EditCanvasDialog({
   canvasId,
   onClose,
 }: EditCanvasDialogProps) {
+  const { t } = useTranslation();
   const { form, onSubmit, tags, selectedTagsName, onSelect } =
     useEditCanvasForm(canvasId, onClose);
 
@@ -39,9 +41,11 @@ export default function EditCanvasDialog({
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Edit canvas</DialogTitle>
+          <DialogTitle>
+            {t("dashboardPage.canvases.modal.edit.title")}
+          </DialogTitle>
           <DialogDescription>
-            New canvas will be by default private
+            {t("dashboardPage.canvases.modal.edit.description")}
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
@@ -52,7 +56,9 @@ export default function EditCanvasDialog({
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Name</FormLabel>
+                    <FormLabel>
+                      {t("dashboardPage.canvases.modal.form.fields.name")}
+                    </FormLabel>
                     <FormControl>
                       <Input placeholder="" {...field} />
                     </FormControl>
@@ -65,7 +71,9 @@ export default function EditCanvasDialog({
                 name="selectedTags"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Tags</FormLabel>
+                    <FormLabel>
+                      {t("dashboardPage.canvases.modal.form.fields.tags")}
+                    </FormLabel>
                     <FormControl>
                       <ComboBox
                         placeholder="Select tags..."
@@ -80,7 +88,7 @@ export default function EditCanvasDialog({
                 )}
               />
               <DialogFooter>
-                <Button type="submit">Save canvas</Button>
+                <Button type="submit">{t('dashboardPage.canvases.modal.saveCanvasButton')}</Button>
               </DialogFooter>
             </form>
           </Form>

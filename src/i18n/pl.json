@@ -1,0 +1,139 @@
+{
+  "dashboardPage": {
+    "canvases": {
+      "title": "Canvases",
+      "description": "Your projects list (private & shared)",
+      "table": {
+        "name": "Name",
+        "createdAt": "Created at",
+        "updatedAt": "Updated at",
+        "tags": "Tags",
+        "actions": "Actions",
+        "image": "image"
+      },
+      "loadButton": "Load",
+      "modal": {
+        "create":{
+          "title": "Create new canvas",
+          "description": "New canvas will be by default private",
+          "toast": "Your canvas has been saved."
+        },
+        "edit": {
+          "title": "Edit canvas",
+          "description": "Edit existing canvas"
+        },
+        "delete": {},
+        "form": {
+          "fields": {
+            "name": "Name",
+            "tags": "Tags"
+          },
+          "validation": {
+            "name": "Canvas name must be at least {{ number }} characters."
+          }
+        },
+        "saveCanvasButton": "Save canvas"
+      }
+    },
+    "tags": {
+      "title": "Tags",
+      "description": "All canvas tag list",
+      "table": {
+        "name": "Name",
+        "color": "Color",
+        "description": "Description",
+        "actions": "Actions"
+      },
+      "modal": {
+        "create":{
+          "title": "Create new tag"
+        },
+        "edit": {
+          "title": "Edit tag",
+          "description": "Edit existed tag"
+        },
+        "delete": {
+          "title": "Are you sure you want delete this tag?"
+        },
+        "form": {
+          "fields": {
+            "name": "Name",
+            "description": "Description",
+            "color": "Color"
+          },
+          "validation": {
+            "name": "Canvas name must be at least {{ number }} characters."
+          }
+        },
+        "saveTagButton": "Save tag"
+      }
+    },
+    "user": {
+      "myAccount": "My Account",
+      "settings": "Settings",
+      "logout": "Logout"
+    },
+    "filter": {
+      "name": "filter",
+      "tag": {
+        "name": "Filter by tag",
+        "select": "Select by tags"
+      }
+
+    },
+    "all": "all"
+  },
+  "errorPage": {
+    "title": "Uh-oh!",
+    "description":" Something went wrong.",
+    "goBackButton": "Go Back Home"
+  },
+  "homePage": {
+    "title": " Continue with",
+    "googleButton": "Google"
+  },
+  "components": {
+    "buttons": {
+      "share": "Share",
+      "delete": "Delete",
+      "cancel": "Cancel",
+      "search": "Search",
+      "edit": "Edit"
+    },
+    "common": {
+      "actions": "Actions",
+      "toggleMenu": "Toggle menu",
+      "validation": {
+        "maxLength": "",
+        "minLength": ""
+      }
+    },
+    "breadcrumbs": {
+      "dashboard": "Dashboard",
+      "canvases": "Canvases",
+      "tags": "Tags Manager"
+    },
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "tags": "Tags",
+      "users": "Users"
+    },
+    "dataEntry": {
+      "search": {
+        "placeholder": "Search..."
+      },
+      "select": {
+        "placeholder": "Select tags..."
+      },
+      "comboBox": {
+        "placeholder": "Find tag..."
+      }
+    },
+    "theme": {
+      "toggle": "",
+      "light": " Light",
+      "dark": "Dark",
+      "system": "System"
+    }
+  }
+}

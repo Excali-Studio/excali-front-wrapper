@@ -22,6 +22,7 @@ import { CanvasTagDTO, ExcaliApi } from "@/lib/api/excali-api.ts";
 import { TagsTableSkeletonLoading } from "@/components/TagsTableSkeletonLoading.tsx";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { DeleteTagDialog } from "@/components/DeleteTagDialog.tsx";
+import { useTranslation } from "react-i18next";
 
 interface TagsTableProps {
   tags: CanvasTagDTO[] | undefined;
@@ -36,6 +37,7 @@ export function TagsTable({
 }: TagsTableProps) {
   const queryClient = useQueryClient();
   const [deleteTagId, setDeleteTagId] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   const { mutate: deleteTagHandler } = useMutation({
     mutationFn: (tagId: string) => ExcaliApi.deleteTag(tagId),
@@ -56,12 +58,18 @@ export function TagsTable({
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Name</TableHead>
-            <TableHead className="hidden md:table-cell">Color</TableHead>
-            <TableHead className="hidden md:table-cell">Description</TableHead>
+            <TableHead>{t("dashboardPage.tags.table.name")}</TableHead>
+            <TableHead className="hidden md:table-cell">
+              {t("dashboardPage.tags.table.color")}
+            </TableHead>
+            <TableHead className="hidden md:table-cell">
+              {t("dashboardPage.tags.table.description")}
+            </TableHead>
             <TableHead>
-              Actions
-              <span className="sr-only">Actions</span>
+              {t("dashboardPage.tags.table.actions")}
+              <span className="sr-only">
+                {t("dashboardPage.tags.table.actions")}
+              </span>
             </TableHead>
           </TableRow>
         </TableHeader>
@@ -100,20 +108,22 @@ export function TagsTable({
                               variant="ghost"
                             >
                               <MoreHorizontal className="h-4 w-4" />
-                              <span className="sr-only">Toggle menu</span>
+                              <span className="sr-only"> {t("components.common.toggleMenu")}</span>
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
-                            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                            <DropdownMenuLabel>
+                              {t("components.common.actions")}
+                            </DropdownMenuLabel>
                             <DropdownMenuItem
                               onClick={() => setCurrentTagId(value.id)}
                             >
-                              Edit
+                              {t("components.buttons.edit")}
                             </DropdownMenuItem>
                             <DropdownMenuItem
                               onClick={() => setDeleteTagId(value.id)}
                             >
-                              Delete
+                              {t("components.buttons.delete")}
                             </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>

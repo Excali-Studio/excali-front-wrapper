@@ -1,7 +1,10 @@
 import { z } from "zod";
+import { t } from "i18next";
 
 export const createCanvasFormSchema = z.object({
   name: z.string().min(2, {
-    message: "Canvas name must be at least 2 characters.",
+    message: t("dashboardPage.canvases.modal.form.validation.name", {
+      number: 2,
+    }),
   }),
 });

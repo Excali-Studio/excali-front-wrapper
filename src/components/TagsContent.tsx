@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card.tsx";
 import { TagsTable } from "@/components/TagsTable.tsx";
+import { useTranslation } from 'react-i18next';
 
 const CANVAS_TAGS_KEY = "canvas-tags";
 
@@ -17,6 +18,7 @@ interface TagsContentProps {
 }
 
 export function TagsContent({ setCurrentTagId }: TagsContentProps) {
+  const {t} = useTranslation();
   const { data: tags, isLoading } = useQuery({
     queryKey: [CANVAS_TAGS_KEY],
     queryFn: () => ExcaliApi.getCanvasTags(),
@@ -27,8 +29,8 @@ export function TagsContent({ setCurrentTagId }: TagsContentProps) {
       <TabsContent value="all">
         <Card x-chunk="dashboard-06-chunk-0">
           <CardHeader>
-            <CardTitle>Tags</CardTitle>
-            <CardDescription>All canvas tag list</CardDescription>
+            <CardTitle>{t('dashboardPage.tags.title')}</CardTitle>
+            <CardDescription>{t('dashboardPage.tags.description')}</CardDescription>
           </CardHeader>
           <CardContent>
             <TagsTable
