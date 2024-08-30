@@ -14,7 +14,7 @@ export function useCreateOrModifyTag(
 	const { data: tagDetails } = useQuery({
 		queryKey: ['canvas-tag-details', currentTagId],
 		queryFn: () => ExcaliApi.getTagById(`${currentTagId}`),
-		enabled: Boolean(currentTagId) && currentTagId !== 'new',
+		enabled: Boolean(currentTagId) && currentTagId !== null,
 	});
 
 	function onSuccess() {

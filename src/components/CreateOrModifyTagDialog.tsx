@@ -64,7 +64,7 @@ export default function CreateOrModifyTagDialog({
 			description: formValues.description || undefined,
 		};
 
-		currentTagId === 'new'
+		currentTagId === null
 			? createTagHandler(formData)
 			: updateTagHandler(formData);
 	}
