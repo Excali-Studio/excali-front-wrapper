@@ -2,14 +2,14 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { ExcaliApi } from '@/lib/api/excali-api';
 import { CreateOrModifyTagFormSchema } from '@/schema/create-or-modify-tag';
 import { toast } from '@/components/ui/use-toast';
-import {useModalStore} from '@/store/modalStore';
+import { useModalStore } from '@/store/modalStore';
 
 export function useCreateOrModifyTag(
-  currentTagId: string | null,
-  resetForm: () => void,
+	currentTagId: string | null,
+	resetForm: () => void
 ) {
-  const queryClient = useQueryClient();
-  const { closeModal, resetState } = useModalStore();
+	const queryClient = useQueryClient();
+	const { closeModal, resetState } = useModalStore();
 
 	const { data: tagDetails } = useQuery({
 		queryKey: ['canvas-tag-details', currentTagId],
@@ -17,23 +17,23 @@ export function useCreateOrModifyTag(
 		enabled: Boolean(currentTagId) && currentTagId !== 'new',
 	});
 
-  function onSuccess() {
-    toast({
-      description: "Your canvas has been saved.",
-    });
-    resetForm();
-    closeModal()
-    resetState()
-    return queryClient.invalidateQueries({ queryKey: ["canvas-tags"] });
-  }
+	function onSuccess() {
+		toast({
+			description: 'Your canvas has been saved.',
+		});
+		resetForm();
+		closeModal();
+		resetState();
+		return queryClient.invalidateQueries({ queryKey: ['canvas-tags'] });
+	}
 
-  function onError() {
-    toast({
-      description: "An error occurred while saving the canvas.",
-    });
-    closeModal()
-    resetState()
-  }
+	function onError() {
+		toast({
+			description: 'An error occurred while saving the canvas.',
+		});
+		closeModal();
+		resetState();
+	}
 
 	const { mutate: createTagHandler } = useMutation({
 		mutationFn: (values: CreateOrModifyTagFormSchema) => {

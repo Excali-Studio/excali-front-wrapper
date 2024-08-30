@@ -44,7 +44,6 @@ export default function CreateOrModifyTagDialog({
 		},
 	});
 
-
 	const { tagDetails, createTagHandler, updateTagHandler } =
 		useCreateOrModifyTag(currentTagId, form.reset);
 
@@ -57,26 +56,26 @@ export default function CreateOrModifyTagDialog({
 		}
 	}, [form, tagDetails]);
 
-  function onSubmit(formValues: CreateOrModifyTagFormSchema) {
-    const formData = {
-      ...formValues,
-      description: formValues.description || undefined,
-    };
+	function onSubmit(formValues: CreateOrModifyTagFormSchema) {
+		const formData = {
+			...formValues,
+			description: formValues.description || undefined,
+		};
 
-    currentTagId === "new"
-      ? createTagHandler(formData)
-      : updateTagHandler(formData);
-  }
+		currentTagId === 'new'
+			? createTagHandler(formData)
+			: updateTagHandler(formData);
+	}
 
 	return (
 		<Dialog
 			open={isModalOpen}
-      onOpenChange={() => {
-        if (modalState === "EDIT_TAG") {
-          form.reset();
-        }
-        closeModal();
-      }}
+			onOpenChange={() => {
+				if (modalState === 'EDIT_TAG') {
+					form.reset();
+				}
+				closeModal();
+			}}
 		>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
