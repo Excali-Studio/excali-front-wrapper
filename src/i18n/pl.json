@@ -80,7 +80,7 @@
       "logout": "Logout"
     },
     "filter": {
-      "name": "filter",
+      "name": "Filter",
       "tag": {
         "name": "Filter by tag",
         "select": "Select by tags"
