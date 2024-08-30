@@ -13,5 +13,5 @@ export const createOrModifyTagFormSchema = z.object({
 });
 
 export type CreateOrModifyTagFormSchema = z.infer<
-  typeof createOrModifyTagFormSchema
+	typeof createOrModifyTagFormSchema
 >;

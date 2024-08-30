@@ -1,10 +1,8 @@
 <h1 align="center">Excali Studio</h1>
 
-
 ## Description
 
-Main front-end wrapper for the excali draw studio app. 
-
+Main front-end wrapper for the excali draw studio app.
 
 ## Installation
 

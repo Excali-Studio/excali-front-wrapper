@@ -1,5 +1,5 @@
-import { Link, useRouteError } from "react-router-dom";
-import { Button } from "@/components/ui/button.tsx";
+import { Button } from '@/components/ui/button';
+import { Link, useRouteError } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 export default function ErrorPage() {
@@ -8,9 +8,9 @@ export default function ErrorPage() {
   let errorText = "";
   const {t} = useTranslation();
 
-  if (error instanceof Error) {
-    errorText = error.message;
-  }
+	if (error instanceof Error) {
+		errorText = error.message;
+	}
 
   return (
     <div className="grid h-screen place-content-center">
@@ -26,9 +26,9 @@ export default function ErrorPage() {
           {t('errorPage.description')}
         </p>
 
-        <p className="mt-8 text-center text-gray-500 dark:text-gray-200">
-          <i>{errorText}</i>
-        </p>
+				<p className="mt-8 text-center text-gray-500 dark:text-gray-200">
+					<i>{errorText}</i>
+				</p>
 
         <Link to={"/"}>
           <Button>{t('errorPage.goBackButton')}</Button>

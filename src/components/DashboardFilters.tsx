@@ -1,18 +1,19 @@
-import { Button } from "@/components/ui/button.tsx";
-import { ListFilter } from "lucide-react";
+import { Button } from '@/components/ui/button';
+import { ListFilter } from 'lucide-react';
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover.tsx";
-import { SelectTags } from "@/components/SelectTags.tsx";
-import { XIcon } from "lucide-react";
-import { useTagsFilterStore } from "@/providers/TagsFilterProvider/TagsFilterProvider.tsx";
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from '@/components/ui/popover';
+import { SelectTags } from '@/components/SelectTags';
+import { XIcon } from 'lucide-react';
+import { useTagsFilterStore } from '@/providers/TagsFilterProvider/TagsFilterProvider';
 import { useTranslation } from "react-i18next";
 
+
 export default function DashboardFilters() {
-  const unselectAll = useTagsFilterStore((s) => s.unselectAll);
-  const { t } = useTranslation();
+	const unselectAll = useTagsFilterStore((s) => s.unselectAll);
+	const { t } = useTranslation();
 
   return (
     <div>

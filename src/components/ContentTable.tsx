@@ -1,38 +1,38 @@
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table.tsx";
-import React from "react";
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from '@/components/ui/table';
+import React from 'react';
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu.tsx";
-import { Button } from "@/components/ui/button.tsx";
-import { MoreHorizontal } from "lucide-react";
-import { Link } from "react-router-dom";
-import { ApiPageData, CanvasDTO } from "@/lib/api/excali-api.ts";
-import { Badge } from "@/components/ui/badge.tsx";
-import { getContrastText } from "@/lib/contrast-text.ts";
-import { CanvasTableSkeletonLoading } from "@/components/CanvasTableSkeletonLoading.tsx";
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Button } from '@/components/ui/button';
+import { MoreHorizontal } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ApiPageData, CanvasDTO } from '@/lib/api/excali-api';
+import { Badge } from '@/components/ui/badge';
+import { getContrastText } from '@/lib/contrast-text';
+import { CanvasTableSkeletonLoading } from '@/components/CanvasTableSkeletonLoading';
 import { useTranslation } from 'react-i18next';
 
 interface ContentTableProps {
-  canvasData?: ApiPageData<CanvasDTO>;
-  isLoading: boolean;
-  setEditCanvasId: (value: string | null) => void;
+	canvasData?: ApiPageData<CanvasDTO>;
+	isLoading: boolean;
+	setEditCanvasId: (value: string | null) => void;
 }
 
 export default function ContentTable({
-  canvasData,
-  setEditCanvasId,
-  isLoading,
+	canvasData,
+	setEditCanvasId,
+	isLoading,
 }: ContentTableProps) {
   const {t} = useTranslation();
   return (

@@ -1,53 +1,53 @@
-import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
+import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons';
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandItem,
-} from "@/components/ui/command";
+	Command,
+	CommandEmpty,
+	CommandGroup,
+	CommandItem,
+} from '@/components/ui/command';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useMemo, useState } from "react";
-import { Input } from "@/components/ui/input.tsx";
+import { Input } from "@/components/ui/input";
 import { useTranslation } from "react-i18next";
 
 interface DataItem {
-  label: string;
-  value: string;
+	label: string;
+	value: string;
 }
 
 interface ComboBoxProps<T extends DataItem> {
-  data: T[];
-  selectedData: T["value"][];
-  onSelect: (value: T["value"]) => void;
-  selectedValueLabel: string;
-  placeholder: string;
+	data: T[];
+	selectedData: T['value'][];
+	onSelect: (value: T['value']) => void;
+	selectedValueLabel: string;
+	placeholder: string;
 }
 
 export function ComboBox<T extends DataItem>({
-  selectedValueLabel,
-  data,
-  selectedData,
-  onSelect,
-  placeholder,
+	selectedValueLabel,
+	data,
+	selectedData,
+	onSelect,
+	placeholder,
 }: ComboBoxProps<T>) {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
   const { t } = useTranslation();
 
-  const filteredData = useMemo(() => {
-    return (
-      data?.filter((element) => {
-        return element.label.toLowerCase().includes(search.toLowerCase());
-      }) ?? []
-    );
-  }, [data, search]);
+	const filteredData = useMemo(() => {
+		return (
+			data?.filter((element) => {
+				return element.label.toLowerCase().includes(search.toLowerCase());
+			}) ?? []
+		);
+	}, [data, search]);
 
   function isIdSelected(id: T["value"]) {
     return selectedData.some((selectedId) => selectedId === id);

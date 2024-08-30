@@ -1,24 +1,24 @@
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+	Card,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+} from '@/components/ui/card';
 
-import { useUserAuth } from "../lib/useUserAuth.ts";
+import { useUserAuth } from "../lib/useUserAuth";
 import { Link, Navigate } from "react-router-dom";
-import { GoogleIcon } from "@/components/icons/GoogleIcon.tsx";
+import { GoogleIcon } from "@/components/icons/GoogleIcon";
 import { useTranslation } from 'react-i18next';
 
 function Homepage() {
   const { data: user } = useUserAuth();
   const {t} = useTranslation();
 
-  if (user) {
-    return <Navigate to="/dashboard" replace />;
-  }
+	if (user) {
+		return <Navigate to="/dashboard" replace />;
+	}
 
   return (
     <>
