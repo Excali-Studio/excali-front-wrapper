@@ -1,6 +1,6 @@
 import { Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 export default function SearchInput() {
 	const { t } = useTranslation();
@@ -10,7 +10,7 @@ export default function SearchInput() {
 			<Input
 				disabled={true}
 				type="search"
-				placeholder={t("components.dataEntry.search.placeholder")}
+				placeholder={t('components.dataEntry.search.placeholder')}
 				className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
 			/>
 		</div>

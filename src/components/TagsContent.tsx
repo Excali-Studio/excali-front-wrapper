@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 const CANVAS_TAGS_KEY = 'canvas-tags';
 
 export function TagsContent() {
-	const {t} = useTranslation();
+	const { t } = useTranslation();
 	const { data: tags, isLoading } = useQuery({
 		queryKey: [CANVAS_TAGS_KEY],
 		queryFn: () => ExcaliApi.getCanvasTags(),
@@ -26,7 +26,9 @@ export function TagsContent() {
 				<Card x-chunk="dashboard-06-chunk-0">
 					<CardHeader>
 						<CardTitle>{t('dashboardPage.tags.title')}</CardTitle>
-						<CardDescription>{t('dashboardPage.tags.description')}</CardDescription>
+						<CardDescription>
+							{t('dashboardPage.tags.description')}
+						</CardDescription>
 					</CardHeader>
 					<CardContent>
 						<TagsTable tags={tags} isLoading={isLoading} />

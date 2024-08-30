@@ -12,14 +12,14 @@ import {
 } from '@/components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { createCanvasFormSchema } from "@/schema/createcanvas";
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+} from '@/components/ui/dialog';
+import { createCanvasFormSchema } from '@/schema/createcanvas';
 import { useTranslation } from 'react-i18next';
 
 interface CreateCanvasDialogProps {
@@ -33,7 +33,7 @@ export default function CreateCanvasDialog({
 	onClose,
 	onSubmit,
 }: CreateCanvasDialogProps) {
-	const {t} = useTranslation()
+	const { t } = useTranslation();
 	const form = useForm<z.infer<typeof createCanvasFormSchema>>({
 		resolver: zodResolver(createCanvasFormSchema),
 		defaultValues: {
@@ -51,9 +51,12 @@ export default function CreateCanvasDialog({
 		>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>  {t("dashboardPage.canvases.modal.create.title")}</DialogTitle>
+					<DialogTitle>
+						{' '}
+						{t('dashboardPage.canvases.modal.create.title')}
+					</DialogTitle>
 					<DialogDescription>
-						{t("dashboardPage.canvases.modal.create.description")}
+						{t('dashboardPage.canvases.modal.create.description')}
 					</DialogDescription>
 				</DialogHeader>
 				<div className="grid gap-4 py-4">
@@ -64,7 +67,9 @@ export default function CreateCanvasDialog({
 								name="name"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>{t('dashboardPage.canvases.modal.form.fields.name')}</FormLabel>
+										<FormLabel>
+											{t('dashboardPage.canvases.modal.form.fields.name')}
+										</FormLabel>
 										<FormControl>
 											<Input placeholder="" {...field} />
 										</FormControl>
@@ -73,7 +78,9 @@ export default function CreateCanvasDialog({
 								)}
 							/>
 							<DialogFooter>
-								<Button type="submit">{t('dashboardPage.canvases.modal.saveCanvasButton')}</Button>
+								<Button type="submit">
+									{t('dashboardPage.canvases.modal.saveCanvasButton')}
+								</Button>
 							</DialogFooter>
 						</form>
 					</Form>

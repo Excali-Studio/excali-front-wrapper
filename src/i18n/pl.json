@@ -29,7 +29,10 @@
             "tags": "Tags"
           },
           "validation": {
-            "name": "Canvas name must be at least {{ number }} characters."
+            "name": {
+              "min": "Canvas name must be at least {{ number }} characters.",
+              "max": "Canvas name can't be longer than {{ number }} characters"
+            }
           }
         },
         "saveCanvasButton": "Save canvas"
@@ -62,7 +65,10 @@
             "color": "Color"
           },
           "validation": {
-            "name": "Canvas name must be at least {{ number }} characters."
+            "name": {
+              "min": "Tag name must be at least {{ number }} characters.",
+              "max": "Tag name can't be longer than {{ number }} characters"
+            }
           }
         },
         "saveTagButton": "Save tag"

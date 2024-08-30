@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 
 export default function DesktopSidebar() {
 	const { data: user } = useUserAuth();
-	const{t} = useTranslation();
+	const { t } = useTranslation();
 
 	return (
 		<aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
@@ -29,10 +29,14 @@ export default function DesktopSidebar() {
 							className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
 						>
 							<Home className="h-5 w-5" />
-							<span className="sr-only">{t('components.sidebar.dashboard')}</span>
+							<span className="sr-only">
+								{t('components.sidebar.dashboard')}
+							</span>
 						</Link>
 					</TooltipTrigger>
-					<TooltipContent side="right">{t('components.sidebar.dashboard')}</TooltipContent>
+					<TooltipContent side="right">
+						{t('components.sidebar.dashboard')}
+					</TooltipContent>
 				</Tooltip>
 				{import.meta.env.VITE_DISABLE_TAGS_MANAGER === 'false' &&
 					user &&
@@ -44,29 +48,37 @@ export default function DesktopSidebar() {
 									className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
 								>
 									<Tags className="h-5 w-5" />
-									<span className="sr-only">{t('components.sidebar.tags')}</span>
+									<span className="sr-only">
+										{t('components.sidebar.tags')}
+									</span>
 								</Link>
 							</TooltipTrigger>
-							<TooltipContent side="right">{t('components.sidebar.tags')}</TooltipContent>
+							<TooltipContent side="right">
+								{t('components.sidebar.tags')}
+							</TooltipContent>
 						</Tooltip>
 					)}
 
-        {import.meta.env.VITE_DISABLE_USERS_PAGE === "false" &&
-          user &&
-          user.roles.map((r) => r.name).includes("ADMIN") && (
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  to="#"
-                  className="disabled flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                >
-                  <Users2 className="h-5 w-5" />
-									<span className="sr-only">{t('components.sidebar.users')}</span>
-                </Link>
-              </TooltipTrigger>
-							<TooltipContent side="right">{t('components.sidebar.users')}</TooltipContent>
-            </Tooltip>
-          )}
+				{import.meta.env.VITE_DISABLE_USERS_PAGE === 'false' &&
+					user &&
+					user.roles.map((r) => r.name).includes('ADMIN') && (
+						<Tooltip>
+							<TooltipTrigger asChild>
+								<Link
+									to="#"
+									className="disabled flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+								>
+									<Users2 className="h-5 w-5" />
+									<span className="sr-only">
+										{t('components.sidebar.users')}
+									</span>
+								</Link>
+							</TooltipTrigger>
+							<TooltipContent side="right">
+								{t('components.sidebar.users')}
+							</TooltipContent>
+						</Tooltip>
+					)}
 
 				<Tooltip>
 					<ModeToggle />

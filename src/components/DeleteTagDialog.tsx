@@ -21,14 +21,14 @@ export function DeleteTagDialog({
 	closeModal,
 }: DeleteTagDialogProps) {
 	const { resetState } = useModalStore();
-	const {t} = useTranslation();
+	const { t } = useTranslation();
 
 	return (
 		<Dialog onOpenChange={closeModal} open={isModalOpen}>
 			<DialogContent>
 				<DialogHeader>
 					<DialogTitle>
-						{t("dashboardPage.tags.modal.delete.title")}
+						{t('dashboardPage.tags.modal.delete.title')}
 					</DialogTitle>
 				</DialogHeader>
 				<DialogFooter className="flex justify-between">

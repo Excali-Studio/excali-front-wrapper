@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { useLogout } from '@/lib/useUserAuth';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 export default function UserDropdownMenu() {
 	const { mutate: logoutHandler } = useLogout();
@@ -26,7 +26,9 @@ export default function UserDropdownMenu() {
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end">
-				<DropdownMenuLabel className={"disabled"}> {t('dashboardPage.user.myAccount')}</DropdownMenuLabel>
+				<DropdownMenuLabel className={'disabled'}>
+					{t('dashboardPage.user.myAccount')}
+				</DropdownMenuLabel>
 				<DropdownMenuSeparator />
 				<DropdownMenuItem style={{ cursor: 'pointer' }}>
 					{t('dashboardPage.user.settings')}

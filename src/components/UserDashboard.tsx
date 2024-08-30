@@ -1,7 +1,7 @@
 import { PlusCircle } from 'lucide-react';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useState } from 'react';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 import { ExcaliApi } from '@/lib/api/excali-api';
 import CreateCanvasDialog from '@/components/CreateCanvasDialog';
 import { useUserAuth } from '@/lib/useUserAuth';

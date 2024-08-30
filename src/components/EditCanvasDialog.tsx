@@ -18,7 +18,7 @@ import {
 } from '@/components/ui/dialog';
 import { ComboBox } from '@/components/ComboBox';
 import { useEditCanvasForm } from '@/hooks/useEditCanvasForm';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 type CanvasIdValue = string | null;
 
@@ -48,10 +48,10 @@ export default function EditCanvasDialog({
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
 					<DialogTitle>
-						{t("dashboardPage.canvases.modal.edit.title")}
+						{t('dashboardPage.canvases.modal.edit.title')}
 					</DialogTitle>
 					<DialogDescription>
-						{t("dashboardPage.canvases.modal.edit.description")}
+						{t('dashboardPage.canvases.modal.edit.description')}
 					</DialogDescription>
 				</DialogHeader>
 				<div className="grid gap-4 py-4">
@@ -63,7 +63,7 @@ export default function EditCanvasDialog({
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>
-											{t("dashboardPage.canvases.modal.form.fields.name")}
+											{t('dashboardPage.canvases.modal.form.fields.name')}
 										</FormLabel>
 										<FormControl>
 											<Input placeholder="" {...field} />
@@ -78,7 +78,7 @@ export default function EditCanvasDialog({
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>
-											{t("dashboardPage.canvases.modal.form.fields.tags")}
+											{t('dashboardPage.canvases.modal.form.fields.tags')}
 										</FormLabel>
 										<FormControl>
 											<ComboBox
@@ -94,7 +94,9 @@ export default function EditCanvasDialog({
 								)}
 							/>
 							<DialogFooter>
-								<Button type="submit">{t('dashboardPage.canvases.modal.saveCanvasButton')}</Button>
+								<Button type="submit">
+									{t('dashboardPage.canvases.modal.saveCanvasButton')}
+								</Button>
 							</DialogFooter>
 						</form>
 					</Form>

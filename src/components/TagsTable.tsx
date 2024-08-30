@@ -23,7 +23,7 @@ import { TagsTableSkeletonLoading } from '@/components/TagsTableSkeletonLoading'
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { DeleteTagDialog } from '@/components/DeleteTagDialog';
 import { useModalStore } from '@/store/modalStore';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 interface TagsTableProps {
 	tags: CanvasTagDTO[] | undefined;
@@ -58,18 +58,18 @@ export function TagsTable({ tags, isLoading }: TagsTableProps) {
 			<Table>
 				<TableHeader>
 					<TableRow>
-						<TableHead>{t("dashboardPage.tags.table.name")}</TableHead>
+						<TableHead>{t('dashboardPage.tags.table.name')}</TableHead>
 						<TableHead className="hidden md:table-cell">
-							{t("dashboardPage.tags.table.color")}
+							{t('dashboardPage.tags.table.color')}
 						</TableHead>
 						<TableHead className="hidden md:table-cell">
-							{t("dashboardPage.tags.table.description")}
+							{t('dashboardPage.tags.table.description')}
 						</TableHead>
 						<TableHead>
-							{t("dashboardPage.tags.table.actions")}
+							{t('dashboardPage.tags.table.actions')}
 							<span className="sr-only">
-                {t("dashboardPage.tags.table.actions")}
-              </span>
+								{t('dashboardPage.tags.table.actions')}
+							</span>
 						</TableHead>
 					</TableRow>
 				</TableHeader>
@@ -108,12 +108,15 @@ export function TagsTable({ tags, isLoading }: TagsTableProps) {
 															variant="ghost"
 														>
 															<MoreHorizontal className="h-4 w-4" />
-															<span className="sr-only"> {t("components.common.toggleMenu")}</span>
+															<span className="sr-only">
+																{' '}
+																{t('components.common.toggleMenu')}
+															</span>
 														</Button>
 													</DropdownMenuTrigger>
 													<DropdownMenuContent align="end">
 														<DropdownMenuLabel>
-															{t("components.common.actions")}
+															{t('components.common.actions')}
 														</DropdownMenuLabel>
 														<DropdownMenuItem
 															onClick={() => {
@@ -123,7 +126,7 @@ export function TagsTable({ tags, isLoading }: TagsTableProps) {
 																});
 															}}
 														>
-															{t("components.buttons.edit")}
+															{t('components.buttons.edit')}
 														</DropdownMenuItem>
 														<DropdownMenuItem
 															onClick={() => {
@@ -133,7 +136,7 @@ export function TagsTable({ tags, isLoading }: TagsTableProps) {
 																});
 															}}
 														>
-															{t("components.buttons.delete")}
+															{t('components.buttons.delete')}
 														</DropdownMenuItem>
 													</DropdownMenuContent>
 												</DropdownMenu>

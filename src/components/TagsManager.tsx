@@ -9,7 +9,7 @@ import { useModalStore } from '@/store/modalStore';
 import { useTranslation } from 'react-i18next';
 
 export default function TagsManager() {
-	const {t} = useTranslation();
+	const { t } = useTranslation();
 	const { openModal, modalState, resetState, modalProps } = useModalStore();
 
 	return (

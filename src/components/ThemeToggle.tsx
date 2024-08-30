@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next';
 
 export function ModeToggle() {
 	const { setTheme } = useTheme();
-	const {t} = useTranslation();
+	const { t } = useTranslation();
 
 	return (
 		<DropdownMenu>
@@ -24,13 +24,13 @@ export function ModeToggle() {
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end">
-				<DropdownMenuItem onClick={() => setTheme("light")}>
+				<DropdownMenuItem onClick={() => setTheme('light')}>
 					{t('components.theme.light')}
 				</DropdownMenuItem>
-				<DropdownMenuItem onClick={() => setTheme("dark")}>
+				<DropdownMenuItem onClick={() => setTheme('dark')}>
 					{t('components.theme.dark')}
 				</DropdownMenuItem>
-				<DropdownMenuItem onClick={() => setTheme("system")}>
+				<DropdownMenuItem onClick={() => setTheme('system')}>
 					{t('components.theme.system')}
 				</DropdownMenuItem>
 			</DropdownMenuContent>

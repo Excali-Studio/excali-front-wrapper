@@ -5,7 +5,7 @@ import { ComboBox } from '@/components/ComboBox';
 import { useTranslation } from 'react-i18next';
 
 export function SelectTags() {
-	const {t} = useTranslation();
+	const { t } = useTranslation();
 	const { selectedTags, onSelect, getSelectedTagsName } = useTagsFilterStore(
 		(s) => s
 	);

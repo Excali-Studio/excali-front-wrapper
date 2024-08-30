@@ -25,7 +25,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useEffect } from 'react';
 import { useCreateOrModifyTag } from '@/hooks/useCreateOrModifyTag';
 import { useModalStore } from '@/store/modalStore';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 type CurrentTagId = string | null;
 
@@ -82,8 +82,10 @@ export default function CreateOrModifyTagDialog({
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
 					<DialogTitle>
-						{(modalState === 'ADD_TAG' && {t('dashboardPage.tags.modal.create.title')}) ||
-							(modalState === 'EDIT_TAG' && {t('dashboardPage.tags.modal.edit.title')})}
+						{(modalState === 'ADD_TAG' &&
+							t('dashboardPage.tags.modal.create.title')) ||
+							(modalState === 'EDIT_TAG' &&
+								t('dashboardPage.tags.modal.edit.title'))}
 					</DialogTitle>
 				</DialogHeader>
 				<div className="grid gap-4 py-4">
@@ -95,7 +97,7 @@ export default function CreateOrModifyTagDialog({
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>
-											{t("dashboardPage.tags.modal.form.fields.name")}
+											{t('dashboardPage.tags.modal.form.fields.name')}
 										</FormLabel>
 										<FormControl>
 											<Input placeholder="" {...field} />
@@ -110,7 +112,7 @@ export default function CreateOrModifyTagDialog({
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>
-											{t("dashboardPage.tags.modal.form.fields.description")}
+											{t('dashboardPage.tags.modal.form.fields.description')}
 										</FormLabel>
 										<FormControl>
 											<Textarea placeholder="" {...field} />
@@ -126,7 +128,7 @@ export default function CreateOrModifyTagDialog({
 									<FormItem>
 										<div className="flex items-center justify-between">
 											<FormLabel>
-												{t("dashboardPage.tags.modal.form.fields.color")}
+												{t('dashboardPage.tags.modal.form.fields.color')}
 											</FormLabel>
 											<div className="flex items-center gap-2">
 												<p className="font-mono">{field.value}</p>
@@ -145,7 +147,7 @@ export default function CreateOrModifyTagDialog({
 							/>
 							<DialogFooter>
 								<Button type="submit">
-									{t("dashboardPage.tags.modal.saveTagButton")}
+									{t('dashboardPage.tags.modal.saveTagButton')}
 								</Button>
 							</DialogFooter>
 						</form>
