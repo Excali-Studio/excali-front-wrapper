@@ -6,7 +6,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table.tsx";
-import React, { useState } from "react";
+import React from "react";
 import { Badge } from "@/components/ui/badge.tsx";
 import { getContrastText } from "@/lib/contrast-text.ts";
 import {
@@ -22,20 +22,19 @@ import { CanvasTagDTO, ExcaliApi } from "@/lib/api/excali-api.ts";
 import { TagsTableSkeletonLoading } from "@/components/TagsTableSkeletonLoading.tsx";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { DeleteTagDialog } from "@/components/DeleteTagDialog.tsx";
+import {useModalStore} from '@/store/modalStore.ts';
 
 interface TagsTableProps {
   tags: CanvasTagDTO[] | undefined;
   isLoading: boolean;
-  setCurrentTagId: (tagId: string | null) => void;
 }
 
 export function TagsTable({
   tags,
   isLoading,
-  setCurrentTagId,
 }: TagsTableProps) {
   const queryClient = useQueryClient();
-  const [deleteTagId, setDeleteTagId] = useState<string | null>(null);
+  const {isModalOpen, openModal, closeModal, modalState, modalProps} = useModalStore()
 
   const { mutate: deleteTagHandler } = useMutation({
     mutationFn: (tagId: string) => ExcaliApi.deleteTag(tagId),
@@ -45,14 +44,17 @@ export function TagsTable({
 
   return (
     <>
-      <DeleteTagDialog
-        deleteTagId={deleteTagId}
-        closeDialog={() => setDeleteTagId(null)}
-        onSubmit={() => {
-          deleteTagHandler(`${deleteTagId}`);
-          setDeleteTagId(null);
-        }}
-      />
+      {modalState === 'REMOVE_TAG' && (
+          <DeleteTagDialog
+              isModalOpen={isModalOpen}
+              closeModal={closeModal}
+              onSubmit={() => {
+                deleteTagHandler(`${modalProps?.selectedId}`);
+                closeModal();
+              }}
+          />
+      )}
+
       <Table>
         <TableHeader>
           <TableRow>
@@ -106,12 +108,16 @@ export function TagsTable({
                           <DropdownMenuContent align="end">
                             <DropdownMenuLabel>Actions</DropdownMenuLabel>
                             <DropdownMenuItem
-                              onClick={() => setCurrentTagId(value.id)}
+                              onClick={() => {
+                                openModal({modalState: "EDIT_TAG", params: {selectedId: value.id}});
+                              }}
                             >
                               Edit
                             </DropdownMenuItem>
                             <DropdownMenuItem
-                              onClick={() => setDeleteTagId(value.id)}
+                              onClick={() => {
+                                openModal({modalState: "REMOVE_TAG", params: {selectedId: value.id}});
+                              }}
                             >
                               Delete
                             </DropdownMenuItem>
