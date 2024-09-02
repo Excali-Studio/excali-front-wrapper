@@ -27,12 +27,6 @@
       "fields": {
         "name": "Name",
         "tags": "Tags"
-      },
-      "validation": {
-        "name": {
-          "min": "Canvas name must be at least {{ number }} characters.",
-          "max": "Canvas name can't be longer than {{ number }} characters"
-        }
       }
     },
     "saveCanvasButton": "Save canvas"
@@ -50,12 +44,6 @@
         "name": "Name",
         "description": "Description",
         "color": "Color"
-      },
-      "validation": {
-        "name": {
-          "min": "Tag name must be at least {{ number }} characters.",
-          "max": "Tag name can't be longer than {{ number }} characters"
-        }
       },
       "saveTagButton": "Save tag"
     }
@@ -85,12 +73,6 @@
       "fields": {
         "name": "Name",
         "tags": "Tags"
-      },
-      "validation": {
-        "name": {
-          "min": "Canvas name must be at least {{ number }} characters.",
-          "max": "Canvas name can't be longer than {{ number }} characters"
-        }
       }
     },
     "saveCanvasButton": "Save canvas"
