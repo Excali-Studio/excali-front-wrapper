@@ -11,7 +11,7 @@ export default function MobileMenu() {
 			<SheetTrigger asChild>
 				<Button size="icon" variant="outline" className="sm:hidden">
 					<PanelLeft className="h-5 w-5" />
-					<span className="sr-only">{t('components.common.toggleMenu')}</span>
+					<span className="sr-only">{t('mobileMenu.toggleMenu')}</span>
 				</Button>
 			</SheetTrigger>
 			<SheetContent side="left" className="sm:max-w-xs">
@@ -27,21 +27,21 @@ export default function MobileMenu() {
 						className="flex items-center gap-4 bg-accent px-2.5 text-muted-foreground hover:text-foreground"
 					>
 						<Home className="h-5 w-5" />
-						{t('components.sidebar.dashboard')}
+						{t('mobileMenu.dashboard')}
 					</Link>
 					<Link
 						to="#"
 						className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
 					>
 						<Tags className="h-5 w-5" />
-						{t('components.sidebar.tags')}
+						{t('mobileMenu.tags')}
 					</Link>
 					<Link
 						to="#"
 						className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
 					>
 						<Users2 className="h-5 w-5" />
-						{t('components.sidebar.users')}
+						{t('mobileMenu.users')}
 					</Link>
 				</nav>
 			</SheetContent>

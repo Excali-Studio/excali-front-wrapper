@@ -75,9 +75,9 @@ export function ComboBox<T extends DataItem>({
 							onChange={(e) => setSearch(e.target.value)}
 							value={search}
 							className="focus-visible:ring-0"
-							placeholder={t('components.dataEntry.comboBox.placeholder')}
+							placeholder={t('comboBox.placeHolder.findTag')}
 						/>
-						<CommandEmpty>No tags found.</CommandEmpty>
+						<CommandEmpty>{t('comboBox.noData')}</CommandEmpty>
 						<CommandGroup>
 							{filteredData.map((tag) => (
 								<CommandItem

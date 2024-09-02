@@ -5,12 +5,14 @@ export const createCanvasFormSchema = z.object({
 	name: z
 		.string()
 		.min(3, {
-			message: t('dashboardPage.canvases.modal.form.validation.name.min', {
+			message: t('validation.min', {
+				field: t('createCanvasDialog.form.fields.name'),
 				number: 3,
 			}),
 		})
 		.max(255, {
-			message: t('dashboardPage.canvases.modal.form.validation.name.max', {
+			message: t('validation.max', {
+				field: t('createCanvasDialog.form.fields.name'),
 				number: 255,
 			}),
 		}),

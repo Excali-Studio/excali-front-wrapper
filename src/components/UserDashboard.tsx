@@ -36,7 +36,7 @@ export default function UserDashboard() {
 		},
 		onSuccess: () => {
 			toast({
-				description: t('dashboardPage.canvases.modal.create.toast'),
+				description: t('userDashboard.toast'),
 			});
 			setIsCreateCanvasOpen(false);
 			return queryClient.invalidateQueries({ queryKey: [CANVASES_QUERY_KEY] });
@@ -55,7 +55,7 @@ export default function UserDashboard() {
 				<Tabs defaultValue="all">
 					<div className="flex items-center">
 						<TabsList>
-							<TabsTrigger value="all">{t('dashboardPage.all')}</TabsTrigger>
+							<TabsTrigger value="all">{t('userDashboard.all')}</TabsTrigger>
 							{/*<TabsTrigger value="draft">Draft</TabsTrigger>*/}
 							{/*<TabsTrigger value="archived">Archived</TabsTrigger>*/}
 						</TabsList>
@@ -65,13 +65,13 @@ export default function UserDashboard() {
 								onClickHandler={() => setIsCreateCanvasOpen(true)}
 								icon={<PlusCircle className="h-3.5 w-3.5" />}
 							>
-								{t('dashboardPage.canvases.modal.create.title')}
+								{t('userDashboard.createCanvasTitle')}
 							</PrimaryActionButton>
 						</div>
 					</div>
 					<TabsContentWrapper
-						title={t('dashboardPage.canvases.title')}
-						description={t('dashboardPage.canvases.description')}
+						title={t('userDashboard.title')}
+						description={t('userDashboard.description')}
 					/>
 				</Tabs>
 			</ContentWrapper>

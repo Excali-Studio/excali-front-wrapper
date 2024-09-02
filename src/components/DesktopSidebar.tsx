@@ -29,13 +29,11 @@ export default function DesktopSidebar() {
 							className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
 						>
 							<Home className="h-5 w-5" />
-							<span className="sr-only">
-								{t('components.sidebar.dashboard')}
-							</span>
+							<span className="sr-only">{t('desktopSidebar.dashboard')}</span>
 						</Link>
 					</TooltipTrigger>
 					<TooltipContent side="right">
-						{t('components.sidebar.dashboard')}
+						{t('desktopSidebar.dashboard')}
 					</TooltipContent>
 				</Tooltip>
 				{import.meta.env.VITE_DISABLE_TAGS_MANAGER === 'false' &&
@@ -48,13 +46,11 @@ export default function DesktopSidebar() {
 									className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
 								>
 									<Tags className="h-5 w-5" />
-									<span className="sr-only">
-										{t('components.sidebar.tags')}
-									</span>
+									<span className="sr-only">{t('desktopSidebar.tags')}</span>
 								</Link>
 							</TooltipTrigger>
 							<TooltipContent side="right">
-								{t('components.sidebar.tags')}
+								{t('desktopSidebar.tags')}
 							</TooltipContent>
 						</Tooltip>
 					)}
@@ -69,13 +65,11 @@ export default function DesktopSidebar() {
 									className="disabled flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
 								>
 									<Users2 className="h-5 w-5" />
-									<span className="sr-only">
-										{t('components.sidebar.users')}
-									</span>
+									<span className="sr-only">{t('desktopSidebar.users')}</span>
 								</Link>
 							</TooltipTrigger>
 							<TooltipContent side="right">
-								{t('components.sidebar.users')}
+								{t('desktopSidebar.users')}
 							</TooltipContent>
 						</Tooltip>
 					)}

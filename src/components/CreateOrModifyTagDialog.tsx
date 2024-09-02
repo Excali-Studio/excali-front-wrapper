@@ -83,9 +83,9 @@ export default function CreateOrModifyTagDialog({
 				<DialogHeader>
 					<DialogTitle>
 						{(modalState === 'ADD_TAG' &&
-							t('dashboardPage.tags.modal.create.title')) ||
+							t('createOrModifyTagDialog.create.title')) ||
 							(modalState === 'EDIT_TAG' &&
-								t('dashboardPage.tags.modal.edit.title'))}
+								t('createOrModifyTagDialog.edit.title'))}
 					</DialogTitle>
 				</DialogHeader>
 				<div className="grid gap-4 py-4">
@@ -97,7 +97,7 @@ export default function CreateOrModifyTagDialog({
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>
-											{t('dashboardPage.tags.modal.form.fields.name')}
+											{t('createOrModifyTagDialog.form.fields.name')}
 										</FormLabel>
 										<FormControl>
 											<Input placeholder="" {...field} />
@@ -112,7 +112,7 @@ export default function CreateOrModifyTagDialog({
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>
-											{t('dashboardPage.tags.modal.form.fields.description')}
+											{t('createOrModifyTagDialog.form.fields.description')}
 										</FormLabel>
 										<FormControl>
 											<Textarea placeholder="" {...field} />
@@ -128,7 +128,7 @@ export default function CreateOrModifyTagDialog({
 									<FormItem>
 										<div className="flex items-center justify-between">
 											<FormLabel>
-												{t('dashboardPage.tags.modal.form.fields.color')}
+												{t('createOrModifyTagDialog.form.fields.color')}
 											</FormLabel>
 											<div className="flex items-center gap-2">
 												<p className="font-mono">{field.value}</p>
@@ -147,7 +147,7 @@ export default function CreateOrModifyTagDialog({
 							/>
 							<DialogFooter>
 								<Button type="submit">
-									{t('dashboardPage.tags.modal.saveTagButton')}
+									{t('createOrModifyTagDialog.form.saveTagButton')}
 								</Button>
 							</DialogFooter>
 						</form>

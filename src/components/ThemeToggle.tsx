@@ -20,18 +20,18 @@ export function ModeToggle() {
 				<Button size="icon">
 					<Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
 					<Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-					<span className="sr-only">{t('components.theme.toggle')}</span>
+					<span className="sr-only">{t('themeToggle.toggle')}</span>
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end">
 				<DropdownMenuItem onClick={() => setTheme('light')}>
-					{t('components.theme.light')}
+					{t('themeToggle.light')}
 				</DropdownMenuItem>
 				<DropdownMenuItem onClick={() => setTheme('dark')}>
-					{t('components.theme.dark')}
+					{t('themeToggle.dark')}
 				</DropdownMenuItem>
 				<DropdownMenuItem onClick={() => setTheme('system')}>
-					{t('components.theme.system')}
+					{t('themeToggle.system')}
 				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>

@@ -27,9 +27,7 @@ export function DeleteTagDialog({
 		<Dialog onOpenChange={closeModal} open={isModalOpen}>
 			<DialogContent>
 				<DialogHeader>
-					<DialogTitle>
-						{t('dashboardPage.tags.modal.delete.title')}
-					</DialogTitle>
+					<DialogTitle>{t('deleteTagDialog.title')}</DialogTitle>
 				</DialogHeader>
 				<DialogFooter className="flex justify-between">
 					<Button
@@ -39,7 +37,7 @@ export function DeleteTagDialog({
 						}}
 						variant="ghost"
 					>
-						{t('components.buttons.cancel')}
+						{t('deleteTagDialog.cancelButton')}
 					</Button>
 					<Button
 						onClick={() => {
@@ -47,7 +45,7 @@ export function DeleteTagDialog({
 							resetState();
 						}}
 					>
-						{t('components.buttons.delete')}
+						{t('deleteTagDialog.deleteButton')}
 					</Button>
 				</DialogFooter>
 			</DialogContent>
