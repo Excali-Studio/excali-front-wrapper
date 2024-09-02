@@ -21,18 +21,19 @@ import { ApiPageData, CanvasDTO } from '@/lib/api/excali-api';
 import { Badge } from '@/components/ui/badge';
 import { getContrastText } from '@/lib/contrast-text';
 import { CanvasTableSkeletonLoading } from '@/components/CanvasTableSkeletonLoading';
+import { useModalStore } from '@/store/modalStore';
 
 interface ContentTableProps {
 	canvasData?: ApiPageData<CanvasDTO>;
 	isLoading: boolean;
-	setEditCanvasId: (value: string | null) => void;
 }
 
 export default function ContentTable({
 	canvasData,
-	setEditCanvasId,
 	isLoading,
 }: ContentTableProps) {
+	const { openModal } = useModalStore();
+
 	return (
 		<Table>
 			<TableHeader>
@@ -106,7 +107,12 @@ export default function ContentTable({
 												<DropdownMenuContent align="end">
 													<DropdownMenuLabel>Actions</DropdownMenuLabel>
 													<DropdownMenuItem
-														onClick={() => setEditCanvasId(value.id)}
+														onClick={() => {
+															openModal({
+																modalState: 'EDIT_CANVAS',
+																params: { selectedId: value.id },
+															});
+														}}
 													>
 														Edit
 													</DropdownMenuItem>

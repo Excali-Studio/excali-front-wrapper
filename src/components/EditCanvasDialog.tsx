@@ -22,18 +22,18 @@ import { useEditCanvasForm } from '@/hooks/useEditCanvasForm';
 type CanvasIdValue = string | null;
 
 interface EditCanvasDialogProps {
+	isOpen: boolean;
 	canvasId: CanvasIdValue;
 	onClose: () => void;
 }
 
 export default function EditCanvasDialog({
+	isOpen,
 	canvasId,
 	onClose,
 }: EditCanvasDialogProps) {
 	const { form, onSubmit, tags, selectedTagsName, onSelect } =
 		useEditCanvasForm(canvasId, onClose);
-
-	const isOpen = typeof canvasId === 'string';
 
 	return (
 		<Dialog
