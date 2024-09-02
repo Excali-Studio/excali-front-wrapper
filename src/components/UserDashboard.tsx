@@ -23,7 +23,8 @@ export default function UserDashboard() {
 	const { toast } = useToast();
 
 	const queryClient = useQueryClient();
-	const { isModalOpen, closeModal, openModal, modalState } = useModalStore();
+	const { isModalOpen, closeModal, openModal, modalState, resetState } =
+		useModalStore();
 
 	const { mutate: createCanvasHandler } = useMutation({
 		mutationFn: (values: z.infer<typeof createCanvasFormSchema>) => {
@@ -37,6 +38,7 @@ export default function UserDashboard() {
 				description: 'Your canvas has been saved.',
 			});
 			closeModal();
+			resetState();
 			return queryClient.invalidateQueries({ queryKey: [CANVASES_QUERY_KEY] });
 		},
 	});

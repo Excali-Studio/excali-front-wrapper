@@ -18,6 +18,7 @@ import {
 } from '@/components/ui/dialog';
 import { ComboBox } from '@/components/ComboBox';
 import { useEditCanvasForm } from '@/hooks/useEditCanvasForm';
+import { useModalStore } from '@/store/modalStore';
 
 type CanvasIdValue = string | null;
 
@@ -35,12 +36,14 @@ export default function EditCanvasDialog({
 	const { form, onSubmit, tags, selectedTagsName, onSelect } =
 		useEditCanvasForm(canvasId, onClose);
 
+	const { resetState } = useModalStore();
 	return (
 		<Dialog
 			open={isOpen}
 			onOpenChange={() => {
-				form.reset();
 				onClose();
+				form.reset();
+				resetState();
 			}}
 		>
 			<DialogContent className="sm:max-w-[425px]">

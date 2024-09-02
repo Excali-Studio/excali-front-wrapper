@@ -44,6 +44,9 @@ export default function CreateCanvasDialog({
 			open={isOpen}
 			onOpenChange={() => {
 				onClose();
+				if (Object.values(form.formState.errors).length === 0) {
+					return;
+				}
 				form.reset();
 			}}
 		>
