@@ -35,7 +35,7 @@ interface CreateOrModifyCanvasDialogProps {
 export default function CreateOrModifyTagDialog({
 	currentTagId,
 }: CreateOrModifyCanvasDialogProps) {
-	const { closeModal, isModalOpen, modalState, resetState } = useModalStore();
+	const { closeModal, isModalOpen, modalState } = useModalStore();
 
 	const form = useForm<CreateOrModifyTagFormSchema>({
 		resolver: zodResolver(createOrModifyTagFormSchema),
@@ -79,7 +79,6 @@ export default function CreateOrModifyTagDialog({
 				) {
 					return;
 				}
-				resetState();
 				form.reset();
 			}}
 		>
