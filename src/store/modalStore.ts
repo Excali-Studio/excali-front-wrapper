@@ -24,7 +24,6 @@ export type ModalStateKeys = keyof typeof MODAL_STATE;
 
 const initialState = {
 	isModalOpen: false,
-	selectedId: null,
 	modalState: undefined,
 	modalProps: undefined,
 };

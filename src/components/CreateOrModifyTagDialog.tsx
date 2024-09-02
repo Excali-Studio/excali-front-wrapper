@@ -35,7 +35,7 @@ interface CreateOrModifyCanvasDialogProps {
 export default function CreateOrModifyTagDialog({
 	currentTagId,
 }: CreateOrModifyCanvasDialogProps) {
-	const { closeModal, isModalOpen, modalState } = useModalStore();
+	const { closeModal, isModalOpen, modalState, resetState } = useModalStore();
 
 	const form = useForm<CreateOrModifyTagFormSchema>({
 		resolver: zodResolver(createOrModifyTagFormSchema),
@@ -48,13 +48,14 @@ export default function CreateOrModifyTagDialog({
 		useCreateOrModifyTag(currentTagId, form.reset);
 
 	useEffect(() => {
-		if (tagDetails) {
-			form.setValue('name', tagDetails.name);
-			tagDetails.color && form.setValue('color', tagDetails.color);
-			tagDetails.description &&
-				form.setValue('description', tagDetails.description);
+		if (isModalOpen && modalState === 'EDIT_TAG' && tagDetails) {
+			form.reset({
+				name: tagDetails.name,
+				color: tagDetails.color || '',
+				description: tagDetails.description || '',
+			});
 		}
-	}, [form, tagDetails]);
+	}, [form, isModalOpen, modalState, tagDetails]);
 
 	function onSubmit(formValues: CreateOrModifyTagFormSchema) {
 		const formData = {
@@ -71,10 +72,15 @@ export default function CreateOrModifyTagDialog({
 		<Dialog
 			open={isModalOpen}
 			onOpenChange={() => {
-				if (modalState === 'EDIT_TAG') {
-					form.reset();
-				}
 				closeModal();
+				if (
+					modalState === 'ADD_TAG' &&
+					Object.keys(form.formState.errors).length === 0
+				) {
+					return;
+				}
+				resetState();
+				form.reset();
 			}}
 		>
 			<DialogContent className="sm:max-w-[425px]">
