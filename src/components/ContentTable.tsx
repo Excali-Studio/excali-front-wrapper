@@ -21,6 +21,7 @@ import { ApiPageData, CanvasDTO } from '@/lib/api/excali-api';
 import { Badge } from '@/components/ui/badge';
 import { getContrastText } from '@/lib/contrast-text';
 import { CanvasTableSkeletonLoading } from '@/components/CanvasTableSkeletonLoading';
+import { useModalStore } from '@/store/modalStore';
 
 interface ContentTableProps {
 	canvasData?: ApiPageData<CanvasDTO>;
@@ -33,6 +34,7 @@ export default function ContentTable({
 	setEditCanvasId,
 	isLoading,
 }: ContentTableProps) {
+	const { openModal } = useModalStore();
 	return (
 		<Table>
 			<TableHeader>
@@ -110,7 +112,15 @@ export default function ContentTable({
 													>
 														Edit
 													</DropdownMenuItem>
-													<DropdownMenuItem disabled={true}>
+													<DropdownMenuItem
+														onClick={() => {
+															openModal({
+																modalState: 'SHARE_CANVAS',
+																params: { selectedId: value.id },
+															});
+														}}
+														// disabled={true}
+													>
 														Share
 													</DropdownMenuItem>
 													<DropdownMenuItem disabled={true}>

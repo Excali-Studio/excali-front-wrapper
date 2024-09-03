@@ -15,6 +15,7 @@ import {
 } from '@/components/ui/popover';
 import { useMemo, useState } from 'react';
 import { Input } from '@/components/ui/input';
+import { clsx } from 'clsx';
 
 interface DataItem {
 	label: string;
@@ -22,6 +23,8 @@ interface DataItem {
 }
 
 interface ComboBoxProps<T extends DataItem> {
+	field?: string;
+	className?: string;
 	data: T[];
 	selectedData: T['value'][];
 	onSelect: (value: T['value']) => void;
@@ -29,7 +32,10 @@ interface ComboBoxProps<T extends DataItem> {
 	placeholder: string;
 }
 
+//TODO Pass props for the generic fields and translation
 export function ComboBox<T extends DataItem>({
+	field = 'tag',
+	className,
 	selectedValueLabel,
 	data,
 	selectedData,
@@ -61,21 +67,21 @@ export function ComboBox<T extends DataItem>({
 						aria-expanded={open}
 						className="w-full justify-between text-left"
 					>
-						<span className="w-full truncate">
+						<span className="max-w-[400px] truncate">
 							{selectedData.length > 0 ? selectedValueLabel : placeholder}
 						</span>
 						<CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
 					</Button>
 				</PopoverTrigger>
-				<PopoverContent className="w-[215px] p-0">
+				<PopoverContent className={clsx('w-[215px] p-0', className)}>
 					<Command>
 						<Input
 							onChange={(e) => setSearch(e.target.value)}
 							value={search}
 							className="focus-visible:ring-0"
-							placeholder="Find tag..."
+							placeholder={`Find ${field}...`}
 						/>
-						<CommandEmpty>No tags found.</CommandEmpty>
+						<CommandEmpty>{`No ${field} found.`}</CommandEmpty>
 						<CommandGroup>
 							{filteredData.map((tag) => (
 								<CommandItem

@@ -118,6 +118,15 @@ export class ExcaliApi {
 			data: { tagIds },
 		});
 	};
+
+	public static getUsers = async (): Promise<UserDTO[]> => {
+		const { data } = await this.instance.get('user/users');
+		return data;
+	};
+
+	public static giveAccessByTag = async (accessData: canvasAccessDTO) => {
+		return this.instance.post('/canvas/access', accessData);
+	};
 }
 
 //@TODO load interfaces from api project as a separate npm package
@@ -186,4 +195,14 @@ export interface CanvasTagDTO {
 
 export interface UpdateCanvasMetaDTO {
 	name: string;
+}
+
+export interface UserDTO {
+	id: string;
+	email: string;
+}
+
+export interface canvasAccessDTO {
+	tagIds: string[];
+	personIds: string[];
 }
