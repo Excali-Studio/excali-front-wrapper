@@ -40,22 +40,26 @@ export default function ContentTable({
 			<TableHeader>
 				<TableRow>
 					<TableHead className="hidden w-[100px] sm:table-cell">
-						<span className="sr-only">{t('contentTable.image')}</span>
+						<span className="sr-only">
+							{t('components.contentTable.image')}
+						</span>
 					</TableHead>
-					<TableHead>{t('contentTable.name')}</TableHead>
+					<TableHead>{t('components.contentTable.name')}</TableHead>
 					<TableHead className="hidden md:table-cell">
-						{t('contentTable.createdAt')}
+						{t('components.contentTable.createdAt')}
 					</TableHead>
 					<TableHead className="hidden md:table-cell">
-						{t('contentTable.updatedAt')}
+						{t('components.contentTable.updatedAt')}
 					</TableHead>
 					<TableHead className="hidden lg:table-cell">
-						{t('contentTable.tags')}
+						{t('components.contentTable.tags')}
 					</TableHead>
 
 					<TableHead>
-						{t('contentTable.actions')}
-						<span className="sr-only">{t('contentTable.actions')}</span>
+						{t('components.contentTable.actions')}
+						<span className="sr-only">
+							{t('components.contentTable.actions')}
+						</span>
 					</TableHead>
 					<TableHead className="hidden md:table-cell"></TableHead>
 				</TableRow>
@@ -113,25 +117,27 @@ export default function ContentTable({
 												</DropdownMenuTrigger>
 												<DropdownMenuContent align="end">
 													<DropdownMenuLabel>
-														{t('contentTable.createdAt')}
+														{t('components.contentTable.createdAt')}
 													</DropdownMenuLabel>
 													<DropdownMenuItem
 														onClick={() => setEditCanvasId(value.id)}
 													>
-														{t('contentTable.buttons.edit')}
+														{t('components.contentTable.buttons.edit')}
 													</DropdownMenuItem>
 													<DropdownMenuItem disabled={true}>
-														{t('contentTable.buttons.share')}
+														{t('components.contentTable.buttons.share')}
 													</DropdownMenuItem>
 													<DropdownMenuItem disabled={true}>
-														{t('contentTable.buttons.delete')}
+														{t('components.contentTable.buttons.delete')}
 													</DropdownMenuItem>
 												</DropdownMenuContent>
 											</DropdownMenu>
 										</TableCell>
 										<TableCell className="hidden md:table-cell">
 											<Link to={`/editor/${value.id}`}>
-												<Button>{t('contentTable.buttons.load')}</Button>
+												<Button>
+													{t('components.contentTable.buttons.load')}
+												</Button>
 											</Link>
 										</TableCell>
 									</TableRow>

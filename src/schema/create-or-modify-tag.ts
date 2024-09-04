@@ -7,13 +7,13 @@ export const createOrModifyTagFormSchema = z.object({
 		.string()
 		.min(3, {
 			message: t('validation.min', {
-				field: t('createOrModifyTagDialog.form.fields.name'),
+				field: t('components.createOrModifyTagDialog.form.fields.name'),
 				number: 3,
 			}),
 		})
 		.max(12, {
 			message: t('validation.max', {
-				field: t('createOrModifyTagDialog.form.fields.name'),
+				field: t('components.createOrModifyTagDialog.form.fields.name'),
 				number: 12,
 			}),
 		}),

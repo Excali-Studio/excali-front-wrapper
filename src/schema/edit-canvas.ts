@@ -6,13 +6,13 @@ export const editCanvasFormSchema = z.object({
 		.string()
 		.min(3, {
 			message: t('validation.min', {
-				field: t('editCanvasDialog.form.fields.name'),
+				field: t('components.editCanvasDialog.form.fields.name'),
 				number: 3,
 			}),
 		})
 		.max(255, {
 			message: t('validation.max', {
-				field: t('editCanvasDialog.form.fields.name'),
+				field: t('components.editCanvasDialog.form.fields.name'),
 				number: 255,
 			}),
 		}),

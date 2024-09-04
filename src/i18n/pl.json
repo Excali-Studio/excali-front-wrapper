@@ -1,142 +1,144 @@
 {
-  "comboBox": {
-    "noData": "No tags found.",
-    "placeHolder": {
-      "findTag": "Find tag..."
-    }
-  },
-  "contentTable": {
-    "name": "Name",
-    "createdAt": "Created at",
-    "updatedAt": "Updated at",
-    "tags": "Tags",
-    "actions": "Actions",
-    "image": "image",
-    "buttons": {
-      "edit": "Edit",
-      "share": "Share",
-      "delete": "Delete",
-      "load": "Load"
-    }
-  },
-  "createCanvasDialog": {
-    "title": "Create new canvas",
-    "description": "New canvas will be by default private",
-    "toast": "Your canvas has been saved.",
-    "form": {
-      "fields": {
-        "name": "Name",
-        "tags": "Tags"
+  "components": {
+    "comboBox": {
+      "noData": "No tags found.",
+      "placeHolder": {
+        "findTag": "Find tag..."
       }
     },
-    "saveCanvasButton": "Save canvas"
-  },
-  "createOrModifyTagDialog": {
-    "create": {
-      "title": "Create new tag"
+    "contentTable": {
+      "name": "Name",
+      "createdAt": "Created at",
+      "updatedAt": "Updated at",
+      "tags": "Tags",
+      "actions": "Actions",
+      "image": "image",
+      "buttons": {
+        "edit": "Edit",
+        "share": "Share",
+        "delete": "Delete",
+        "load": "Load"
+      }
     },
-    "edit": {
-      "title": "Edit canvas",
-      "description": "Edit existing canvas"
-    },
-    "form": {
-      "fields": {
-        "name": "Name",
-        "description": "Description",
-        "color": "Color"
+    "createCanvasDialog": {
+      "title": "Create new canvas",
+      "description": "New canvas will be by default private",
+      "toast": "Your canvas has been saved.",
+      "form": {
+        "fields": {
+          "name": "Name",
+          "tags": "Tags"
+        }
       },
-      "saveTagButton": "Save tag"
-    }
-  },
-  "dashboardFilters": {
-    "name": "Filter",
-    "fields": {
-      "name": "Filter by tag",
-      "select": "Select by tags"
-    }
-  },
-  "deleteTagDialog": {
-    "title": "Are you sure you want delete this tag?",
-    "cancelButton": "Cancel",
-    "deleteButton": "Delete"
-  },
-  "desktopSidebar": {
+      "saveCanvasButton": "Save canvas"
+    },
+    "createOrModifyTagDialog": {
+      "create": {
+        "title": "Create new tag"
+      },
+      "edit": {
+        "title": "Edit canvas",
+        "description": "Edit existing canvas"
+      },
+      "form": {
+        "fields": {
+          "name": "Name",
+          "description": "Description",
+          "color": "Color"
+        },
+        "saveTagButton": "Save tag"
+      }
+    },
+    "dashboardFilters": {
+      "name": "Filter",
+      "fields": {
+        "name": "Filter by tag",
+        "select": "Select by tags"
+      }
+    },
+    "deleteTagDialog": {
+      "title": "Are you sure you want delete this tag?",
+      "cancelButton": "Cancel",
+      "deleteButton": "Delete"
+    },
+    "desktopSidebar": {
       "dashboard": "Dashboard",
       "tags": "Tags",
       "users": "Users"
-  },
-  "editCanvasDialog": {
-    "title": "Edit canvas",
-    "description": "Edit existing canvas",
-    "toast": "Your canvas has been saved.",
-    "form": {
-      "fields": {
-        "name": "Name",
-        "tags": "Tags"
-      }
     },
-    "saveCanvasButton": "Save canvas"
-  },
-  "errorPage": {
-    "title": "Uh-oh!",
-    "description":" Something went wrong.",
-    "goBackButton": "Go Back Home"
-  },
-  "homePage": {
-    "title": " Continue with",
-    "googleButton": "Google"
-  },
-  "mobileMenu": {
-    "dashboard": "Dashboard",
-    "tags": "Tags",
-    "users": "Users",
-    "toggleMenu": "Toggle menu"
-  },
-  "searchInput": {
-    "placeholder": "Search..."
-  },
-  "selectTags": {
-    "placeholder": "Select tags..."
-  },
-  "tagsContent": {
-    "title": "Tags",
-    "description": "All canvas tag list"
-  },
-  "tagsManager": {
-    "all": "All",
-    "createButton": "Create new tag"
-  },
-  "tagsTable": {
-    "name": "Name",
-    "color": "Color",
-    "description": "Description",
-    "actions": "Actions",
-    "buttons": {
-      "toggleMenu": "Toggle menu",
+    "editCanvasDialog": {
+      "title": "Edit canvas",
+      "description": "Edit existing canvas",
+      "toast": "Your canvas has been saved.",
+      "form": {
+        "fields": {
+          "name": "Name",
+          "tags": "Tags"
+        }
+      },
+      "saveCanvasButton": "Save canvas"
+    },
+    "errorPage": {
+      "title": "Uh-oh!",
+      "description":" Something went wrong.",
+      "goBackButton": "Go Back Home"
+    },
+    "homePage": {
+      "title": " Continue with",
+      "googleButton": "Google"
+    },
+    "mobileMenu": {
+      "dashboard": "Dashboard",
+      "tags": "Tags",
+      "users": "Users",
+      "toggleMenu": "Toggle menu"
+    },
+    "searchInput": {
+      "placeholder": "Search..."
+    },
+    "selectTags": {
+      "placeholder": "Select tags..."
+    },
+    "tagsContent": {
+      "title": "Tags",
+      "description": "All canvas tag list"
+    },
+    "tagsManager": {
+      "all": "All",
+      "createButton": "Create new tag"
+    },
+    "tagsTable": {
+      "name": "Name",
+      "color": "Color",
+      "description": "Description",
       "actions": "Actions",
-      "edit": "Edit",
-      "delete": "Delete"
+      "buttons": {
+        "toggleMenu": "Toggle menu",
+        "actions": "Actions",
+        "edit": "Edit",
+        "delete": "Delete"
+      }
+
+    },
+    "themeToggle": {
+      "toggle": "",
+      "light": " Light",
+      "dark": "Dark",
+      "system": "System"
+    },
+    "userDashboard": {
+      "title": "Canvases",
+      "description": "Your projects list (private & shared)",
+      "createCanvasTitle": "Create new canvas",
+      "toast": "Your canvas has been saved.",
+      "all": "All"
+
+    },
+    "userDropdownMenu": {
+      "myAccount": "My Account",
+      "settings": "Settings",
+      "logout": "Logout"
     }
-
-  },
-  "themeToggle": {
-    "toggle": "",
-    "light": " Light",
-    "dark": "Dark",
-    "system": "System"
-  },
-  "userDashboard": {
-    "title": "Canvases",
-    "description": "Your projects list (private & shared)",
-    "createCanvasTitle": "Create new canvas",
-    "toast": "Your canvas has been saved.",
-    "all": "All"
-
-  },
-  "userDropdownMenu": {
-    "myAccount": "My Account",
-    "settings": "Settings",
-    "logout": "Logout"
   },
   "validation": {
     "min": "{{ field }} name must be at least {{ number }} characters.",

@@ -51,9 +51,9 @@ export default function CreateCanvasDialog({
 		>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>{t('createCanvasDialog.title')}</DialogTitle>
+					<DialogTitle>{t('components.createCanvasDialog.title')}</DialogTitle>
 					<DialogDescription>
-						{t('createCanvasDialog.description')}
+						{t('components.createCanvasDialog.description')}
 					</DialogDescription>
 				</DialogHeader>
 				<div className="grid gap-4 py-4">
@@ -65,7 +65,7 @@ export default function CreateCanvasDialog({
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>
-											{t('createCanvasDialog.form.fields.name')}
+											{t('components.createCanvasDialog.form.fields.name')}
 										</FormLabel>
 										<FormControl>
 											<Input placeholder="" {...field} />
@@ -76,7 +76,7 @@ export default function CreateCanvasDialog({
 							/>
 							<DialogFooter>
 								<Button type="submit">
-									{t('createCanvasDialog.saveCanvasButton')}
+									{t('components.createCanvasDialog.saveCanvasButton')}
 								</Button>
 							</DialogFooter>
 						</form>

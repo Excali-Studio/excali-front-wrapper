@@ -30,7 +30,7 @@ export function SelectTags() {
 			selectedData={selectedTags}
 			selectedValueLabel={selectedLabel}
 			onSelect={onSelect}
-			placeholder={t('selectTags.placeholder')}
+			placeholder={t('components.selectTags.placeholder')}
 		/>
 	);
 }

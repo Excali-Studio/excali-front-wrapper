@@ -47,9 +47,9 @@ export default function EditCanvasDialog({
 		>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>{t('editCanvasDialog.title')}</DialogTitle>
+					<DialogTitle>{t('components.editCanvasDialog.title')}</DialogTitle>
 					<DialogDescription>
-						{t('editCanvasDialog.description')}
+						{t('components.editCanvasDialog.description')}
 					</DialogDescription>
 				</DialogHeader>
 				<div className="grid gap-4 py-4">
@@ -61,7 +61,7 @@ export default function EditCanvasDialog({
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>
-											{t('editCanvasDialog.form.fields.name')}
+											{t('components.editCanvasDialog.form.fields.name')}
 										</FormLabel>
 										<FormControl>
 											<Input placeholder="" {...field} />
@@ -76,7 +76,7 @@ export default function EditCanvasDialog({
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>
-											{t('editCanvasDialog.form.fields.tags')}
+											{t('components.editCanvasDialog.form.fields.tags')}
 										</FormLabel>
 										<FormControl>
 											<ComboBox
@@ -93,7 +93,7 @@ export default function EditCanvasDialog({
 							/>
 							<DialogFooter>
 								<Button type="submit">
-									{t('editCanvasDialog.saveCanvasButton')}
+									{t('components.editCanvasDialog.saveCanvasButton')}
 								</Button>
 							</DialogFooter>
 						</form>

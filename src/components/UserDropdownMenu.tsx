@@ -27,18 +27,18 @@ export default function UserDropdownMenu() {
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end">
 				<DropdownMenuLabel className={'disabled'}>
-					{t('userDropdownMenu.myAccount')}
+					{t('components.userDropdownMenu.myAccount')}
 				</DropdownMenuLabel>
 				<DropdownMenuSeparator />
 				<DropdownMenuItem style={{ cursor: 'pointer' }}>
-					{t('userDropdownMenu.settings')}
+					{t('components.userDropdownMenu.settings')}
 				</DropdownMenuItem>
 				<DropdownMenuSeparator />
 				<DropdownMenuItem
 					onClick={() => logoutHandler()}
 					style={{ cursor: 'pointer' }}
 				>
-					{t('userDropdownMenu.logout')}
+					{t('components.userDropdownMenu.logout')}
 				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>

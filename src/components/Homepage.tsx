@@ -35,7 +35,7 @@ function Homepage() {
 							className="mb-5 h-32 w-auto"
 						/>
 						<CardTitle className="text-center text-2xl">
-							{t('homePage.title')}
+							{t('components.homePage.title')}
 						</CardTitle>
 						<CardDescription></CardDescription>
 					</CardHeader>
@@ -47,7 +47,7 @@ function Homepage() {
 								<div className="mr-2 h-4 w-4">
 									<GoogleIcon />
 								</div>
-								{t('homePage.googleButton')}
+								{t('components.homePage.googleButton')}
 							</Button>
 						</Link>
 					</CardContent>

@@ -83,9 +83,9 @@ export default function CreateOrModifyTagDialog({
 				<DialogHeader>
 					<DialogTitle>
 						{(modalState === 'ADD_TAG' &&
-							t('createOrModifyTagDialog.create.title')) ||
+							t('components.createOrModifyTagDialog.create.title')) ||
 							(modalState === 'EDIT_TAG' &&
-								t('createOrModifyTagDialog.edit.title'))}
+								t('components.createOrModifyTagDialog.edit.title'))}
 					</DialogTitle>
 				</DialogHeader>
 				<div className="grid gap-4 py-4">
@@ -97,7 +97,7 @@ export default function CreateOrModifyTagDialog({
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>
-											{t('createOrModifyTagDialog.form.fields.name')}
+											{t('components.createOrModifyTagDialog.form.fields.name')}
 										</FormLabel>
 										<FormControl>
 											<Input placeholder="" {...field} />
@@ -112,7 +112,9 @@ export default function CreateOrModifyTagDialog({
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>
-											{t('createOrModifyTagDialog.form.fields.description')}
+											{t(
+												'components.createOrModifyTagDialog.form.fields.description'
+											)}
 										</FormLabel>
 										<FormControl>
 											<Textarea placeholder="" {...field} />
@@ -128,7 +130,9 @@ export default function CreateOrModifyTagDialog({
 									<FormItem>
 										<div className="flex items-center justify-between">
 											<FormLabel>
-												{t('createOrModifyTagDialog.form.fields.color')}
+												{t(
+													'components.createOrModifyTagDialog.form.fields.color'
+												)}
 											</FormLabel>
 											<div className="flex items-center gap-2">
 												<p className="font-mono">{field.value}</p>
@@ -147,7 +151,7 @@ export default function CreateOrModifyTagDialog({
 							/>
 							<DialogFooter>
 								<Button type="submit">
-									{t('createOrModifyTagDialog.form.saveTagButton')}
+									{t('components.createOrModifyTagDialog.form.saveTagButton')}
 								</Button>
 							</DialogFooter>
 						</form>

@@ -10,7 +10,7 @@ export default function SearchInput() {
 			<Input
 				disabled={true}
 				type="search"
-				placeholder={t('searchInput.placeholder')}
+				placeholder={t('components.searchInput.placeholder')}
 				className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
 			/>
 		</div>
