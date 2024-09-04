@@ -22,7 +22,7 @@ import {
 	createOrModifyTagFormSchema,
 } from '@/schema/create-or-modify-tag';
 import { Textarea } from '@/components/ui/textarea';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useCreateOrModifyTag } from '@/hooks/useCreateOrModifyTag';
 import { useModalStore } from '@/store/modalStore';
 
@@ -47,15 +47,29 @@ export default function CreateOrModifyTagDialog({
 	const { tagDetails, createTagHandler, updateTagHandler } =
 		useCreateOrModifyTag(currentTagId, form.reset);
 
-	useEffect(() => {
-		if (isModalOpen && modalState === 'EDIT_TAG' && tagDetails) {
+	const handleEditTagFormReset = useCallback(() => {
+		if (tagDetails) {
 			form.reset({
 				name: tagDetails.name,
 				color: tagDetails.color || '',
 				description: tagDetails.description || '',
 			});
 		}
-	}, [form, isModalOpen, modalState, tagDetails]);
+	}, [form, tagDetails]);
+
+	const handleAddTagFormReset = () => {
+		form.reset({
+			name: '',
+			color: '',
+			description: '',
+		});
+	};
+
+	useEffect(() => {
+		if (modalState === 'EDIT_TAG') {
+			handleEditTagFormReset();
+		}
+	}, [isModalOpen, modalState, handleEditTagFormReset]);
 
 	function onSubmit(formValues: CreateOrModifyTagFormSchema) {
 		const formData = {
@@ -68,18 +82,18 @@ export default function CreateOrModifyTagDialog({
 			: updateTagHandler(formData);
 	}
 
+	const isNoFieldErrors = Object.keys(form.formState.errors).length === 0;
+
 	return (
 		<Dialog
 			open={isModalOpen}
 			onOpenChange={() => {
 				closeModal();
-				if (
-					modalState === 'ADD_TAG' &&
-					Object.keys(form.formState.errors).length === 0
-				) {
-					return;
+				if (modalState === 'ADD_TAG' && !isNoFieldErrors) {
+					handleAddTagFormReset();
+				} else if (modalState === 'EDIT_TAG') {
+					handleEditTagFormReset();
 				}
-				form.reset();
 			}}
 		>
 			<DialogContent className="sm:max-w-[425px]">
