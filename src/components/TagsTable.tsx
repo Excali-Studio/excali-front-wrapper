@@ -106,15 +106,7 @@ export function TagsTable({ tags, isLoading }: TagsTableProps) {
 													</DropdownMenuTrigger>
 													<DropdownMenuContent align="end">
 														<DropdownMenuLabel>Actions</DropdownMenuLabel>
-														<DropdownMenuItem
-															onClick={(e) => {
-																e.stopPropagation();
-																openModal({
-																	modalState: 'EDIT_TAG',
-																	params: { selectedId: value.id },
-																});
-															}}
-														>
+														<DropdownMenuItem>
 															<CreateOrModifyTagDialog
 																onClick={() => {
 																	openModal({
