@@ -23,6 +23,7 @@ import { TagsTableSkeletonLoading } from '@/components/TagsTableSkeletonLoading'
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { DeleteTagDialog } from '@/components/DeleteTagDialog';
 import { useModalStore } from '@/store/modalStore';
+import CreateOrModifyTagDialog from '@/components/CreateOrModifyTagDialog';
 
 interface TagsTableProps {
 	tags: CanvasTagDTO[] | undefined;
@@ -106,14 +107,24 @@ export function TagsTable({ tags, isLoading }: TagsTableProps) {
 													<DropdownMenuContent align="end">
 														<DropdownMenuLabel>Actions</DropdownMenuLabel>
 														<DropdownMenuItem
-															onClick={() => {
+															onClick={(e) => {
+																e.stopPropagation();
 																openModal({
 																	modalState: 'EDIT_TAG',
 																	params: { selectedId: value.id },
 																});
 															}}
 														>
-															Edit
+															<CreateOrModifyTagDialog
+																onClick={() => {
+																	openModal({
+																		modalState: 'EDIT_TAG',
+																		params: { selectedId: value.id },
+																	});
+																}}
+															>
+																Edit
+															</CreateOrModifyTagDialog>
 														</DropdownMenuItem>
 														<DropdownMenuItem
 															onClick={() => {

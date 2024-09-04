@@ -16,26 +16,30 @@ import {
 	DialogFooter,
 	DialogHeader,
 	DialogTitle,
+	DialogTrigger,
 } from '@/components/ui/dialog';
 import {
 	CreateOrModifyTagFormSchema,
 	createOrModifyTagFormSchema,
 } from '@/schema/create-or-modify-tag';
 import { Textarea } from '@/components/ui/textarea';
-import { useCallback, useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { useCreateOrModifyTag } from '@/hooks/useCreateOrModifyTag';
 import { useModalStore } from '@/store/modalStore';
 
-type CurrentTagId = string | null;
-
 interface CreateOrModifyCanvasDialogProps {
-	currentTagId: CurrentTagId;
+	onClick: () => void;
+	children: ReactNode;
 }
 
 export default function CreateOrModifyTagDialog({
-	currentTagId,
+	children,
+	onClick,
 }: CreateOrModifyCanvasDialogProps) {
-	const { closeModal, isModalOpen, modalState } = useModalStore();
+	const { closeModal, isModalOpen, modalState, modalProps, resetState } =
+		useModalStore();
+
+	const currentTagId = modalProps?.selectedId || null;
 
 	const form = useForm<CreateOrModifyTagFormSchema>({
 		resolver: zodResolver(createOrModifyTagFormSchema),
@@ -47,29 +51,13 @@ export default function CreateOrModifyTagDialog({
 	const { tagDetails, createTagHandler, updateTagHandler } =
 		useCreateOrModifyTag(currentTagId, form.reset);
 
-	const handleEditTagFormReset = useCallback(() => {
-		if (tagDetails) {
-			form.reset({
-				name: tagDetails.name,
-				color: tagDetails.color || '',
-				description: tagDetails.description || '',
-			});
-		}
-	}, [form, tagDetails]);
-
-	const handleAddTagFormReset = () => {
-		form.reset({
-			name: '',
-			color: '',
-			description: '',
-		});
-	};
-
 	useEffect(() => {
-		if (modalState === 'EDIT_TAG') {
-			handleEditTagFormReset();
-		}
-	}, [isModalOpen, modalState, handleEditTagFormReset]);
+		form.reset({
+			name: tagDetails?.name || '',
+			color: tagDetails?.color || '',
+			description: tagDetails?.description || '',
+		});
+	}, [form, tagDetails]);
 
 	function onSubmit(formValues: CreateOrModifyTagFormSchema) {
 		const formData = {
@@ -82,85 +70,94 @@ export default function CreateOrModifyTagDialog({
 			: updateTagHandler(formData);
 	}
 
-	const isNoFieldErrors = Object.keys(form.formState.errors).length === 0;
-
 	return (
 		<Dialog
 			open={isModalOpen}
-			onOpenChange={() => {
-				closeModal();
-				if (modalState === 'ADD_TAG' && !isNoFieldErrors) {
-					handleAddTagFormReset();
-				} else if (modalState === 'EDIT_TAG') {
-					handleEditTagFormReset();
+			onOpenChange={(open) => {
+				if (!open) {
+					closeModal();
+					resetState();
 				}
 			}}
 		>
-			<DialogContent className="sm:max-w-[425px]">
-				<DialogHeader>
-					<DialogTitle>
-						{(modalState === 'ADD_TAG' && 'Create new tag') ||
-							(modalState === 'EDIT_TAG' && 'Edit tag')}
-					</DialogTitle>
-				</DialogHeader>
-				<div className="grid gap-4 py-4">
-					<Form {...form}>
-						<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-							<FormField
-								control={form.control}
-								name="name"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>Name</FormLabel>
-										<FormControl>
-											<Input placeholder="" {...field} />
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name="description"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>Description</FormLabel>
-										<FormControl>
-											<Textarea placeholder="" {...field} />
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name="color"
-								render={({ field }) => (
-									<FormItem>
-										<div className="flex items-center justify-between">
-											<FormLabel>Color</FormLabel>
-											<div className="flex items-center gap-2">
-												<p className="font-mono">{field.value}</p>
-												<FormControl>
-													<Input
-														type="color"
-														{...field}
-														className="w-[50px] cursor-pointer"
-													/>
-												</FormControl>
+			<DialogTrigger
+				onClick={(e) => {
+					e.stopPropagation();
+					onClick();
+				}}
+			>
+				{children}
+			</DialogTrigger>
+			{(modalState === 'ADD_TAG' || modalState === 'EDIT_TAG') && (
+				<DialogContent className="sm:max-w-[425px]">
+					<DialogHeader>
+						<DialogTitle>
+							{(modalState === 'ADD_TAG' && 'Create new tag') ||
+								(modalState === 'EDIT_TAG' && 'Edit tag')}
+						</DialogTitle>
+					</DialogHeader>
+					<div className="grid gap-4 py-4">
+						<Form {...form}>
+							<form
+								onSubmit={form.handleSubmit(onSubmit)}
+								className="space-y-8"
+							>
+								<FormField
+									control={form.control}
+									name="name"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Name</FormLabel>
+											<FormControl>
+												<Input placeholder="" {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="description"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Description</FormLabel>
+											<FormControl>
+												<Textarea placeholder="" {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="color"
+									render={({ field }) => (
+										<FormItem>
+											<div className="flex items-center justify-between">
+												<FormLabel>Color</FormLabel>
+												<div className="flex items-center gap-2">
+													<p className="font-mono">{field.value}</p>
+													<FormControl>
+														<Input
+															type="color"
+															{...field}
+															className="w-[50px] cursor-pointer"
+														/>
+													</FormControl>
+												</div>
 											</div>
-										</div>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<DialogFooter>
-								<Button type="submit">Save tag</Button>
-							</DialogFooter>
-						</form>
-					</Form>
-				</div>
-			</DialogContent>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<DialogFooter>
+									<Button type="submit">Save tag</Button>
+								</DialogFooter>
+							</form>
+						</Form>
+					</div>
+				</DialogContent>
+			)}
 		</Dialog>
 	);
 }
