@@ -14,9 +14,7 @@ export default function TagsManager() {
 		<>
 			<Toaster />
 			{(modalState === 'ADD_TAG' || modalState === 'EDIT_TAG') && (
-				<CreateOrModifyTagDialog
-					currentTagId={modalProps ? modalProps.selectedId : null}
-				/>
+				<CreateOrModifyTagDialog currentTagId={modalProps?.selectedId} />
 			)}
 
 			<ContentWrapper pagePaths={['Dashboard', 'Tags Manager']}>
@@ -31,7 +29,7 @@ export default function TagsManager() {
 									resetState();
 									openModal({
 										modalState: 'ADD_TAG',
-										params: { selectedId: null },
+										params: undefined,
 									});
 								}}
 								icon={<PlusCircle className="h-3.5 w-3.5" />}
