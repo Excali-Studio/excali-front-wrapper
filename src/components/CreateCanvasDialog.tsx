@@ -39,12 +39,14 @@ export default function CreateCanvasDialog({
 		},
 	});
 
+	const isNoFieldErrors = Object.values(form.formState.errors).length === 0;
+
 	return (
 		<Dialog
 			open={isOpen}
 			onOpenChange={() => {
 				onClose();
-				if (Object.values(form.formState.errors).length === 0) {
+				if (isNoFieldErrors) {
 					return;
 				}
 				form.reset();
