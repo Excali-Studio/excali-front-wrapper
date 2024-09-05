@@ -22,21 +22,20 @@ import {
 	createOrModifyTagFormSchema,
 } from '@/schema/create-or-modify-tag';
 import { Textarea } from '@/components/ui/textarea';
-import { useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { useCreateOrModifyTag } from '@/hooks/useCreateOrModifyTag';
 import { useModalStore } from '@/store/modalStore';
 import { useTranslation } from 'react-i18next';
 
-type CurrentTagId = string | null;
-
 interface CreateOrModifyCanvasDialogProps {
-	currentTagId: CurrentTagId;
+	button: ReactNode;
 }
 
 export default function CreateOrModifyTagDialog({
-	currentTagId,
+	button,
 }: CreateOrModifyCanvasDialogProps) {
-	const { closeModal, isModalOpen, modalState } = useModalStore();
+	const { closeModal, isModalOpen, modalState, resetState, modalProps } = useModalStore();
+	const currentTagId = modalProps?.selectedId;
 	const { t } = useTranslation();
 
 	const form = useForm<CreateOrModifyTagFormSchema>({
@@ -50,12 +49,11 @@ export default function CreateOrModifyTagDialog({
 		useCreateOrModifyTag(currentTagId, form.reset);
 
 	useEffect(() => {
-		if (tagDetails) {
-			form.setValue('name', tagDetails.name);
-			tagDetails.color && form.setValue('color', tagDetails.color);
-			tagDetails.description &&
-				form.setValue('description', tagDetails.description);
-		}
+		form.reset({
+			name: tagDetails?.name || '',
+			color: tagDetails?.color || '',
+			description: tagDetails?.description || '',
+		});
 	}, [form, tagDetails]);
 
 	function onSubmit(formValues: CreateOrModifyTagFormSchema) {
@@ -72,92 +70,96 @@ export default function CreateOrModifyTagDialog({
 	return (
 		<Dialog
 			open={isModalOpen}
-			onOpenChange={() => {
-				if (modalState === 'EDIT_TAG') {
-					form.reset();
+			onOpenChange={(open) => {
+				if (!open) {
+					closeModal();
+					resetState();
 				}
-				closeModal();
 			}}
 		>
-			<DialogContent className="sm:max-w-[425px]">
-				<DialogHeader>
-					<DialogTitle>
-						{(modalState === 'ADD_TAG' &&
-							t('components.createOrModifyTagDialog.create.title')) ||
-							(modalState === 'EDIT_TAG' &&
-								t('components.createOrModifyTagDialog.edit.title'))}
-					</DialogTitle>
-				</DialogHeader>
-				<div className="grid gap-4 py-4">
-					<Form {...form}>
-						<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-							<FormField
-								control={form.control}
-								name="name"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>
-											{t('components.createOrModifyTagDialog.form.fields.name')}
-										</FormLabel>
-										<FormControl>
-											<Input placeholder="" {...field} />
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name="description"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>
-											{t(
-												'components.createOrModifyTagDialog.form.fields.description'
-											)}
-										</FormLabel>
-										<FormControl>
-											<Textarea placeholder="" {...field} />
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name="color"
-								render={({ field }) => (
-									<FormItem>
-										<div className="flex items-center justify-between">
+			{button}
+			{(modalState === 'ADD_TAG' || modalState === 'EDIT_TAG') && (
+				<DialogContent className="sm:max-w-[425px]">
+					<DialogHeader>
+						<DialogTitle>
+							{(modalState === 'ADD_TAG' &&
+								t('components.createOrModifyTagDialog.create.title')) ||
+								(modalState === 'EDIT_TAG' &&
+									t('components.createOrModifyTagDialog.edit.title'))}
+						</DialogTitle>
+					</DialogHeader>
+					<div className="grid gap-4 py-4">
+						<Form {...form}>
+							<form
+								onSubmit={form.handleSubmit(onSubmit)}
+								className="space-y-8"
+							>
+								<FormField
+									control={form.control}
+									name="name"
+									render={({ field }) => (
+										<FormItem>
 											<FormLabel>
 												{t(
-													'components.createOrModifyTagDialog.form.fields.color'
+													'components.createOrModifyTagDialog.form.fields.name'
 												)}
 											</FormLabel>
-											<div className="flex items-center gap-2">
-												<p className="font-mono">{field.value}</p>
-												<FormControl>
-													<Input
-														type="color"
-														{...field}
-														className="w-[50px] cursor-pointer"
-													/>
-												</FormControl>
+											<FormControl>
+												<Input placeholder="" {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="description"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Description</FormLabel>
+											<FormControl>
+												<Textarea placeholder="" {...field} />
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="color"
+									render={({ field }) => (
+										<FormItem>
+											<div className="flex items-center justify-between">
+												<FormLabel>
+													{t(
+														'components.createOrModifyTagDialog.form.fields.color'
+													)}
+												</FormLabel>
+												<div className="flex items-center gap-2">
+													<p className="font-mono">{field.value}</p>
+													<FormControl>
+														<Input
+															type="color"
+															{...field}
+															className="w-[50px] cursor-pointer"
+														/>
+													</FormControl>
+												</div>
 											</div>
-										</div>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<DialogFooter>
-								<Button type="submit">
-									{t('components.createOrModifyTagDialog.form.saveTagButton')}
-								</Button>
-							</DialogFooter>
-						</form>
-					</Form>
-				</div>
-			</DialogContent>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<DialogFooter>
+									<Button type="submit">
+										{t('components.createOrModifyTagDialog.form.saveTagButton')}
+									</Button>
+								</DialogFooter>
+							</form>
+						</Form>
+					</div>
+				</DialogContent>
+			)}
 		</Dialog>
 	);
 }

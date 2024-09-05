@@ -23,6 +23,8 @@ import { TagsTableSkeletonLoading } from '@/components/TagsTableSkeletonLoading'
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { DeleteTagDialog } from '@/components/DeleteTagDialog';
 import { useModalStore } from '@/store/modalStore';
+import CreateOrModifyTagDialog from '@/components/CreateOrModifyTagDialog';
+import { DialogTrigger } from '@/components/ui/dialog';
 import { useTranslation } from 'react-i18next';
 
 interface TagsTableProps {
@@ -58,16 +60,16 @@ export function TagsTable({ tags, isLoading }: TagsTableProps) {
 			<Table>
 				<TableHeader>
 					<TableRow>
-						<TableHead>{t('tagsTable.name')}</TableHead>
+						<TableHead>{t('components.tagsTable.name')}</TableHead>
 						<TableHead className="hidden md:table-cell">
-							{t('tagsTable.color')}
+							{t('components.tagsTable.color')}
 						</TableHead>
 						<TableHead className="hidden md:table-cell">
-							{t('tagsTable.description')}
+							{t('components.tagsTable.description')}
 						</TableHead>
 						<TableHead>
-							{t('tagsTable.actions')}
-							<span className="sr-only">{t('tagsTable.actions')}</span>
+							{t('components.tagsTable.actions')}
+							<span className="sr-only">{t('components.tagsTable.actions')}</span>
 						</TableHead>
 					</TableRow>
 				</TableHeader>
@@ -106,24 +108,32 @@ export function TagsTable({ tags, isLoading }: TagsTableProps) {
 															variant="ghost"
 														>
 															<MoreHorizontal className="h-4 w-4" />
-															<span className="sr-only">
-																{t('tagsTable.buttons.toggleMenu')}
+                                                            <span className="sr-only">
+																{t('components.tagsTable.buttons.toggleMenu')}
 															</span>
 														</Button>
 													</DropdownMenuTrigger>
 													<DropdownMenuContent align="end">
-														<DropdownMenuLabel>
-															{t('tagsTable.buttons.actions')}
-														</DropdownMenuLabel>
-														<DropdownMenuItem
-															onClick={() => {
-																openModal({
-																	modalState: 'EDIT_TAG',
-																	params: { selectedId: value.id },
-																});
-															}}
-														>
-															{t('tagsTable.buttons.edit')}
+                                                        <DropdownMenuLabel>
+                                                            {t('components.tagsTable.buttons.actions')}
+                                                        </DropdownMenuLabel>
+														<DropdownMenuItem>
+															<CreateOrModifyTagDialog
+																button={
+																	<DialogTrigger
+																		className="w-full text-left"
+																		onClick={(e) => {
+																			e.stopPropagation();
+																			openModal({
+																				modalState: 'EDIT_TAG',
+																				params: { selectedId: value.id },
+																			});
+																		}}
+																	>
+                                                                        {t('components.tagsTable.buttons.edit')}
+																	</DialogTrigger>
+																}
+															/>
 														</DropdownMenuItem>
 														<DropdownMenuItem
 															onClick={() => {
@@ -133,7 +143,7 @@ export function TagsTable({ tags, isLoading }: TagsTableProps) {
 																});
 															}}
 														>
-															{t('tagsTable.buttons.delete')}
+                                                            {t('components.tagsTable.buttons.delete')}
 														</DropdownMenuItem>
 													</DropdownMenuContent>
 												</DropdownMenu>

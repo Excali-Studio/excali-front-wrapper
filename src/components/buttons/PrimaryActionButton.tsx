@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import { ReactNode } from 'react';
 
 interface PrimaryActionButtonProps {
-	onClickHandler: () => void;
+	onClickHandler?: () => void;
 	icon: ReactNode;
 	children: ReactNode;
 }

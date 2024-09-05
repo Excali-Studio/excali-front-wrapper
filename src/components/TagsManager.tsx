@@ -6,40 +6,43 @@ import PrimaryActionButton from '@/components/buttons/PrimaryActionButton';
 import { PlusCircle } from 'lucide-react';
 import CreateOrModifyTagDialog from '@/components/CreateOrModifyTagDialog';
 import { useModalStore } from '@/store/modalStore';
+import { DialogTrigger } from '@/components/ui/dialog';
 import { useTranslation } from 'react-i18next';
 
 export default function TagsManager() {
 	const { t } = useTranslation();
-	const { openModal, modalState, resetState, modalProps } = useModalStore();
+	const { openModal } = useModalStore();
 
 	return (
 		<>
 			<Toaster />
-			{(modalState === 'ADD_TAG' || modalState === 'EDIT_TAG') && (
-				<CreateOrModifyTagDialog
-					currentTagId={modalProps?.selectedId ?? null}
-				/>
-			)}
-
 			<ContentWrapper pagePaths={['Dashboard', 'Tags Manager']}>
 				<Tabs defaultValue="all">
 					<div className="flex items-center">
 						<TabsList>
-							<TabsTrigger value="all">{t('tagsManager.all')}</TabsTrigger>
+							<TabsTrigger value="all">
+								{t('components.tagsManager.all')}
+							</TabsTrigger>
 						</TabsList>
 						<div className="ml-auto flex items-center gap-2">
-							<PrimaryActionButton
-								onClickHandler={() => {
-									resetState();
-									openModal({
-										modalState: 'ADD_TAG',
-										params: { selectedId: null },
-									});
-								}}
-								icon={<PlusCircle className="h-3.5 w-3.5" />}
-							>
-								{t('tagsManager.createButton')}
-							</PrimaryActionButton>
+							<CreateOrModifyTagDialog
+								button={
+									<DialogTrigger
+										onClick={(e) => {
+											e.stopPropagation();
+											openModal({
+												modalState: 'ADD_TAG',
+											});
+										}}
+									>
+										<PrimaryActionButton
+											icon={<PlusCircle className="h-3.5 w-3.5" />}
+										>
+											{t('components.tagsManager.createButton')}
+										</PrimaryActionButton>
+									</DialogTrigger>
+								}
+							/>
 						</div>
 					</div>
 					<TagsContent />
