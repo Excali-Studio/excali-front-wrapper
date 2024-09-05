@@ -1,6 +1,5 @@
 import { PlusCircle } from 'lucide-react';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ExcaliApi } from '@/lib/api/excali-api';
 import CreateCanvasDialog from '@/components/CreateCanvasDialog';
@@ -17,15 +16,16 @@ import ContentWrapper from '@/components/ContentWrapper';
 import DashboardFilters from '@/components/DashboardFilters';
 import { TagsFilterStoreProvider } from '@/providers/TagsFilterProvider/TagsFilterProvider';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useModalStore } from '@/store/modalStore';
 
-//TODO Add modal store in this section - No jira task yet.
 export default function UserDashboard() {
-	const [isCreateCanvasOpen, setIsCreateCanvasOpen] = useState(false);
 	const { data } = useUserAuth();
 	const { toast } = useToast();
 	const { t } = useTranslation();
 
 	const queryClient = useQueryClient();
+	const { isModalOpen, closeModal, openModal, modalState, resetState } =
+		useModalStore();
 
 	const { mutate: createCanvasHandler } = useMutation({
 		mutationFn: (values: z.infer<typeof createCanvasFormSchema>) => {
@@ -38,18 +38,22 @@ export default function UserDashboard() {
 			toast({
 				description: t('components.userDashboard.toast'),
 			});
-			setIsCreateCanvasOpen(false);
+			closeModal();
+			resetState();
 			return queryClient.invalidateQueries({ queryKey: [CANVASES_QUERY_KEY] });
 		},
 	});
 
 	return (
 		<TagsFilterStoreProvider>
-			<CreateCanvasDialog
-				isOpen={isCreateCanvasOpen}
-				onClose={() => setIsCreateCanvasOpen(false)}
-				onSubmit={createCanvasHandler}
-			/>
+			{modalState === 'ADD_CANVAS' && (
+				<CreateCanvasDialog
+					isOpen={isModalOpen}
+					onClose={closeModal}
+					onSubmit={createCanvasHandler}
+				/>
+			)}
+
 			<Toaster />
 			<ContentWrapper pagePaths={['Dashboard', 'Canvases']}>
 				<Tabs defaultValue="all">
@@ -64,7 +68,11 @@ export default function UserDashboard() {
 						<div className="ml-auto flex items-center gap-2">
 							<DashboardFilters />
 							<PrimaryActionButton
-								onClickHandler={() => setIsCreateCanvasOpen(true)}
+								onClickHandler={() =>
+									openModal({
+										modalState: 'ADD_CANVAS',
+									})
+								}
 								icon={<PlusCircle className="h-3.5 w-3.5" />}
 							>
 								{t('components.userDashboard.createCanvasTitle')}

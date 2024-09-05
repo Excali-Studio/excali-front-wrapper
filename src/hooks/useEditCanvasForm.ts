@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 import { useEditCanvas } from '@/hooks/useEditCanvas';
 
 export function useEditCanvasForm(
-	canvasId: string | null,
+	canvasId: string | undefined,
 	onClose: () => void
 ) {
 	const { data: tagsData = [] } = useQuery({
