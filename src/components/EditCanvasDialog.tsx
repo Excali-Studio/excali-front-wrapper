@@ -19,6 +19,7 @@ import {
 import { ComboBox } from '@/components/ComboBox';
 import { useEditCanvasForm } from '@/hooks/useEditCanvasForm';
 import { useModalStore } from '@/store/modalStore';
+import { useTranslation } from 'react-i18next';
 
 type CanvasIdValue = string | null;
 
@@ -33,10 +34,12 @@ export default function EditCanvasDialog({
 	canvasId,
 	onClose,
 }: EditCanvasDialogProps) {
+	const { t } = useTranslation();
 	const { form, onSubmit, tags, selectedTagsName, onSelect } =
 		useEditCanvasForm(canvasId, onClose);
 
-	const { resetState } = useModalStore();
+    const { resetState } = useModalStore();
+
 	return (
 		<Dialog
 			open={isOpen}
@@ -48,9 +51,9 @@ export default function EditCanvasDialog({
 		>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>Edit canvas</DialogTitle>
+					<DialogTitle>{t('components.editCanvasDialog.title')}</DialogTitle>
 					<DialogDescription>
-						New canvas will be by default private
+						{t('components.editCanvasDialog.description')}
 					</DialogDescription>
 				</DialogHeader>
 				<div className="grid gap-4 py-4">
@@ -61,7 +64,9 @@ export default function EditCanvasDialog({
 								name="name"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Name</FormLabel>
+										<FormLabel>
+											{t('components.editCanvasDialog.form.fields.name')}
+										</FormLabel>
 										<FormControl>
 											<Input placeholder="" {...field} />
 										</FormControl>
@@ -74,7 +79,9 @@ export default function EditCanvasDialog({
 								name="selectedTags"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Tags</FormLabel>
+										<FormLabel>
+											{t('components.editCanvasDialog.form.fields.tags')}
+										</FormLabel>
 										<FormControl>
 											<ComboBox
 												placeholder="Select tags..."
@@ -89,7 +96,9 @@ export default function EditCanvasDialog({
 								)}
 							/>
 							<DialogFooter>
-								<Button type="submit">Save canvas</Button>
+								<Button type="submit">
+									{t('components.editCanvasDialog.saveCanvasButton')}
+								</Button>
 							</DialogFooter>
 						</form>
 					</Form>

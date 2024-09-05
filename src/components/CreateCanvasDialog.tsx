@@ -20,6 +20,7 @@ import {
 	DialogTitle,
 } from '@/components/ui/dialog';
 import { createCanvasFormSchema } from '@/schema/createcanvas';
+import { useTranslation } from 'react-i18next';
 
 interface CreateCanvasDialogProps {
 	isOpen: boolean;
@@ -32,6 +33,7 @@ export default function CreateCanvasDialog({
 	onClose,
 	onSubmit,
 }: CreateCanvasDialogProps) {
+	const { t } = useTranslation();
 	const form = useForm<z.infer<typeof createCanvasFormSchema>>({
 		resolver: zodResolver(createCanvasFormSchema),
 		defaultValues: {
@@ -48,9 +50,9 @@ export default function CreateCanvasDialog({
 		>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>Create new canvas</DialogTitle>
+					<DialogTitle>{t('components.createCanvasDialog.title')}</DialogTitle>
 					<DialogDescription>
-						New canvas will be by default private
+						{t('components.createCanvasDialog.description')}
 					</DialogDescription>
 				</DialogHeader>
 				<div className="grid gap-4 py-4">
@@ -61,16 +63,20 @@ export default function CreateCanvasDialog({
 								name="name"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Name</FormLabel>
+										<FormLabel>
+											{t('components.createCanvasDialog.form.fields.name')}
+										</FormLabel>
 										<FormControl>
 											<Input placeholder="" {...field} />
 										</FormControl>
 										<FormMessage />
 									</FormItem>
 								)}
-							/>{' '}
+							/>
 							<DialogFooter>
-								<Button type="submit">Save canvas</Button>
+								<Button type="submit">
+									{t('components.createCanvasDialog.saveCanvasButton')}
+								</Button>
 							</DialogFooter>
 						</form>
 					</Form>
