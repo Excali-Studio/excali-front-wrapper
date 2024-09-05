@@ -7,6 +7,7 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { useModalStore } from '@/store/modalStore';
+import { useTranslation } from 'react-i18next';
 
 interface DeleteTagDialogProps {
 	isModalOpen: boolean;
@@ -20,12 +21,13 @@ export function DeleteTagDialog({
 	closeModal,
 }: DeleteTagDialogProps) {
 	const { resetState } = useModalStore();
+	const { t } = useTranslation();
 
 	return (
 		<Dialog onOpenChange={closeModal} open={isModalOpen}>
 			<DialogContent>
 				<DialogHeader>
-					<DialogTitle>Are you sure you want delete this tag?</DialogTitle>
+					<DialogTitle>{t('components.deleteTagDialog.title')}</DialogTitle>
 				</DialogHeader>
 				<DialogFooter className="flex justify-between">
 					<Button
@@ -35,7 +37,7 @@ export function DeleteTagDialog({
 						}}
 						variant="ghost"
 					>
-						Cancel
+						{t('components.deleteTagDialog.cancelButton')}
 					</Button>
 					<Button
 						onClick={() => {
@@ -43,7 +45,7 @@ export function DeleteTagDialog({
 							resetState();
 						}}
 					>
-						Delete
+						{t('components.deleteTagDialog.deleteButton')}
 					</Button>
 				</DialogFooter>
 			</DialogContent>

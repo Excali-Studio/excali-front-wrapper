@@ -1,6 +1,7 @@
 import { PlusCircle } from 'lucide-react';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ExcaliApi } from '@/lib/api/excali-api';
 import CreateCanvasDialog from '@/components/CreateCanvasDialog';
 import { useUserAuth } from '@/lib/useUserAuth';
@@ -22,6 +23,7 @@ export default function UserDashboard() {
 	const [isCreateCanvasOpen, setIsCreateCanvasOpen] = useState(false);
 	const { data } = useUserAuth();
 	const { toast } = useToast();
+	const { t } = useTranslation();
 
 	const queryClient = useQueryClient();
 
@@ -34,7 +36,7 @@ export default function UserDashboard() {
 		},
 		onSuccess: () => {
 			toast({
-				description: 'Your canvas has been saved.',
+				description: t('components.userDashboard.toast'),
 			});
 			setIsCreateCanvasOpen(false);
 			return queryClient.invalidateQueries({ queryKey: [CANVASES_QUERY_KEY] });
@@ -53,7 +55,9 @@ export default function UserDashboard() {
 				<Tabs defaultValue="all">
 					<div className="flex items-center">
 						<TabsList>
-							<TabsTrigger value="all">All</TabsTrigger>
+							<TabsTrigger value="all">
+								{t('components.userDashboard.all')}
+							</TabsTrigger>
 							{/*<TabsTrigger value="draft">Draft</TabsTrigger>*/}
 							{/*<TabsTrigger value="archived">Archived</TabsTrigger>*/}
 						</TabsList>
@@ -63,13 +67,13 @@ export default function UserDashboard() {
 								onClickHandler={() => setIsCreateCanvasOpen(true)}
 								icon={<PlusCircle className="h-3.5 w-3.5" />}
 							>
-								Create new canvas
+								{t('components.userDashboard.createCanvasTitle')}
 							</PrimaryActionButton>
 						</div>
 					</div>
 					<TabsContentWrapper
-						title={'Canvases'}
-						description={'Your projects list (private & shared)'}
+						title={t('components.userDashboard.title')}
+						description={t('components.userDashboard.description')}
 					/>
 				</Tabs>
 			</ContentWrapper>

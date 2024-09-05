@@ -21,6 +21,7 @@ import { ApiPageData, CanvasDTO } from '@/lib/api/excali-api';
 import { Badge } from '@/components/ui/badge';
 import { getContrastText } from '@/lib/contrast-text';
 import { CanvasTableSkeletonLoading } from '@/components/CanvasTableSkeletonLoading';
+import { useTranslation } from 'react-i18next';
 
 interface ContentTableProps {
 	canvasData?: ApiPageData<CanvasDTO>;
@@ -33,21 +34,32 @@ export default function ContentTable({
 	setEditCanvasId,
 	isLoading,
 }: ContentTableProps) {
+	const { t } = useTranslation();
 	return (
 		<Table>
 			<TableHeader>
 				<TableRow>
 					<TableHead className="hidden w-[100px] sm:table-cell">
-						<span className="sr-only">Image</span>
+						<span className="sr-only">
+							{t('components.contentTable.image')}
+						</span>
 					</TableHead>
-					<TableHead>Name</TableHead>
-					<TableHead className="hidden md:table-cell">Created at</TableHead>
-					<TableHead className="hidden md:table-cell">Updated at</TableHead>
-					<TableHead className="hidden lg:table-cell">Tags</TableHead>
+					<TableHead>{t('components.contentTable.name')}</TableHead>
+					<TableHead className="hidden md:table-cell">
+						{t('components.contentTable.createdAt')}
+					</TableHead>
+					<TableHead className="hidden md:table-cell">
+						{t('components.contentTable.updatedAt')}
+					</TableHead>
+					<TableHead className="hidden lg:table-cell">
+						{t('components.contentTable.tags')}
+					</TableHead>
 
 					<TableHead>
-						Actions
-						<span className="sr-only">Actions</span>
+						{t('components.contentTable.actions')}
+						<span className="sr-only">
+							{t('components.contentTable.actions')}
+						</span>
 					</TableHead>
 					<TableHead className="hidden md:table-cell"></TableHead>
 				</TableRow>
@@ -104,24 +116,28 @@ export default function ContentTable({
 													</Button>
 												</DropdownMenuTrigger>
 												<DropdownMenuContent align="end">
-													<DropdownMenuLabel>Actions</DropdownMenuLabel>
+													<DropdownMenuLabel>
+														{t('components.contentTable.createdAt')}
+													</DropdownMenuLabel>
 													<DropdownMenuItem
 														onClick={() => setEditCanvasId(value.id)}
 													>
-														Edit
+														{t('components.contentTable.buttons.edit')}
 													</DropdownMenuItem>
 													<DropdownMenuItem disabled={true}>
-														Share
+														{t('components.contentTable.buttons.share')}
 													</DropdownMenuItem>
 													<DropdownMenuItem disabled={true}>
-														Delete
+														{t('components.contentTable.buttons.delete')}
 													</DropdownMenuItem>
 												</DropdownMenuContent>
 											</DropdownMenu>
 										</TableCell>
 										<TableCell className="hidden md:table-cell">
 											<Link to={`/editor/${value.id}`}>
-												<Button>Load</Button>
+												<Button>
+													{t('components.contentTable.buttons.load')}
+												</Button>
 											</Link>
 										</TableCell>
 									</TableRow>

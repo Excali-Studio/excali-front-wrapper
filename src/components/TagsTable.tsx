@@ -23,6 +23,7 @@ import { TagsTableSkeletonLoading } from '@/components/TagsTableSkeletonLoading'
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { DeleteTagDialog } from '@/components/DeleteTagDialog';
 import { useModalStore } from '@/store/modalStore';
+import { useTranslation } from 'react-i18next';
 
 interface TagsTableProps {
 	tags: CanvasTagDTO[] | undefined;
@@ -31,6 +32,7 @@ interface TagsTableProps {
 
 export function TagsTable({ tags, isLoading }: TagsTableProps) {
 	const queryClient = useQueryClient();
+	const { t } = useTranslation();
 	const { isModalOpen, openModal, closeModal, modalState, modalProps } =
 		useModalStore();
 
@@ -56,12 +58,16 @@ export function TagsTable({ tags, isLoading }: TagsTableProps) {
 			<Table>
 				<TableHeader>
 					<TableRow>
-						<TableHead>Name</TableHead>
-						<TableHead className="hidden md:table-cell">Color</TableHead>
-						<TableHead className="hidden md:table-cell">Description</TableHead>
+						<TableHead>{t('tagsTable.name')}</TableHead>
+						<TableHead className="hidden md:table-cell">
+							{t('tagsTable.color')}
+						</TableHead>
+						<TableHead className="hidden md:table-cell">
+							{t('tagsTable.description')}
+						</TableHead>
 						<TableHead>
-							Actions
-							<span className="sr-only">Actions</span>
+							{t('tagsTable.actions')}
+							<span className="sr-only">{t('tagsTable.actions')}</span>
 						</TableHead>
 					</TableRow>
 				</TableHeader>
@@ -100,11 +106,15 @@ export function TagsTable({ tags, isLoading }: TagsTableProps) {
 															variant="ghost"
 														>
 															<MoreHorizontal className="h-4 w-4" />
-															<span className="sr-only">Toggle menu</span>
+															<span className="sr-only">
+																{t('tagsTable.buttons.toggleMenu')}
+															</span>
 														</Button>
 													</DropdownMenuTrigger>
 													<DropdownMenuContent align="end">
-														<DropdownMenuLabel>Actions</DropdownMenuLabel>
+														<DropdownMenuLabel>
+															{t('tagsTable.buttons.actions')}
+														</DropdownMenuLabel>
 														<DropdownMenuItem
 															onClick={() => {
 																openModal({
@@ -113,7 +123,7 @@ export function TagsTable({ tags, isLoading }: TagsTableProps) {
 																});
 															}}
 														>
-															Edit
+															{t('tagsTable.buttons.edit')}
 														</DropdownMenuItem>
 														<DropdownMenuItem
 															onClick={() => {
@@ -123,7 +133,7 @@ export function TagsTable({ tags, isLoading }: TagsTableProps) {
 																});
 															}}
 														>
-															Delete
+															{t('tagsTable.buttons.delete')}
 														</DropdownMenuItem>
 													</DropdownMenuContent>
 												</DropdownMenu>

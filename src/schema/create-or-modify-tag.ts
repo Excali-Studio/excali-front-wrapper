@@ -1,14 +1,21 @@
 import { z } from 'zod';
+import { t } from 'i18next';
 
 export const createOrModifyTagFormSchema = z.object({
 	id: z.string().optional(),
 	name: z
 		.string()
 		.min(3, {
-			message: 'Tag name must be at least 3 characters.',
+			message: t('validation.min', {
+				field: t('components.createOrModifyTagDialog.form.fields.name'),
+				number: 3,
+			}),
 		})
 		.max(12, {
-			message: "Tag name can't be longer than 12 characters.",
+			message: t('validation.max', {
+				field: t('components.createOrModifyTagDialog.form.fields.name'),
+				number: 12,
+			}),
 		}),
 	color: z.string(),
 	description: z.string().optional(),

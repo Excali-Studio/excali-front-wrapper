@@ -1,7 +1,19 @@
 import { z } from 'zod';
+import { t } from 'i18next';
 
 export const createCanvasFormSchema = z.object({
-	name: z.string().min(2, {
-		message: 'Canvas name must be at least 2 characters.',
-	}),
+	name: z
+		.string()
+		.min(3, {
+			message: t('validation.min', {
+				field: t('components.createCanvasDialog.form.fields.name'),
+				number: 3,
+			}),
+		})
+		.max(255, {
+			message: t('validation.max', {
+				field: t('components.createCanvasDialog.form.fields.name'),
+				number: 255,
+			}),
+		}),
 });
