@@ -25,8 +25,8 @@ export function TagsContent() {
 			<TabsContent value="all">
 				<Card x-chunk="dashboard-06-chunk-0">
 					<CardHeader>
-						<CardTitle>{t('tagsContent.title')}</CardTitle>
-						<CardDescription>{t('tagsContent.description')}</CardDescription>
+						<CardTitle>{t('components.tagsContent.title')}</CardTitle>
+						<CardDescription>{t('components.tagsContent.description')}</CardDescription>
 					</CardHeader>
 					<CardContent>
 						<TagsTable tags={tags} isLoading={isLoading} />
