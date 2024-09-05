@@ -15,6 +15,7 @@ import {
 } from '@/components/ui/popover';
 import { useMemo, useState } from 'react';
 import { Input } from '@/components/ui/input';
+import { useTranslation } from 'react-i18next';
 import { clsx } from 'clsx';
 
 interface DataItem {
@@ -44,6 +45,7 @@ export function ComboBox<T extends DataItem>({
 }: ComboBoxProps<T>) {
 	const [open, setOpen] = useState(false);
 	const [search, setSearch] = useState('');
+	const { t } = useTranslation();
 
 	const filteredData = useMemo(() => {
 		return (
