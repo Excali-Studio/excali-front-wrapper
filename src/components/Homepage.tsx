@@ -10,9 +10,11 @@ import {
 import { useUserAuth } from '../lib/useUserAuth';
 import { Link, Navigate } from 'react-router-dom';
 import { GoogleIcon } from '@/components/icons/GoogleIcon';
+import { useTranslation } from 'react-i18next';
 
 function Homepage() {
 	const { data: user } = useUserAuth();
+	const { t } = useTranslation();
 
 	if (user) {
 		return <Navigate to="/dashboard" replace />;
@@ -33,7 +35,7 @@ function Homepage() {
 							className="mb-5 h-32 w-auto"
 						/>
 						<CardTitle className="text-center text-2xl">
-							Continue with
+							{t('components.homePage.title')}
 						</CardTitle>
 						<CardDescription></CardDescription>
 					</CardHeader>
@@ -45,7 +47,7 @@ function Homepage() {
 								<div className="mr-2 h-4 w-4">
 									<GoogleIcon />
 								</div>
-								Google
+								{t('components.homePage.googleButton')}
 							</Button>
 						</Link>
 					</CardContent>
