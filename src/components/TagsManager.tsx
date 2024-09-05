@@ -8,15 +8,12 @@ import CreateOrModifyTagDialog from '@/components/CreateOrModifyTagDialog';
 import { useModalStore } from '@/store/modalStore';
 
 export default function TagsManager() {
-	const { openModal, modalState, resetState, modalProps } = useModalStore();
+	const { openModal, resetState, modalProps } = useModalStore();
 
 	return (
 		<>
 			<Toaster />
-			{(modalState === 'ADD_TAG' || modalState === 'EDIT_TAG') && (
-				<CreateOrModifyTagDialog currentTagId={modalProps?.selectedId} />
-			)}
-
+			<CreateOrModifyTagDialog currentTagId={modalProps?.selectedId} />
 			<ContentWrapper pagePaths={['Dashboard', 'Tags Manager']}>
 				<Tabs defaultValue="all">
 					<div className="flex items-center">
@@ -29,7 +26,6 @@ export default function TagsManager() {
 									resetState();
 									openModal({
 										modalState: 'ADD_TAG',
-										params: undefined,
 									});
 								}}
 								icon={<PlusCircle className="h-3.5 w-3.5" />}

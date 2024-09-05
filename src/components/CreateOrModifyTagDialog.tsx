@@ -26,10 +26,8 @@ import { useEffect } from 'react';
 import { useCreateOrModifyTag } from '@/hooks/useCreateOrModifyTag';
 import { useModalStore } from '@/store/modalStore';
 
-type CurrentTagId = string | undefined;
-
 interface CreateOrModifyCanvasDialogProps {
-	currentTagId: CurrentTagId;
+	currentTagId?: string;
 }
 
 export default function CreateOrModifyTagDialog({
@@ -62,9 +60,7 @@ export default function CreateOrModifyTagDialog({
 			description: formValues.description || undefined,
 		};
 
-		currentTagId === undefined
-			? createTagHandler(formData)
-			: updateTagHandler(formData);
+		currentTagId ? updateTagHandler(formData) : createTagHandler(formData);
 	}
 
 	return (
