@@ -16,7 +16,6 @@ import {
 	DialogFooter,
 	DialogHeader,
 	DialogTitle,
-	DialogTrigger,
 } from '@/components/ui/dialog';
 import {
 	CreateOrModifyTagFormSchema,
@@ -28,18 +27,16 @@ import { useCreateOrModifyTag } from '@/hooks/useCreateOrModifyTag';
 import { useModalStore } from '@/store/modalStore';
 
 interface CreateOrModifyCanvasDialogProps {
-	onClick: () => void;
-	children: ReactNode;
+	button: ReactNode;
 }
 
 export default function CreateOrModifyTagDialog({
-	children,
-	onClick,
+	button,
 }: CreateOrModifyCanvasDialogProps) {
 	const { closeModal, isModalOpen, modalState, modalProps, resetState } =
 		useModalStore();
 
-	const currentTagId = modalProps?.selectedId || null;
+	const currentTagId = modalProps?.selectedId;
 
 	const form = useForm<CreateOrModifyTagFormSchema>({
 		resolver: zodResolver(createOrModifyTagFormSchema),
@@ -80,14 +77,7 @@ export default function CreateOrModifyTagDialog({
 				}
 			}}
 		>
-			<DialogTrigger
-				onClick={(e) => {
-					e.stopPropagation();
-					onClick();
-				}}
-			>
-				{children}
-			</DialogTrigger>
+			{button}
 			{(modalState === 'ADD_TAG' || modalState === 'EDIT_TAG') && (
 				<DialogContent className="sm:max-w-[425px]">
 					<DialogHeader>
