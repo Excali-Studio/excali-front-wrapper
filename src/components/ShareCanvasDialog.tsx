@@ -29,6 +29,7 @@ export const ShareCanvasDialog = ({
 	isOpen,
 	closeModal,
 }: ShareCanvasDialogProps) => {
+	const { t } = useTranslation();
 	const methods = useForm<ShareCanvas>({
 		defaultValues: {
 			personIds: [],
@@ -90,9 +91,8 @@ export const ShareCanvasDialog = ({
 										<FormLabel>Users</FormLabel>
 										<FormControl>
 											<ComboBox
-												field="personIds"
+												field="users"
 												className="w-full"
-												placeholder="Select users..."
 												selectedData={field.value}
 												selectedValueLabel={selectedUsersName}
 												onSelect={onSelect}

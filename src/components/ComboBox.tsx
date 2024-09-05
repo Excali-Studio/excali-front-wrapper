@@ -24,28 +24,25 @@ interface DataItem {
 }
 
 interface ComboBoxProps<T extends DataItem> {
-	field?: string;
+	field: 'tags' | 'users';
 	className?: string;
 	data: T[];
 	selectedData: T['value'][];
 	onSelect: (value: T['value']) => void;
 	selectedValueLabel: string;
-	placeholder: string;
 }
 
-//TODO Pass props for the generic fields and translation
 export function ComboBox<T extends DataItem>({
-	field = 'tag',
+	field,
 	className,
 	selectedValueLabel,
 	data,
 	selectedData,
 	onSelect,
-	placeholder,
 }: ComboBoxProps<T>) {
+	const { t } = useTranslation();
 	const [open, setOpen] = useState(false);
 	const [search, setSearch] = useState('');
-	const { t } = useTranslation();
 
 	const filteredData = useMemo(() => {
 		return (
@@ -70,7 +67,11 @@ export function ComboBox<T extends DataItem>({
 						className="w-full justify-between text-left"
 					>
 						<span className="max-w-[400px] truncate">
-							{selectedData.length > 0 ? selectedValueLabel : placeholder}
+							{selectedData.length > 0
+								? selectedValueLabel
+								: t(`components.comboBox.inputPlaceholder`, {
+										field: t(`components.comboBox.fields.${field}`),
+									})}
 						</span>
 						<CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
 					</Button>
@@ -81,9 +82,15 @@ export function ComboBox<T extends DataItem>({
 							onChange={(e) => setSearch(e.target.value)}
 							value={search}
 							className="focus-visible:ring-0"
-							placeholder={`Find ${field}...`}
+							placeholder={`${t('components.comboBox.placeholder', {
+								field: t(`components.comboBox.fields.${field}`),
+							})}`}
 						/>
-						<CommandEmpty>{`No ${field} found.`}</CommandEmpty>
+						<CommandEmpty>
+							{t(`components.comboBox.noData`, {
+								field: t(`components.comboBox.fields.${field}`),
+							})}
+						</CommandEmpty>
 						<CommandGroup>
 							{filteredData.map((tag) => (
 								<CommandItem

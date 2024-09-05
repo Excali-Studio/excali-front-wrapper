@@ -22,6 +22,7 @@ import { Badge } from '@/components/ui/badge';
 import { getContrastText } from '@/lib/contrast-text';
 import { CanvasTableSkeletonLoading } from '@/components/CanvasTableSkeletonLoading';
 import { useModalStore } from '@/store/modalStore';
+import { useTranslation } from 'react-i18next';
 
 interface ContentTableProps {
 	canvasData?: ApiPageData<CanvasDTO>;
@@ -133,7 +134,7 @@ export default function ContentTable({
 															});
 														}}
 													>
-                                                        {t('components.contentTable.buttons.share')}
+														{t('components.contentTable.buttons.share')}
 													</DropdownMenuItem>
 													<DropdownMenuItem disabled={true}>
 														{t('components.contentTable.buttons.delete')}
