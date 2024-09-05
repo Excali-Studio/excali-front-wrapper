@@ -27,10 +27,8 @@ import { useCreateOrModifyTag } from '@/hooks/useCreateOrModifyTag';
 import { useModalStore } from '@/store/modalStore';
 import { useTranslation } from 'react-i18next';
 
-type CurrentTagId = string | null;
-
 interface CreateOrModifyCanvasDialogProps {
-	currentTagId: CurrentTagId;
+	currentTagId?: string;
 }
 
 export default function CreateOrModifyTagDialog({

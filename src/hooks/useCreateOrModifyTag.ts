@@ -5,7 +5,7 @@ import { toast } from '@/components/ui/use-toast';
 import { useModalStore } from '@/store/modalStore';
 
 export function useCreateOrModifyTag(
-	currentTagId: string | null,
+	currentTagId: string | undefined,
 	resetForm: () => void
 ) {
 	const queryClient = useQueryClient();

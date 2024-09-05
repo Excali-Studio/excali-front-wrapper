@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
-type ModalProps = { selectedId: string | null } | undefined;
+type ModalProps = { selectedId: string } | undefined;
 
 interface ModalState {
 	isModalOpen: boolean;
@@ -32,16 +32,18 @@ const initialState = {
 	modalProps: undefined,
 };
 
-export type ModalPayload = {
-	modalState:
-		| typeof MODAL_STATE.ADD_TAG
-		| typeof MODAL_STATE.EDIT_TAG
-		| typeof MODAL_STATE.REMOVE_TAG
-		| typeof MODAL_STATE.ADD_CANVAS
-		| typeof MODAL_STATE.EDIT_CANVAS
-		| typeof MODAL_STATE.REMOVE_CANVAS;
-	params: ModalProps;
-};
+export type ModalPayload =
+	| {
+			modalState:
+				| typeof MODAL_STATE.EDIT_TAG
+				| typeof MODAL_STATE.REMOVE_TAG
+				| typeof MODAL_STATE.EDIT_CANVAS
+				| typeof MODAL_STATE.REMOVE_CANVAS;
+			params: ModalProps;
+	  }
+	| {
+			modalState: typeof MODAL_STATE.ADD_TAG | typeof MODAL_STATE.ADD_CANVAS;
+	  };
 
 const useModalStore = create<ModalState, [['zustand/immer', never]]>(
 	immer((set) => ({

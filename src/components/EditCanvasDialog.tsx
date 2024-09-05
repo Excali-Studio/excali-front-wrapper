@@ -21,11 +21,9 @@ import { useEditCanvasForm } from '@/hooks/useEditCanvasForm';
 import { useModalStore } from '@/store/modalStore';
 import { useTranslation } from 'react-i18next';
 
-type CanvasIdValue = string | null;
-
 interface EditCanvasDialogProps {
 	isOpen: boolean;
-	canvasId: CanvasIdValue;
+	canvasId?: string;
 	onClose: () => void;
 }
 
@@ -38,7 +36,7 @@ export default function EditCanvasDialog({
 	const { form, onSubmit, tags, selectedTagsName, onSelect } =
 		useEditCanvasForm(canvasId, onClose);
 
-    const { resetState } = useModalStore();
+	const { resetState } = useModalStore();
 
 	return (
 		<Dialog

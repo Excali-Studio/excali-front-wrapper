@@ -18,7 +18,6 @@ import { TagsFilterStoreProvider } from '@/providers/TagsFilterProvider/TagsFilt
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useModalStore } from '@/store/modalStore';
 
-//TODO Add modal store in this section - No jira task yet.
 export default function UserDashboard() {
 	const { data } = useUserAuth();
 	const { toast } = useToast();
@@ -72,7 +71,6 @@ export default function UserDashboard() {
 								onClickHandler={() =>
 									openModal({
 										modalState: 'ADD_CANVAS',
-										params: { selectedId: null },
 									})
 								}
 								icon={<PlusCircle className="h-3.5 w-3.5" />}

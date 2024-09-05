@@ -53,7 +53,7 @@ export default function TabsContentWrapper({
 				{modalState === 'EDIT_CANVAS' && (
 					<EditCanvasDialog
 						isOpen={isModalOpen}
-						canvasId={modalProps?.selectedId || null}
+						canvasId={modalProps?.selectedId}
 						onClose={closeModal}
 					/>
 				)}
