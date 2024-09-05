@@ -25,6 +25,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { ReactNode, useEffect } from 'react';
 import { useCreateOrModifyTag } from '@/hooks/useCreateOrModifyTag';
 import { useModalStore } from '@/store/modalStore';
+import { useTranslation } from 'react-i18next';
 
 interface CreateOrModifyCanvasDialogProps {
 	button: ReactNode;
@@ -37,6 +38,8 @@ export default function CreateOrModifyTagDialog({
 		useModalStore();
 
 	const currentTagId = modalProps?.selectedId;
+	const { closeModal, isModalOpen, modalState } = useModalStore();
+	const { t } = useTranslation();
 
 	const form = useForm<CreateOrModifyTagFormSchema>({
 		resolver: zodResolver(createOrModifyTagFormSchema),
@@ -81,10 +84,12 @@ export default function CreateOrModifyTagDialog({
 			{(modalState === 'ADD_TAG' || modalState === 'EDIT_TAG') && (
 				<DialogContent className="sm:max-w-[425px]">
 					<DialogHeader>
-						<DialogTitle>
-							{(modalState === 'ADD_TAG' && 'Create new tag') ||
-								(modalState === 'EDIT_TAG' && 'Edit tag')}
-						</DialogTitle>
+                        <DialogTitle>
+                            {(modalState === 'ADD_TAG' &&
+                                    t('components.createOrModifyTagDialog.create.title')) ||
+                                (modalState === 'EDIT_TAG' &&
+                                    t('components.createOrModifyTagDialog.edit.title'))}
+                        </DialogTitle>
 					</DialogHeader>
 					<div className="grid gap-4 py-4">
 						<Form {...form}>
@@ -97,7 +102,9 @@ export default function CreateOrModifyTagDialog({
 									name="name"
 									render={({ field }) => (
 										<FormItem>
-											<FormLabel>Name</FormLabel>
+                                            <FormLabel>
+                                                {t('components.createOrModifyTagDialog.form.fields.name')}
+                                            </FormLabel>
 											<FormControl>
 												<Input placeholder="" {...field} />
 											</FormControl>
@@ -124,7 +131,11 @@ export default function CreateOrModifyTagDialog({
 									render={({ field }) => (
 										<FormItem>
 											<div className="flex items-center justify-between">
-												<FormLabel>Color</FormLabel>
+                                                <FormLabel>
+                                                    {t(
+                                                        'components.createOrModifyTagDialog.form.fields.color'
+                                                    )}
+                                                </FormLabel>
 												<div className="flex items-center gap-2">
 													<p className="font-mono">{field.value}</p>
 													<FormControl>
@@ -141,7 +152,9 @@ export default function CreateOrModifyTagDialog({
 									)}
 								/>
 								<DialogFooter>
-									<Button type="submit">Save tag</Button>
+                                    <Button type="submit">
+                                        {t('components.createOrModifyTagDialog.form.saveTagButton')}
+                                    </Button>
 								</DialogFooter>
 							</form>
 						</Form>

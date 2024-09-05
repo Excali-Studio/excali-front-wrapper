@@ -25,6 +25,7 @@ import { DeleteTagDialog } from '@/components/DeleteTagDialog';
 import { useModalStore } from '@/store/modalStore';
 import CreateOrModifyTagDialog from '@/components/CreateOrModifyTagDialog';
 import { DialogTrigger } from '@/components/ui/dialog';
+import { useTranslation } from 'react-i18next';
 
 interface TagsTableProps {
 	tags: CanvasTagDTO[] | undefined;
@@ -33,6 +34,7 @@ interface TagsTableProps {
 
 export function TagsTable({ tags, isLoading }: TagsTableProps) {
 	const queryClient = useQueryClient();
+	const { t } = useTranslation();
 	const { isModalOpen, openModal, closeModal, modalState, modalProps } =
 		useModalStore();
 
@@ -58,12 +60,16 @@ export function TagsTable({ tags, isLoading }: TagsTableProps) {
 			<Table>
 				<TableHeader>
 					<TableRow>
-						<TableHead>Name</TableHead>
-						<TableHead className="hidden md:table-cell">Color</TableHead>
-						<TableHead className="hidden md:table-cell">Description</TableHead>
+						<TableHead>{t('components.tagsTable.name')}</TableHead>
+						<TableHead className="hidden md:table-cell">
+							{t('components.tagsTable.color')}
+						</TableHead>
+						<TableHead className="hidden md:table-cell">
+							{t('components.tagsTable.description')}
+						</TableHead>
 						<TableHead>
-							Actions
-							<span className="sr-only">Actions</span>
+							{t('components.tagsTable.actions')}
+							<span className="sr-only">{t('components.tagsTable.actions')}</span>
 						</TableHead>
 					</TableRow>
 				</TableHeader>
@@ -102,11 +108,15 @@ export function TagsTable({ tags, isLoading }: TagsTableProps) {
 															variant="ghost"
 														>
 															<MoreHorizontal className="h-4 w-4" />
-															<span className="sr-only">Toggle menu</span>
+                                                            <span className="sr-only">
+																{t('components.tagsTable.buttons.toggleMenu')}
+															</span>
 														</Button>
 													</DropdownMenuTrigger>
 													<DropdownMenuContent align="end">
-														<DropdownMenuLabel>Actions</DropdownMenuLabel>
+                                                        <DropdownMenuLabel>
+                                                            {t('components.tagsTable.buttons.actions')}
+                                                        </DropdownMenuLabel>
 														<DropdownMenuItem>
 															<CreateOrModifyTagDialog
 																button={
@@ -120,7 +130,7 @@ export function TagsTable({ tags, isLoading }: TagsTableProps) {
 																			});
 																		}}
 																	>
-																		Edit
+                                                                        {t('components.tagsTable.buttons.edit')}
 																	</DialogTrigger>
 																}
 															/>
@@ -133,7 +143,7 @@ export function TagsTable({ tags, isLoading }: TagsTableProps) {
 																});
 															}}
 														>
-															Delete
+                                                            {t('components.tagsTable.buttons.delete')}
 														</DropdownMenuItem>
 													</DropdownMenuContent>
 												</DropdownMenu>
