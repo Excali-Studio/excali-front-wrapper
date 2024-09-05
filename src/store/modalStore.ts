@@ -16,6 +16,7 @@ export const MODAL_STATE = {
 	ADD_TAG: 'ADD_TAG',
 	EDIT_TAG: 'EDIT_TAG',
 	REMOVE_TAG: 'REMOVE_TAG',
+	SHARE_CANVAS: 'SHARE_CANVAS',
 } as const;
 
 export type ModalStateUnion = (typeof MODAL_STATE)[keyof typeof MODAL_STATE];
@@ -33,7 +34,8 @@ export type ModalPayload = {
 	modalState:
 		| typeof MODAL_STATE.ADD_TAG
 		| typeof MODAL_STATE.EDIT_TAG
-		| typeof MODAL_STATE.REMOVE_TAG;
+		| typeof MODAL_STATE.REMOVE_TAG
+		| typeof MODAL_STATE.SHARE_CANVAS;
 	params: ModalProps;
 };
 

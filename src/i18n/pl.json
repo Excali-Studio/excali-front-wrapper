@@ -1,10 +1,13 @@
 {
   "components": {
     "comboBox": {
-      "noData": "No tags found.",
-      "placeHolder": {
-        "findTag": "Find tag..."
-      }
+      "fields": {
+        "tags": "Tags",
+        "users": "Users"
+      },
+      "placeholder": "Find {{ field }} ...",
+      "inputPlaceholder": "Select {{ field }}",
+      "noData": "No {{ field }} found."
     },
     "contentTable": {
       "name": "Name",

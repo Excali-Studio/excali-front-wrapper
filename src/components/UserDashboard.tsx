@@ -17,6 +17,8 @@ import ContentWrapper from '@/components/ContentWrapper';
 import DashboardFilters from '@/components/DashboardFilters';
 import { TagsFilterStoreProvider } from '@/providers/TagsFilterProvider/TagsFilterProvider';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { ShareCanvasDialog } from '@/components/ShareCanvasDialog';
+import { useModalStore } from '@/store/modalStore';
 
 //TODO Add modal store in this section - No jira task yet.
 export default function UserDashboard() {
@@ -26,6 +28,8 @@ export default function UserDashboard() {
 	const { t } = useTranslation();
 
 	const queryClient = useQueryClient();
+
+	const { isModalOpen, modalState, modalProps, closeModal } = useModalStore();
 
 	const { mutate: createCanvasHandler } = useMutation({
 		mutationFn: (values: z.infer<typeof createCanvasFormSchema>) => {
@@ -50,6 +54,15 @@ export default function UserDashboard() {
 				onClose={() => setIsCreateCanvasOpen(false)}
 				onSubmit={createCanvasHandler}
 			/>
+
+			{modalState === 'SHARE_CANVAS' && (
+				<ShareCanvasDialog
+					isOpen={isModalOpen}
+					closeModal={closeModal}
+					canvasId={modalProps?.selectedId || null}
+				/>
+			)}
+
 			<Toaster />
 			<ContentWrapper pagePaths={['Dashboard', 'Canvases']}>
 				<Tabs defaultValue="all">

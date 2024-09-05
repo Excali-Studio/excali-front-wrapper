@@ -25,7 +25,9 @@ export default function TagsManager() {
 				<Tabs defaultValue="all">
 					<div className="flex items-center">
 						<TabsList>
-							<TabsTrigger value="all">{t('tagsManager.all')}</TabsTrigger>
+							<TabsTrigger value="all">
+								{t('components.tagsManager.all')}
+							</TabsTrigger>
 						</TabsList>
 						<div className="ml-auto flex items-center gap-2">
 							<PrimaryActionButton
@@ -38,7 +40,7 @@ export default function TagsManager() {
 								}}
 								icon={<PlusCircle className="h-3.5 w-3.5" />}
 							>
-								{t('tagsManager.createButton')}
+								{t('components.tagsManager.createButton')}
 							</PrimaryActionButton>
 						</div>
 					</div>

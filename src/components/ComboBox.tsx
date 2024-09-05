@@ -16,6 +16,7 @@ import {
 import { useMemo, useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { useTranslation } from 'react-i18next';
+import { clsx } from 'clsx';
 
 interface DataItem {
 	label: string;
@@ -23,23 +24,25 @@ interface DataItem {
 }
 
 interface ComboBoxProps<T extends DataItem> {
+	field: 'tags' | 'users';
+	className?: string;
 	data: T[];
 	selectedData: T['value'][];
 	onSelect: (value: T['value']) => void;
 	selectedValueLabel: string;
-	placeholder: string;
 }
 
 export function ComboBox<T extends DataItem>({
+	field,
+	className,
 	selectedValueLabel,
 	data,
 	selectedData,
 	onSelect,
-	placeholder,
 }: ComboBoxProps<T>) {
+	const { t } = useTranslation();
 	const [open, setOpen] = useState(false);
 	const [search, setSearch] = useState('');
-	const { t } = useTranslation();
 
 	const filteredData = useMemo(() => {
 		return (
@@ -63,21 +66,31 @@ export function ComboBox<T extends DataItem>({
 						aria-expanded={open}
 						className="w-full justify-between text-left"
 					>
-						<span className="w-full truncate">
-							{selectedData.length > 0 ? selectedValueLabel : placeholder}
+						<span className="max-w-[400px] truncate">
+							{selectedData.length > 0
+								? selectedValueLabel
+								: t(`components.comboBox.inputPlaceholder`, {
+										field: t(`components.comboBox.fields.${field}`),
+									})}
 						</span>
 						<CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
 					</Button>
 				</PopoverTrigger>
-				<PopoverContent className="w-[215px] p-0">
+				<PopoverContent className={clsx('w-[215px] p-0', className)}>
 					<Command>
 						<Input
 							onChange={(e) => setSearch(e.target.value)}
 							value={search}
 							className="focus-visible:ring-0"
-							placeholder={t('components.comboBox.placeHolder.findTag')}
+							placeholder={`${t('components.comboBox.placeholder', {
+								field: t(`components.comboBox.fields.${field}`),
+							})}`}
 						/>
-						<CommandEmpty>{t('components.comboBox.noData')}</CommandEmpty>
+						<CommandEmpty>
+							{t(`components.comboBox.noData`, {
+								field: t(`components.comboBox.fields.${field}`),
+							})}
+						</CommandEmpty>
 						<CommandGroup>
 							{filteredData.map((tag) => (
 								<CommandItem
