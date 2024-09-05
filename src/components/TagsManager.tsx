@@ -10,9 +10,8 @@ import { DialogTrigger } from '@/components/ui/dialog';
 import { useTranslation } from 'react-i18next';
 
 export default function TagsManager() {
-	const { openModal } = useModalStore();
 	const { t } = useTranslation();
-	const { openModal, modalState, resetState, modalProps } = useModalStore();
+	const { openModal } = useModalStore();
 
 	return (
 		<>
@@ -21,7 +20,9 @@ export default function TagsManager() {
 				<Tabs defaultValue="all">
 					<div className="flex items-center">
 						<TabsList>
-							<TabsTrigger value="all">{t('tagsManager.all')}</TabsTrigger>
+							<TabsTrigger value="all">
+								{t('components.tagsManager.all')}
+							</TabsTrigger>
 						</TabsList>
 						<div className="ml-auto flex items-center gap-2">
 							<CreateOrModifyTagDialog
@@ -37,7 +38,7 @@ export default function TagsManager() {
 										<PrimaryActionButton
 											icon={<PlusCircle className="h-3.5 w-3.5" />}
 										>
-                                            {t('tagsManager.createButton')}
+											{t('components.tagsManager.createButton')}
 										</PrimaryActionButton>
 									</DialogTrigger>
 								}
