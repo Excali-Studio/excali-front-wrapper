@@ -21,6 +21,7 @@ import { ApiPageData, CanvasDTO } from '@/lib/api/excali-api';
 import { Badge } from '@/components/ui/badge';
 import { getContrastText } from '@/lib/contrast-text';
 import { CanvasTableSkeletonLoading } from '@/components/CanvasTableSkeletonLoading';
+import { useModalStore } from '@/store/modalStore';
 import { useTranslation } from 'react-i18next';
 
 interface ContentTableProps {
@@ -34,6 +35,7 @@ export default function ContentTable({
 	setEditCanvasId,
 	isLoading,
 }: ContentTableProps) {
+	const { openModal } = useModalStore();
 	const { t } = useTranslation();
 	return (
 		<Table>
@@ -124,7 +126,15 @@ export default function ContentTable({
 													>
 														{t('components.contentTable.buttons.edit')}
 													</DropdownMenuItem>
-													<DropdownMenuItem disabled={true}>
+													<DropdownMenuItem
+														disabled={!value.tags.length}
+														onClick={() => {
+															openModal({
+																modalState: 'SHARE_CANVAS',
+																params: { selectedId: value.id },
+															});
+														}}
+													>
 														{t('components.contentTable.buttons.share')}
 													</DropdownMenuItem>
 													<DropdownMenuItem disabled={true}>

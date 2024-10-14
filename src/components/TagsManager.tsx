@@ -6,7 +6,6 @@ import PrimaryActionButton from '@/components/buttons/PrimaryActionButton';
 import { PlusCircle } from 'lucide-react';
 import CreateOrModifyTagDialog from '@/components/CreateOrModifyTagDialog';
 import { useModalStore } from '@/store/modalStore';
-import { DialogTrigger } from '@/components/ui/dialog';
 import { useTranslation } from 'react-i18next';
 
 export default function TagsManager() {

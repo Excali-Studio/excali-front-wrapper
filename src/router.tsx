@@ -5,6 +5,7 @@ import Editor from './components/Editor';
 import UserDashboard from './components/UserDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import TagsManager from '@/components/TagsManager';
+import { NoAccessPage } from '@/components/NoAccessPage';
 
 export const router = createBrowserRouter([
 	{
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
 			{
 				path: '/error-test',
 				element: <ErrorPage />,
+			},
+			{
+				path: '/no-access',
+				element: <NoAccessPage />,
 			},
 			{
 				path: '/',

@@ -1,4 +1,4 @@
-import { router } from '../router';
+import { router } from '@/router';
 import { RouterProvider } from 'react-router-dom';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { QueryProvider } from '@/providers/QueryProvider/QueryProvider';

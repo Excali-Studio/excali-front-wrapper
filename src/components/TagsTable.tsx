@@ -69,7 +69,9 @@ export function TagsTable({ tags, isLoading }: TagsTableProps) {
 						</TableHead>
 						<TableHead>
 							{t('components.tagsTable.actions')}
-							<span className="sr-only">{t('components.tagsTable.actions')}</span>
+							<span className="sr-only">
+								{t('components.tagsTable.actions')}
+							</span>
 						</TableHead>
 					</TableRow>
 				</TableHeader>
@@ -108,15 +110,15 @@ export function TagsTable({ tags, isLoading }: TagsTableProps) {
 															variant="ghost"
 														>
 															<MoreHorizontal className="h-4 w-4" />
-                                                            <span className="sr-only">
+															<span className="sr-only">
 																{t('components.tagsTable.buttons.toggleMenu')}
 															</span>
 														</Button>
 													</DropdownMenuTrigger>
 													<DropdownMenuContent align="end">
-                                                        <DropdownMenuLabel>
-                                                            {t('components.tagsTable.buttons.actions')}
-                                                        </DropdownMenuLabel>
+                            <DropdownMenuLabel>
+                            	{t('components.tagsTable.buttons.actions')}
+                            </DropdownMenuLabel>
 														<DropdownMenuItem>
 															<CreateOrModifyTagDialog
 																button={
@@ -130,7 +132,7 @@ export function TagsTable({ tags, isLoading }: TagsTableProps) {
 																			});
 																		}}
 																	>
-                                                                        {t('components.tagsTable.buttons.edit')}
+                                  	{t('components.tagsTable.buttons.edit')}
 																	</DialogTrigger>
 																}
 															/>
@@ -143,7 +145,7 @@ export function TagsTable({ tags, isLoading }: TagsTableProps) {
 																});
 															}}
 														>
-                                                            {t('components.tagsTable.buttons.delete')}
+															{t('components.tagsTable.buttons.delete')}
 														</DropdownMenuItem>
 													</DropdownMenuContent>
 												</DropdownMenu>

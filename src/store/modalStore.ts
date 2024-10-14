@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
-type ModalProps = { selectedId: string } | undefined;
+type ModalProps = { selectedId: string | null } | undefined;
 
 interface ModalState {
 	isModalOpen: boolean;
@@ -16,6 +16,7 @@ export const MODAL_STATE = {
 	ADD_TAG: 'ADD_TAG',
 	EDIT_TAG: 'EDIT_TAG',
 	REMOVE_TAG: 'REMOVE_TAG',
+	SHARE_CANVAS: 'SHARE_CANVAS',
 } as const;
 
 export type ModalStateUnion = (typeof MODAL_STATE)[keyof typeof MODAL_STATE];
@@ -30,7 +31,7 @@ const initialState = {
 
 export type ModalPayload =
 	| {
-			modalState: typeof MODAL_STATE.EDIT_TAG | typeof MODAL_STATE.REMOVE_TAG;
+			modalState: typeof MODAL_STATE.EDIT_TAG | typeof MODAL_STATE.REMOVE_TAG | typeof MODAL_STATE.SHARE_CANVAS;
 			params: ModalProps;
 	  }
 	| {

@@ -17,7 +17,7 @@ export const createOrModifyTagFormSchema = z.object({
 				number: 12,
 			}),
 		}),
-	color: z.string(),
+	color: z.string().optional(),
 	description: z.string().optional(),
 });
 
