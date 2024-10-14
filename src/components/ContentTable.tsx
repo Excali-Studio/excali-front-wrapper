@@ -130,7 +130,15 @@ export default function ContentTable({
 													>
 														{t('components.contentTable.buttons.edit')}
 													</DropdownMenuItem>
-													<DropdownMenuItem disabled={true}>
+													<DropdownMenuItem
+														disabled={!value.tags.length}
+														onClick={() => {
+															openModal({
+																modalState: 'SHARE_CANVAS',
+																params: { selectedId: value.id },
+															});
+														}}
+													>
 														{t('components.contentTable.buttons.share')}
 													</DropdownMenuItem>
 													<DropdownMenuItem disabled={true}>

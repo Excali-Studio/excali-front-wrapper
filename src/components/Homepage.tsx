@@ -7,7 +7,7 @@ import {
 	CardTitle,
 } from '@/components/ui/card';
 
-import { useUserAuth } from '../lib/useUserAuth';
+import { useUserAuth } from '@/lib/useUserAuth';
 import { Link, Navigate } from 'react-router-dom';
 import { GoogleIcon } from '@/components/icons/GoogleIcon';
 import { useTranslation } from 'react-i18next';

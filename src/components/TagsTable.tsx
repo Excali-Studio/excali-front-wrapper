@@ -67,7 +67,9 @@ export function TagsTable({ tags, isLoading }: TagsTableProps) {
 						</TableHead>
 						<TableHead>
 							{t('components.tagsTable.actions')}
-							<span className="sr-only">{t('components.tagsTable.actions')}</span>
+							<span className="sr-only">
+								{t('components.tagsTable.actions')}
+							</span>
 						</TableHead>
 					</TableRow>
 				</TableHeader>

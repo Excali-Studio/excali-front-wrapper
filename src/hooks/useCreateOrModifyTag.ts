@@ -5,7 +5,7 @@ import { toast } from '@/components/ui/use-toast';
 import { useModalStore } from '@/store/modalStore';
 
 export function useCreateOrModifyTag(
-	currentTagId: string | undefined,
+	currentTagId: string | null | undefined,
 	resetForm: () => void
 ) {
 	const queryClient = useQueryClient();
@@ -14,7 +14,7 @@ export function useCreateOrModifyTag(
 	const { data: tagDetails } = useQuery({
 		queryKey: ['canvas-tag-details', currentTagId],
 		queryFn: () => ExcaliApi.getTagById(`${currentTagId}`),
-		enabled: Boolean(currentTagId) && currentTagId !== 'new',
+		enabled: !!currentTagId,
 	});
 
 	function onSuccess() {

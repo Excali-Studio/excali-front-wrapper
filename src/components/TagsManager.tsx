@@ -10,12 +10,14 @@ import { useTranslation } from 'react-i18next';
 
 export default function TagsManager() {
 	const { t } = useTranslation();
-	const { openModal, resetState, modalProps } = useModalStore();
+	const { openModal, resetState, modalProps, modalState } = useModalStore();
 
 	return (
 		<>
 			<Toaster />
-			<CreateOrModifyTagDialog currentTagId={modalProps?.selectedId} />
+			{(modalState === 'ADD_TAG' || modalState === 'EDIT_TAG') && (
+				<CreateOrModifyTagDialog currentTagId={modalProps?.selectedId} />
+			)}
 
 			<ContentWrapper pagePaths={['Dashboard', 'Tags Manager']}>
 				<Tabs defaultValue="all">

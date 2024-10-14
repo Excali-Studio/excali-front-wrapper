@@ -16,6 +16,7 @@ import ContentWrapper from '@/components/ContentWrapper';
 import DashboardFilters from '@/components/DashboardFilters';
 import { TagsFilterStoreProvider } from '@/providers/TagsFilterProvider/TagsFilterProvider';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { ShareCanvasDialog } from '@/components/ShareCanvasDialog';
 import { useModalStore } from '@/store/modalStore';
 
 export default function UserDashboard() {
@@ -24,8 +25,8 @@ export default function UserDashboard() {
 	const { t } = useTranslation();
 
 	const queryClient = useQueryClient();
-	const { isModalOpen, closeModal, openModal, modalState, resetState } =
-		useModalStore();
+
+	const { isModalOpen, modalState, modalProps, closeModal, resetState, openModal } = useModalStore();
 
 	const { mutate: createCanvasHandler } = useMutation({
 		mutationFn: (values: z.infer<typeof createCanvasFormSchema>) => {
@@ -46,11 +47,17 @@ export default function UserDashboard() {
 
 	return (
 		<TagsFilterStoreProvider>
-			{modalState === 'ADD_CANVAS' && (
-				<CreateCanvasDialog
+			<CreateCanvasDialog
+				isOpen={isModalOpen}
+				onClose={closeModal}
+				onSubmit={createCanvasHandler}
+			/>
+
+			{modalState === 'SHARE_CANVAS' && (
+				<ShareCanvasDialog
 					isOpen={isModalOpen}
-					onClose={closeModal}
-					onSubmit={createCanvasHandler}
+					closeModal={closeModal}
+					canvasId={modalProps?.selectedId || null}
 				/>
 			)}
 
