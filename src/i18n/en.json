@@ -1,10 +1,13 @@
 {
 	"components": {
 		"comboBox": {
-			"noData": "No tags found.",
-			"placeHolder": {
-				"findTag": "Find tag..."
-			}
+			"fields": {
+				"tags": "Tags",
+				"users": "Users"
+			},
+			"placeholder": "Find {{ field }} ...",
+			"inputPlaceholder": "Select {{ field }}",
+			"noData": "No {{ field }} found."
 		},
 		"contentTable": {
 			"name": "Name",
@@ -48,6 +51,13 @@
 				},
 				"saveTagButton": "Save tag"
 			}
+		},
+		"shareCanvasDialog": {
+			"title": "Share canvas",
+			"form": {
+				"users": "Users"
+			},
+			"submit": "Share canvas"
 		},
 		"dashboardFilters": {
 			"name": "Filter",
@@ -121,7 +131,7 @@
 		},
 		"themeToggle": {
 			"toggle": "",
-			"light": "Light",
+			"light": " Light",
 			"dark": "Dark",
 			"system": "System"
 		},

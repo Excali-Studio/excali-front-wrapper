@@ -1,5 +1,5 @@
 import * as i18n from 'i18next';
-import enTranslation from '@/i18n/pl.json';
+import enTranslation from '@/i18n/en.json';
 import { initReactI18next } from 'react-i18next';
 
 const resources = {

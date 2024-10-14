@@ -80,7 +80,7 @@ export default function EditCanvasDialog({
 										</FormLabel>
 										<FormControl>
 											<ComboBox
-												placeholder="Select tags..."
+												field="tags"
 												selectedData={field.value}
 												selectedValueLabel={selectedTagsName}
 												onSelect={onSelect}
