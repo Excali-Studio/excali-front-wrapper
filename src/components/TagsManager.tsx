@@ -20,7 +20,9 @@ export default function TagsManager() {
 				<Tabs defaultValue="all">
 					<div className="flex items-center">
 						<TabsList>
-							<TabsTrigger value="all">{t('components.tagsManager.all')}</TabsTrigger>
+							<TabsTrigger value="all">
+								{t('components.tagsManager.all')}
+							</TabsTrigger>
 						</TabsList>
 						<div className="ml-auto flex items-center gap-2">
 							<PrimaryActionButton

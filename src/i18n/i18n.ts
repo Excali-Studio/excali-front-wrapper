@@ -14,13 +14,15 @@ declare module 'i18next' {
 	}
 }
 
-await i18n.use(initReactI18next).init({
-	lng: 'en',
-	resources,
-	fallbackLng: 'en',
-	interpolation: {
-		escapeValue: false,
-	},
-});
+(async () => {
+	await i18n.use(initReactI18next).init({
+		lng: 'en',
+		resources,
+		fallbackLng: 'en',
+		interpolation: {
+			escapeValue: false,
+		},
+	});
+})();
 
 export { i18n };
