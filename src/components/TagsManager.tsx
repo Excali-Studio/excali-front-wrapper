@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 
 export default function TagsManager() {
 	const { t } = useTranslation();
-	const { openModal, modalState, resetState, modalProps } = useModalStore();
+	const { openModal, resetState, modalProps } = useModalStore();
 
 	return (
 		<>
@@ -35,7 +35,6 @@ export default function TagsManager() {
 									resetState();
 									openModal({
 										modalState: 'ADD_TAG',
-										params: { selectedId: null },
 									});
 								}}
 								icon={<PlusCircle className="h-3.5 w-3.5" />}

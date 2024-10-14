@@ -16,7 +16,7 @@ module.exports = {
       { allowConstantExport: true },
     ],
     '@typescript-eslint/explicit-function-return-type': 'off',
-    'no-console': ['error'],
+    "@typescript-eslint/ban-ts-comment": "off",
     'prettier/prettier': 'error'
   },
 }

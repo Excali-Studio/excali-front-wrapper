@@ -27,10 +27,8 @@ import { useCreateOrModifyTag } from '@/hooks/useCreateOrModifyTag';
 import { useModalStore } from '@/store/modalStore';
 import { useTranslation } from 'react-i18next';
 
-type CurrentTagId = string | null;
-
 interface CreateOrModifyCanvasDialogProps {
-	currentTagId: CurrentTagId;
+	currentTagId?: string;
 }
 
 export default function CreateOrModifyTagDialog({
@@ -64,9 +62,7 @@ export default function CreateOrModifyTagDialog({
 			description: formValues.description || undefined,
 		};
 
-		currentTagId === 'new'
-			? createTagHandler(formData)
-			: updateTagHandler(formData);
+		currentTagId ? updateTagHandler(formData) : createTagHandler(formData);
 	}
 
 	return (
