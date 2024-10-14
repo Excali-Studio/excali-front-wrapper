@@ -17,7 +17,7 @@ export default function TagsManager() {
 			<Toaster />
 			{(modalState === 'ADD_TAG' || modalState === 'EDIT_TAG') && (
 				<CreateOrModifyTagDialog
-					currentTagId={modalProps?.selectedId ?? null}
+					currentTagId={modalProps?.selectedId ?? 'new'}
 				/>
 			)}
 

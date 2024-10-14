@@ -18,8 +18,6 @@ export function SelectTags() {
 		value: tag.id,
 	}));
 
-	console.log({ xd: data });
-
 	const selectedLabel = getSelectedTagsName(data);
 
 	return (

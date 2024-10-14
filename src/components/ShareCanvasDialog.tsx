@@ -17,6 +17,7 @@ import { Button } from '@/components/ui/button';
 import { ComboBox } from '@/components/ComboBox';
 import { ShareCanvas } from '@/schema/share-canvas';
 import { useShareCanvas } from '@/hooks/useShareCanvas';
+import { useTranslation } from 'react-i18next';
 
 interface ShareCanvasDialogProps {
 	isOpen: boolean;
@@ -75,7 +76,7 @@ export const ShareCanvasDialog = ({
 		>
 			<DialogContent>
 				<DialogHeader>
-					<DialogTitle>Share canvas</DialogTitle>
+					<DialogTitle>{t('components.shareCanvasDialog.title')}</DialogTitle>
 				</DialogHeader>
 				<div>
 					<Form {...methods}>
@@ -88,7 +89,9 @@ export const ShareCanvasDialog = ({
 								name="personIds"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Users</FormLabel>
+										<FormLabel>
+											{t('components.shareCanvasDialog.form.users')}
+										</FormLabel>
 										<FormControl>
 											<ComboBox
 												field="users"
@@ -103,7 +106,9 @@ export const ShareCanvasDialog = ({
 								)}
 							/>
 							<DialogFooter>
-								<Button type="submit">Share Canvas</Button>
+								<Button type="submit">
+									{t('components.shareCanvasDialog.submit')}
+								</Button>
 							</DialogFooter>
 						</form>
 					</Form>
