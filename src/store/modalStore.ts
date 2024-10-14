@@ -1,8 +1,9 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
-type ModalProps = { selectedId: string | null } | undefined;
+type ModalProps = { selectedId?: string | null } | undefined;
 
+// @TODO Remove redundant isModalOpen
 interface ModalState {
 	isModalOpen: boolean;
 	closeModal: () => void;
@@ -40,7 +41,7 @@ export type ModalPayload =
 				| typeof MODAL_STATE.REMOVE_TAG
 				| typeof MODAL_STATE.EDIT_CANVAS
 				| typeof MODAL_STATE.REMOVE_CANVAS
-				|	typeof MODAL_STATE.SHARE_CANVAS;
+				| typeof MODAL_STATE.SHARE_CANVAS;
 			params: ModalProps;
 	  }
 	| {

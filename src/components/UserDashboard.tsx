@@ -26,7 +26,14 @@ export default function UserDashboard() {
 
 	const queryClient = useQueryClient();
 
-	const { isModalOpen, modalState, modalProps, closeModal, resetState, openModal } = useModalStore();
+	const {
+		isModalOpen,
+		modalState,
+		modalProps,
+		closeModal,
+		resetState,
+		openModal,
+	} = useModalStore();
 
 	const { mutate: createCanvasHandler } = useMutation({
 		mutationFn: (values: z.infer<typeof createCanvasFormSchema>) => {
@@ -47,11 +54,14 @@ export default function UserDashboard() {
 
 	return (
 		<TagsFilterStoreProvider>
-			<CreateCanvasDialog
-				isOpen={isModalOpen}
-				onClose={closeModal}
-				onSubmit={createCanvasHandler}
-			/>
+			{/*@TODO Refactor modal system*/}
+			{modalState === 'ADD_CANVAS' && (
+				<CreateCanvasDialog
+					isOpen={isModalOpen}
+					onClose={closeModal}
+					onSubmit={createCanvasHandler}
+				/>
+			)}
 
 			{modalState === 'SHARE_CANVAS' && (
 				<ShareCanvasDialog
