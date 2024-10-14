@@ -46,7 +46,6 @@ export default function CreateCanvasDialog({
 			open={isOpen}
 			onOpenChange={() => {
 				onClose();
-				form.reset();
 			}}
 		>
 			<DialogContent className="sm:max-w-[425px]">

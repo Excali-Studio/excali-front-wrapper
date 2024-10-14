@@ -18,16 +18,17 @@ import {
 } from '@/components/ui/dialog';
 import { ComboBox } from '@/components/ComboBox';
 import { useEditCanvasForm } from '@/hooks/useEditCanvasForm';
+import { useModalStore } from '@/store/modalStore';
 import { useTranslation } from 'react-i18next';
 
-type CanvasIdValue = string | null;
-
 interface EditCanvasDialogProps {
-	canvasId: CanvasIdValue;
+	isOpen: boolean;
+	canvasId?: string;
 	onClose: () => void;
 }
 
 export default function EditCanvasDialog({
+	isOpen,
 	canvasId,
 	onClose,
 }: EditCanvasDialogProps) {
@@ -35,14 +36,15 @@ export default function EditCanvasDialog({
 	const { form, onSubmit, tags, selectedTagsName, onSelect } =
 		useEditCanvasForm(canvasId, onClose);
 
-	const isOpen = typeof canvasId === 'string';
+	const { resetState } = useModalStore();
 
 	return (
 		<Dialog
 			open={isOpen}
 			onOpenChange={() => {
-				form.reset();
 				onClose();
+				form.reset();
+				resetState();
 			}}
 		>
 			<DialogContent className="sm:max-w-[425px]">

@@ -13,8 +13,8 @@ import {
 	useTagsFilterStore,
 } from '@/providers/TagsFilterProvider/TagsFilterProvider';
 import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
 import EditCanvasDialog from '@/components/EditCanvasDialog';
+import { useModalStore } from '@/store/modalStore';
 
 interface TabsContentProps {
 	title: string;
@@ -23,13 +23,11 @@ interface TabsContentProps {
 
 export const CANVASES_QUERY_KEY = 'canvases';
 
-type CanvasIdValue = string | null;
-
 export default function TabsContentWrapper({
 	description,
 	title,
 }: TabsContentProps) {
-	const [editCanvasId, setEditCanvasId] = useState<CanvasIdValue>(null);
+	const { closeModal, modalProps, isModalOpen, modalState } = useModalStore();
 
 	const selectedTags = useTagsFilterStore((s) => s.selectedTags);
 
@@ -47,19 +45,18 @@ export default function TabsContentWrapper({
 						<CardDescription>{description}</CardDescription>
 					</CardHeader>
 					<CardContent>
-						<ContentTable
-							canvasData={canvasData}
-							setEditCanvasId={setEditCanvasId}
-							isLoading={isLoading}
-						/>
+						<ContentTable canvasData={canvasData} isLoading={isLoading} />
 					</CardContent>
 				</Card>
 			</TabsContent>
 			<TagsFilterStoreProvider>
-				<EditCanvasDialog
-					canvasId={editCanvasId}
-					onClose={() => setEditCanvasId(null)}
-				/>
+				{modalState === 'EDIT_CANVAS' && (
+					<EditCanvasDialog
+						isOpen={isModalOpen}
+						canvasId={modalProps?.selectedId ?? undefined}
+						onClose={closeModal}
+					/>
+				)}
 			</TagsFilterStoreProvider>
 		</>
 	);

@@ -27,16 +27,15 @@ import { useTranslation } from 'react-i18next';
 interface ContentTableProps {
 	canvasData?: ApiPageData<CanvasDTO>;
 	isLoading: boolean;
-	setEditCanvasId: (value: string | null) => void;
 }
 
 export default function ContentTable({
 	canvasData,
-	setEditCanvasId,
 	isLoading,
 }: ContentTableProps) {
 	const { openModal } = useModalStore();
 	const { t } = useTranslation();
+
 	return (
 		<Table>
 			<TableHeader>
@@ -122,7 +121,12 @@ export default function ContentTable({
 														{t('components.contentTable.createdAt')}
 													</DropdownMenuLabel>
 													<DropdownMenuItem
-														onClick={() => setEditCanvasId(value.id)}
+														onClick={() => {
+															openModal({
+																modalState: 'EDIT_CANVAS',
+																params: { selectedId: value.id },
+															});
+														}}
 													>
 														{t('components.contentTable.buttons.edit')}
 													</DropdownMenuItem>
