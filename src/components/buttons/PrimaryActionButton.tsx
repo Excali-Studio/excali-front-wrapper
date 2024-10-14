@@ -1,8 +1,8 @@
 import { Button } from '@/components/ui/button';
-import { ReactNode } from 'react';
+import { ReactNode, SyntheticEvent } from 'react';
 
 interface PrimaryActionButtonProps {
-	onClickHandler?: () => void;
+	onClickHandler?: (e: SyntheticEvent<HTMLButtonElement>) => void;
 	icon: ReactNode;
 	children: ReactNode;
 }

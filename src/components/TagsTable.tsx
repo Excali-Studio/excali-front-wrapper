@@ -116,9 +116,9 @@ export function TagsTable({ tags, isLoading }: TagsTableProps) {
 														</Button>
 													</DropdownMenuTrigger>
 													<DropdownMenuContent align="end">
-                            <DropdownMenuLabel>
-                            	{t('components.tagsTable.buttons.actions')}
-                            </DropdownMenuLabel>
+														<DropdownMenuLabel>
+															{t('components.tagsTable.buttons.actions')}
+														</DropdownMenuLabel>
 														<DropdownMenuItem>
 															<CreateOrModifyTagDialog
 																button={
@@ -132,7 +132,7 @@ export function TagsTable({ tags, isLoading }: TagsTableProps) {
 																			});
 																		}}
 																	>
-                                  	{t('components.tagsTable.buttons.edit')}
+																		{t('components.tagsTable.buttons.edit')}
 																	</DialogTrigger>
 																}
 															/>

@@ -7,6 +7,7 @@ import { PlusCircle } from 'lucide-react';
 import CreateOrModifyTagDialog from '@/components/CreateOrModifyTagDialog';
 import { useModalStore } from '@/store/modalStore';
 import { useTranslation } from 'react-i18next';
+import { DialogTrigger } from '@/components/ui/dialog';
 
 export default function TagsManager() {
 	const { t } = useTranslation();

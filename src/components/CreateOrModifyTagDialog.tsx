@@ -34,15 +34,13 @@ interface CreateOrModifyCanvasDialogProps {
 export default function CreateOrModifyTagDialog({
 	button,
 }: CreateOrModifyCanvasDialogProps) {
-	const { closeModal, isModalOpen, modalState, resetState, modalProps } = useModalStore();
+	const { closeModal, isModalOpen, modalState, resetState, modalProps } =
+		useModalStore();
 	const currentTagId = modalProps?.selectedId;
 	const { t } = useTranslation();
 
 	const form = useForm<CreateOrModifyTagFormSchema>({
 		resolver: zodResolver(createOrModifyTagFormSchema),
-		defaultValues: {
-			name: '',
-		},
 	});
 
 	const { tagDetails, createTagHandler, updateTagHandler } =
