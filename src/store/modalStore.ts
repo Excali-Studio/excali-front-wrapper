@@ -39,11 +39,12 @@ export type ModalPayload =
 			modalState: typeof MODAL_STATE.ADD_TAG;
 	  }
 	| {
-	modalState: typeof MODAL_STATE.REMOVE_TAG;
-		}
+			modalState: typeof MODAL_STATE.REMOVE_TAG;
+	  }
 	| {
-	modalState: typeof MODAL_STATE.SHARE_CANVAS;
-		};
+			modalState: typeof MODAL_STATE.SHARE_CANVAS;
+			params: ModalProps;
+	  };
 
 const useModalStore = create<ModalState, [['zustand/immer', never]]>(
 	immer((set) => ({
