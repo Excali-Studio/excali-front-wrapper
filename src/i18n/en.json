@@ -146,6 +146,11 @@
 			"myAccount": "My Account",
 			"settings": "Settings",
 			"logout": "Logout"
+		},
+		"noAccessPage": {
+			"title": "Access Denied",
+			"description": "You can't go further.",
+			"backButton": "Go Back Home"
 		}
 	},
 	"validation": {
