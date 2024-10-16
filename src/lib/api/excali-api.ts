@@ -22,16 +22,21 @@ export class ExcaliApi {
 	};
 
 	public static getCanvases = async (
-		selectedTagsIds?: string[]
+		selectedTagsIds: string[],
+		searchQuery: string
 	): Promise<ApiPageData<CanvasDTO>> => {
-		const queryKey = 'tagIds';
-		const query = selectedTagsIds
-			?.map((tagId) => `${queryKey}=${tagId}`)
-			.join('&');
+		const selectedTagsQueryKey = 'tagIds';
+		const searchQueryKey = 'searchQuery';
 
-		const res = await this.instance.get(
-			`/canvas${selectedTagsIds ? `?${query}` : ''}`
-		);
+		const query = new URLSearchParams();
+
+		selectedTagsIds.forEach((tagId) => {
+			query.append(selectedTagsQueryKey, tagId);
+		});
+
+		query.append(searchQueryKey, searchQuery);
+
+		const res = await this.instance.get(`/canvas?${query.toString()}`);
 
 		return res.data;
 	};
