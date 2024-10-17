@@ -16,7 +16,7 @@ import ContentWrapper from '@/components/ContentWrapper';
 import DashboardFilters from '@/components/DashboardFilters';
 import { TagsFilterStoreProvider } from '@/providers/TagsFilterProvider/TagsFilterProvider';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ShareCanvasDialog } from '@/components/ShareCanvasDialog';
+import { ShareCanvasByIdDialog } from '@/components/ShareCanvasByIdDialog';
 import { useModalStore } from '@/store/modalStore';
 
 export default function UserDashboard() {
@@ -63,11 +63,11 @@ export default function UserDashboard() {
 				/>
 			)}
 
-			{modalState === 'SHARE_CANVAS' && (
-				<ShareCanvasDialog
+			{modalState === 'SHARE_CANVAS_BY_ID' && (
+				<ShareCanvasByIdDialog
 					isOpen={isModalOpen}
 					closeModal={closeModal}
-					canvasId={modalProps?.selectedId || null}
+					canvasId={modalProps?.selectedId ?? undefined}
 				/>
 			)}
 

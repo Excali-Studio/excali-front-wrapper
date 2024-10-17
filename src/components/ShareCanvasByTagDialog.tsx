@@ -15,50 +15,41 @@ import {
 import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import { ComboBox } from '@/components/ComboBox';
-import { ShareCanvas } from '@/schema/share-canvas';
-import { useShareCanvas } from '@/hooks/useShareCanvas';
+import { ShareCanvasByTag } from '@/schema/share-canvas';
+import { useShareCanvasByTag } from '@/hooks/useShareCanvasByTag';
 import { useTranslation } from 'react-i18next';
+import { useModalStore } from '@/store/modalStore';
+import { useGetUsers } from '@/hooks/useGetUsers';
+import { useGetTags } from '@/hooks/useGetTags';
 
-interface ShareCanvasDialogProps {
-	isOpen: boolean;
-	closeModal: () => void;
-	canvasId: string | null;
-}
+export const ShareCanvasByTagDialog = () => {
+	const { closeModal, isModalOpen } = useModalStore();
 
-export const ShareCanvasDialog = ({
-	canvasId,
-	isOpen,
-	closeModal,
-}: ShareCanvasDialogProps) => {
 	const { t } = useTranslation();
-	const methods = useForm<ShareCanvas>({
+	const methods = useForm<ShareCanvasByTag>({
 		defaultValues: {
 			personIds: [],
+			tagIds: [],
 		},
 	});
 
-	const { users, canvasData, giveAccessToCanvas } = useShareCanvas(
-		canvasId,
-		methods.reset
-	);
+	const { giveAccessToCanvas } = useShareCanvasByTag(methods.reset);
+	const { users } = useGetUsers();
+	const { tags } = useGetTags();
 
-	const onSubmit = async (data: ShareCanvas) => {
-		const formData = {
-			tagIds: canvasData?.tags.map((elem) => elem.id) || [],
-			personIds: data.personIds,
-		};
-		return giveAccessToCanvas(formData);
+	const onSubmit = async (data: ShareCanvasByTag) => {
+		return giveAccessToCanvas(data);
 	};
 
-	function onSelect(value: string) {
-		const selected = methods.getValues('personIds');
+	function onSelect(field: 'personIds' | 'tagIds', value: string) {
+		const selected = methods.getValues(field);
 		if (selected.includes(value)) {
 			methods.setValue(
-				'personIds',
+				field,
 				selected.filter((user) => user !== value)
 			);
 		} else {
-			methods.setValue('personIds', [...selected, value]);
+			methods.setValue(field, [...selected, value]);
 		}
 	}
 
@@ -67,9 +58,19 @@ export const ShareCanvasDialog = ({
 		.map((user) => users.find((t) => t.value === user)?.label)
 		.join(', ');
 
+	const selectedTags = methods
+		.watch('tagIds')
+		.map((tag) => tags.find((t) => t.value === tag)?.label)
+		.join(', ');
+
+	// const selectedTags = methods
+	// 	.watch('tagIds')
+	// 	.map((tag) => tag.find((t) => t.value === user)?.label)
+	// 	.join(', ');
+
 	return (
 		<Dialog
-			open={isOpen}
+			open={isModalOpen}
 			onOpenChange={() => {
 				closeModal();
 			}}
@@ -86,6 +87,27 @@ export const ShareCanvasDialog = ({
 						>
 							<FormField
 								control={methods.control}
+								name="tagIds"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>
+											{t('components.shareCanvasDialog.form.tags')}
+										</FormLabel>
+										<FormControl>
+											<ComboBox
+												field="tags"
+												className="w-full"
+												selectedData={field.value}
+												selectedValueLabel={selectedTags}
+												onSelect={(v) => onSelect('tagIds', v)}
+												data={tags}
+											/>
+										</FormControl>
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={methods.control}
 								name="personIds"
 								render={({ field }) => (
 									<FormItem>
@@ -98,7 +120,7 @@ export const ShareCanvasDialog = ({
 												className="w-full"
 												selectedData={field.value}
 												selectedValueLabel={selectedUsersName}
-												onSelect={onSelect}
+												onSelect={(v) => onSelect('personIds', v)}
 												data={users}
 											/>
 										</FormControl>

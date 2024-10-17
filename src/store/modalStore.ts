@@ -20,7 +20,8 @@ export const MODAL_STATE = {
 	ADD_CANVAS: 'ADD_CANVAS',
 	EDIT_CANVAS: 'EDIT_CANVAS',
 	REMOVE_CANVAS: 'REMOVE_CANVAS',
-	SHARE_CANVAS: 'SHARE_CANVAS',
+	SHARE_CANVAS_BY_TAG: 'SHARE_CANVAS_BY_TAG',
+	SHARE_CANVAS_BY_ID: 'SHARE_CANVAS_BY_ID',
 } as const;
 
 export type ModalStateUnion = (typeof MODAL_STATE)[keyof typeof MODAL_STATE];
@@ -41,11 +42,14 @@ export type ModalPayload =
 				| typeof MODAL_STATE.REMOVE_TAG
 				| typeof MODAL_STATE.EDIT_CANVAS
 				| typeof MODAL_STATE.REMOVE_CANVAS
-				| typeof MODAL_STATE.SHARE_CANVAS;
+				| typeof MODAL_STATE.SHARE_CANVAS_BY_ID;
 			params: ModalProps;
 	  }
 	| {
-			modalState: typeof MODAL_STATE.ADD_TAG | typeof MODAL_STATE.ADD_CANVAS;
+			modalState:
+				| typeof MODAL_STATE.ADD_TAG
+				| typeof MODAL_STATE.ADD_CANVAS
+				| typeof MODAL_STATE.SHARE_CANVAS_BY_TAG;
 	  };
 
 const useModalStore = create<ModalState, [['zustand/immer', never]]>(
