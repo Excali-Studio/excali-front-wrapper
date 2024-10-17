@@ -7,10 +7,17 @@ import { PlusCircle } from 'lucide-react';
 import CreateOrModifyTagDialog from '@/components/CreateOrModifyTagDialog';
 import { useModalStore } from '@/store/modalStore';
 import { useTranslation } from 'react-i18next';
+import { useUserAuth } from '@/lib/useUserAuth';
+import { Navigate } from 'react-router-dom';
 
 export default function TagsManager() {
 	const { t } = useTranslation();
 	const { openModal, resetState, modalProps, modalState } = useModalStore();
+	const { data: user } = useUserAuth();
+
+	const isUserAdmin = user?.roles.some((role) => role.name === 'ADMIN');
+
+	if (!isUserAdmin) return <Navigate to="/dashboard" replace />;
 
 	return (
 		<>
