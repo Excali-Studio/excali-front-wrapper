@@ -1,10 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Homepage from './components/Homepage';
 import ErrorPage from './components/ErrorPage';
-import Editor from './components/Editor';
-import UserDashboard from './components/UserDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
-import TagsManager from '@/components/TagsManager';
 import { NoAccessPage } from '@/components/NoAccessPage';
 
 export const router = createBrowserRouter([
@@ -16,15 +13,30 @@ export const router = createBrowserRouter([
 				children: [
 					{
 						path: '/editor/:canvasId',
-						element: <Editor />,
+						lazy: async () => {
+							const { default: Component } = await import(
+								'./components/Editor'
+							);
+							return { Component };
+						},
 					},
 					{
 						path: '/dashboard',
-						element: <UserDashboard />,
+						lazy: async () => {
+							const { default: Component } = await import(
+								'./components/UserDashboard'
+							);
+							return { Component };
+						},
 					},
 					{
 						path: '/tags',
-						element: <TagsManager />,
+						lazy: async () => {
+							const { default: Component } = await import(
+								'@/components/TagsManager'
+							);
+							return { Component };
+						},
 					},
 				],
 			},
