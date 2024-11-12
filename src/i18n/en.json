@@ -55,7 +55,8 @@
 		"shareCanvasDialog": {
 			"title": "Share canvas",
 			"form": {
-				"users": "Users"
+				"users": "Users",
+				"tags": "Tags"
 			},
 			"submit": "Share canvas"
 		},
@@ -115,7 +116,8 @@
 		},
 		"tagsManager": {
 			"all": "All",
-			"createButton": "Create new tag"
+			"createButton": "Create new tag",
+			"shareByTag": "Share canvases with tag"
 		},
 		"tagsTable": {
 			"name": "Name",

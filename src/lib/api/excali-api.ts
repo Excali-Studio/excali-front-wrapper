@@ -127,6 +127,13 @@ export class ExcaliApi {
 	public static giveAccessByTag = async (accessData: canvasAccessDTO) => {
 		return this.instance.post('/canvas/access', accessData);
 	};
+
+	public static giveAccessById = async ({
+		personId,
+		canvasId,
+	}: canvasAccessByIdDTO) => {
+		return this.instance.post(`/canvas/${canvasId}/access`, { personId });
+	};
 }
 
 //@TODO load interfaces from api project as a separate npm package
@@ -134,6 +141,7 @@ export class ExcaliApi {
 export interface ExcaliApiUserDto {
 	uid: UserId;
 	roles: { name: string }[];
+	displayName: string;
 }
 
 export interface CreateTagDTO {
@@ -205,4 +213,9 @@ export interface UserDTO {
 export interface canvasAccessDTO {
 	tagIds: string[];
 	personIds: string[];
+}
+
+export interface canvasAccessByIdDTO {
+	canvasId: string;
+	personId: string;
 }
