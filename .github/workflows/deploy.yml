@@ -25,10 +25,14 @@ jobs:
       - name: Copy ENV file
         run: echo "${{ vars.APP_ENV_FILE }}" > .env
 
+      - name: Copy ENV file
+        working-directory: ${{ secrets.DESTINATION_PATH }}
+        run: echo "${{ vars.APP_ENV_FILE }}" > .env
+
       - name: Build Docker image
         if: inputs.only_env == false
         run: sudo docker build . --tag excali-front-dev:latest -f Dockerfile
 
       - name: Run Docker image
         working-directory: ${{ secrets.DESTINATION_PATH }}
-        run: docker compose up -d
+        run: docker compose up -d web
