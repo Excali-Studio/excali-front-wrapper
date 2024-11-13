@@ -37,6 +37,8 @@ export function useCollabSocket(
 	);
 
 	useEffect(() => {
+		console.log('WS Effect trigger', { socket, excalidrawApi });
+
 		if (!socket && excalidrawApi) {
 			function onInitRoom() {
 				if (socket) socket.emit('join-room', roomId);
@@ -78,6 +80,8 @@ export function useCollabSocket(
 			const socket = socketIOClient(import.meta.env.VITE_APP_WS_SERVER_URL, {
 				transports: ['websocket', 'polling'],
 			});
+
+			console.log('socket-connection inside effect', socket);
 
 			setSocket(socket);
 
