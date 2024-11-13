@@ -181,10 +181,14 @@ export function useCollabSocket(
 					true // volatile
 				);
 			} else {
-				console.error('Failed attempt to broadcast mouse location');
+				console.error('Failed attempt to broadcast mouse location', {
+					socket,
+					socketId: socket?.id,
+					excalidrawApi,
+				});
 			}
 		},
-		[broadcastSocketData, excalidrawApi, socket?.id, user?.displayName]
+		[broadcastSocketData, excalidrawApi, socket, user?.displayName]
 	);
 
 	const broadcastCanvas = useCallback(
