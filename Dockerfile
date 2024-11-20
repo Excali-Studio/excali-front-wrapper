@@ -1,5 +1,7 @@
 FROM node:22-alpine as builder
 
+ARG VITE_APP_WS_SERVER_URL=http://room:8888/
+
 WORKDIR /app
 COPY . .
 
