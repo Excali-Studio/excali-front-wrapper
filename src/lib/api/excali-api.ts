@@ -134,6 +134,10 @@ export class ExcaliApi {
 	}: canvasAccessByIdDTO) => {
 		return this.instance.post(`/canvas/${canvasId}/access`, { personId });
 	};
+
+	public static deleteCanvasById = async (canvasId: Uuid) => {
+		return this.instance.delete(`/canvas/${canvasId}`);
+	};
 }
 
 //@TODO load interfaces from api project as a separate npm package
@@ -150,6 +154,11 @@ export interface CreateTagDTO {
 	description?: string;
 }
 
+export interface CanvasAccessesDTO {
+	id: Uuid;
+	isOwner: boolean;
+}
+
 export interface CanvasDTO {
 	id: Uuid;
 	workspaceId: Uuid;
@@ -157,6 +166,7 @@ export interface CanvasDTO {
 	dateUpdated: Date;
 	name: string;
 	tags: CanvasTagDTO[];
+	canvasAccesses: CanvasAccessesDTO[];
 }
 
 export interface ApiPageInfo {

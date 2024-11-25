@@ -17,12 +17,15 @@ import {
 import { Button } from '@/components/ui/button';
 import { MoreHorizontal } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ApiPageData, CanvasDTO } from '@/lib/api/excali-api';
+import { ApiPageData, CanvasDTO, ExcaliApi } from '@/lib/api/excali-api';
 import { Badge } from '@/components/ui/badge';
 import { getContrastText } from '@/lib/contrast-text';
 import { CanvasTableSkeletonLoading } from '@/components/CanvasTableSkeletonLoading';
 import { useModalStore } from '@/store/modalStore';
 import { useTranslation } from 'react-i18next';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from '@/components/ui/use-toast';
+import { CANVASES_QUERY_KEY } from '@/components/TabsContent';
 
 interface ContentTableProps {
 	canvasData?: ApiPageData<CanvasDTO>;
@@ -35,6 +38,18 @@ export default function ContentTable({
 }: ContentTableProps) {
 	const { openModal } = useModalStore();
 	const { t } = useTranslation();
+
+	const queryClient = useQueryClient();
+
+	const { mutate: deleteCanvas } = useMutation({
+		mutationFn: ExcaliApi.deleteCanvasById,
+		onSuccess: () => {
+			toast({
+				title: 'Canvas deleted successfully',
+			});
+			return queryClient.invalidateQueries({ queryKey: [CANVASES_QUERY_KEY] });
+		},
+	});
 
 	const navigate = useNavigate();
 
@@ -166,9 +181,13 @@ export default function ContentTable({
 													>
 														{t('components.contentTable.buttons.share')}
 													</DropdownMenuItem>
-													<DropdownMenuItem disabled={true}>
-														{t('components.contentTable.buttons.delete')}
-													</DropdownMenuItem>
+													{value.canvasAccesses?.[0].isOwner && (
+														<DropdownMenuItem
+															onClick={() => deleteCanvas(value.id)}
+														>
+															{t('components.contentTable.buttons.delete')}
+														</DropdownMenuItem>
+													)}
 												</DropdownMenuContent>
 											</DropdownMenu>
 										</TableCell>
