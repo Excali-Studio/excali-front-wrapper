@@ -30,10 +30,6 @@ export default function UserDropdownMenu() {
 					{t('components.userDropdownMenu.myAccount')}
 				</DropdownMenuLabel>
 				<DropdownMenuSeparator />
-				<DropdownMenuItem style={{ cursor: 'pointer' }}>
-					{t('components.userDropdownMenu.settings')}
-				</DropdownMenuItem>
-				<DropdownMenuSeparator />
 				<DropdownMenuItem
 					onClick={() => logoutHandler()}
 					style={{ cursor: 'pointer' }}
