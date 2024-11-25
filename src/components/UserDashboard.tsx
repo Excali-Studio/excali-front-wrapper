@@ -39,7 +39,8 @@ export default function UserDashboard() {
 		mutationFn: (values: z.infer<typeof createCanvasFormSchema>) => {
 			return ExcaliApi.createCanvas({
 				name: values.name,
-				userId: `${data}`,
+				// Authentication required for this page
+				userId: data!.uid,
 			});
 		},
 		onSuccess: () => {
