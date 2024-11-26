@@ -6,7 +6,7 @@ import {
 	TableHeader,
 	TableRow,
 } from '@/components/ui/table';
-import React from 'react';
+import React, { useCallback } from 'react';
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -16,13 +16,16 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { MoreHorizontal } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { ApiPageData, CanvasDTO } from '@/lib/api/excali-api';
+import { Link, useNavigate } from 'react-router-dom';
+import { ApiPageData, CanvasDTO, ExcaliApi } from '@/lib/api/excali-api';
 import { Badge } from '@/components/ui/badge';
 import { getContrastText } from '@/lib/contrast-text';
 import { CanvasTableSkeletonLoading } from '@/components/CanvasTableSkeletonLoading';
 import { useModalStore } from '@/store/modalStore';
 import { useTranslation } from 'react-i18next';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from '@/components/ui/use-toast';
+import { CANVASES_QUERY_KEY } from '@/components/TabsContent';
 
 interface ContentTableProps {
 	canvasData?: ApiPageData<CanvasDTO>;
@@ -35,6 +38,27 @@ export default function ContentTable({
 }: ContentTableProps) {
 	const { openModal } = useModalStore();
 	const { t } = useTranslation();
+
+	const queryClient = useQueryClient();
+
+	const { mutate: deleteCanvas } = useMutation({
+		mutationFn: ExcaliApi.deleteCanvasById,
+		onSuccess: () => {
+			toast({
+				title: 'Canvas deleted successfully',
+			});
+			return queryClient.invalidateQueries({ queryKey: [CANVASES_QUERY_KEY] });
+		},
+	});
+
+	const navigate = useNavigate();
+
+	const redirectToCanvas = useCallback(
+		(canvasId: string) => {
+			navigate(`/editor/${canvasId}`);
+		},
+		[navigate]
+	);
 
 	return (
 		<Table>
@@ -71,22 +95,39 @@ export default function ContentTable({
 						{canvasData.data.map((value, idx) => {
 							return (
 								<React.Fragment key={idx}>
-									<TableRow className={'cursor-pointer'}>
-										<TableCell className="hidden sm:table-cell">
+									<TableRow className="cursor-pointer p-8">
+										<TableCell
+											className="hidden sm:table-cell"
+											onClick={() => redirectToCanvas(value.id)}
+										>
 											<img
 												src={'/placeholder.svg'}
 												alt={'Project icon'}
 												className={'rounded-xl'}
 											/>
 										</TableCell>
-										<TableCell className="font-medium">{value.name}</TableCell>
-										<TableCell className="hidden md:table-cell">
+										<TableCell
+											className="font-medium"
+											onClick={() => redirectToCanvas(value.id)}
+										>
+											{value.name}
+										</TableCell>
+										<TableCell
+											className="hidden md:table-cell"
+											onClick={() => redirectToCanvas(value.id)}
+										>
 											{new Date(value.dateCreated).toLocaleString()}
 										</TableCell>
-										<TableCell className="hidden md:table-cell">
+										<TableCell
+											className="hidden md:table-cell"
+											onClick={() => redirectToCanvas(value.id)}
+										>
 											{new Date(value.dateUpdated).toLocaleString()}
 										</TableCell>
-										<TableCell className="hidden lg:table-cell">
+										<TableCell
+											className="hidden lg:table-cell"
+											onClick={() => redirectToCanvas(value.id)}
+										>
 											<div className="flex gap-1">
 												{value.tags.map((tag) => (
 													<Badge
@@ -140,9 +181,13 @@ export default function ContentTable({
 													>
 														{t('components.contentTable.buttons.share')}
 													</DropdownMenuItem>
-													<DropdownMenuItem disabled={true}>
-														{t('components.contentTable.buttons.delete')}
-													</DropdownMenuItem>
+													{value.canvasAccesses?.[0].isOwner && (
+														<DropdownMenuItem
+															onClick={() => deleteCanvas(value.id)}
+														>
+															{t('components.contentTable.buttons.delete')}
+														</DropdownMenuItem>
+													)}
 												</DropdownMenuContent>
 											</DropdownMenu>
 										</TableCell>

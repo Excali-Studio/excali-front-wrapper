@@ -4,6 +4,7 @@ import { t } from 'i18next';
 export const createCanvasFormSchema = z.object({
 	name: z
 		.string()
+		.trim()
 		.min(3, {
 			message: t('validation.min', {
 				field: t('components.createCanvasDialog.form.fields.name'),
