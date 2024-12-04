@@ -15,6 +15,8 @@ import {
 import { useQuery } from '@tanstack/react-query';
 import EditCanvasDialog from '@/components/EditCanvasDialog';
 import { useModalStore } from '@/store/modalStore';
+import { useSearchBar } from '@/store/searchBarStore';
+import { useDebounce } from 'use-debounce';
 
 interface TabsContentProps {
 	title: string;
@@ -28,12 +30,14 @@ export default function TabsContentWrapper({
 	title,
 }: TabsContentProps) {
 	const { closeModal, modalProps, isModalOpen, modalState } = useModalStore();
-
+	const [canvasSearchTerm] = useSearchBar();
 	const selectedTags = useTagsFilterStore((s) => s.selectedTags);
 
+	const [debouncedSearchTerm] = useDebounce(canvasSearchTerm, 300);
+
 	const { data: canvasData, isLoading } = useQuery({
-		queryKey: [CANVASES_QUERY_KEY, selectedTags],
-		queryFn: () => ExcaliApi.getCanvases(selectedTags),
+		queryKey: [CANVASES_QUERY_KEY, selectedTags, debouncedSearchTerm],
+		queryFn: () => ExcaliApi.getCanvases(selectedTags, debouncedSearchTerm),
 	});
 
 	return (
