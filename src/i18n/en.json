@@ -12,6 +12,7 @@
 		"contentTable": {
 			"name": "Name",
 			"createdAt": "Created at",
+			"owner": "Owner",
 			"updatedAt": "Updated at",
 			"tags": "Tags",
 			"actions": "Actions",

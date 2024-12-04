@@ -154,11 +154,6 @@ export interface CreateTagDTO {
 	description?: string;
 }
 
-export interface CanvasAccessesDTO {
-	id: Uuid;
-	isOwner: boolean;
-}
-
 export interface CanvasDTO {
 	id: Uuid;
 	workspaceId: Uuid;
@@ -166,7 +161,8 @@ export interface CanvasDTO {
 	dateUpdated: Date;
 	name: string;
 	tags: CanvasTagDTO[];
-	canvasAccesses: CanvasAccessesDTO[];
+	isOwner: boolean;
+	owner: string;
 }
 
 export interface ApiPageInfo {
