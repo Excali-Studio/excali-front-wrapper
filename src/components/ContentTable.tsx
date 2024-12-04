@@ -64,12 +64,16 @@ export default function ContentTable({
 		<Table>
 			<TableHeader>
 				<TableRow>
-					<TableHead className="hidden w-[100px] sm:table-cell">
-						<span className="sr-only">
-							{t('components.contentTable.image')}
-						</span>
-					</TableHead>
+					{/*@TODO: Canvas preview implementation*/}
+					{/*<TableHead className="hidden w-[100px] sm:table-cell">*/}
+					{/*	<span className="sr-only">*/}
+					{/*		{t('components.contentTable.image')}*/}
+					{/*	</span>*/}
+					{/*</TableHead>*/}
 					<TableHead>{t('components.contentTable.name')}</TableHead>
+					<TableHead className="hidden md:table-cell">
+						{t('components.contentTable.owner')}
+					</TableHead>
 					<TableHead className="hidden md:table-cell">
 						{t('components.contentTable.createdAt')}
 					</TableHead>
@@ -96,21 +100,28 @@ export default function ContentTable({
 							return (
 								<React.Fragment key={idx}>
 									<TableRow className="cursor-pointer p-8">
-										<TableCell
-											className="hidden sm:table-cell"
-											onClick={() => redirectToCanvas(value.id)}
-										>
-											<img
-												src={'/placeholder.svg'}
-												alt={'Project icon'}
-												className={'rounded-xl'}
-											/>
-										</TableCell>
+										{/*@TODO: Canvas preview implementation*/}
+										{/*<TableCell*/}
+										{/*	className="hidden sm:table-cell"*/}
+										{/*	onClick={() => redirectToCanvas(value.id)}*/}
+										{/*>*/}
+										{/*	<img*/}
+										{/*		src={'/placeholder.svg'}*/}
+										{/*		alt={'Project icon'}*/}
+										{/*		className={'rounded-xl'}*/}
+										{/*	/>*/}
+										{/*</TableCell>*/}
 										<TableCell
 											className="font-medium"
 											onClick={() => redirectToCanvas(value.id)}
 										>
 											{value.name}
+										</TableCell>
+										<TableCell
+											className="hidden md:table-cell"
+											onClick={() => redirectToCanvas(value.id)}
+										>
+											{value.owner}
 										</TableCell>
 										<TableCell
 											className="hidden md:table-cell"
@@ -181,7 +192,7 @@ export default function ContentTable({
 													>
 														{t('components.contentTable.buttons.share')}
 													</DropdownMenuItem>
-													{value.canvasAccesses?.[0].isOwner && (
+													{value.isOwner && (
 														<DropdownMenuItem
 															onClick={() => deleteCanvas(value.id)}
 														>
