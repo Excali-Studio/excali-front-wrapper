@@ -18,6 +18,7 @@ import { TagsFilterStoreProvider } from '@/providers/TagsFilterProvider/TagsFilt
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ShareCanvasByIdDialog } from '@/components/ShareCanvasByIdDialog';
 import { useModalStore } from '@/store/modalStore';
+import EditCanvasAccessDialog from '@/components/EditCanvasAccessDialog';
 
 export default function UserDashboard() {
 	const { data } = useUserAuth();
@@ -70,6 +71,10 @@ export default function UserDashboard() {
 					closeModal={closeModal}
 					canvasId={modalProps?.selectedId ?? undefined}
 				/>
+			)}
+
+			{modalState === 'EDIT_CANVAS_ACCESS' && (
+				<EditCanvasAccessDialog isOpen={isModalOpen} onClose={closeModal} />
 			)}
 
 			<Toaster />

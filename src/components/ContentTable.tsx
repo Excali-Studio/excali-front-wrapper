@@ -170,7 +170,7 @@ export default function ContentTable({
 												</DropdownMenuTrigger>
 												<DropdownMenuContent align="end">
 													<DropdownMenuLabel>
-														{t('components.contentTable.createdAt')}
+														{t('components.contentTable.actions')}
 													</DropdownMenuLabel>
 													<DropdownMenuItem
 														onClick={() => {
@@ -197,6 +197,18 @@ export default function ContentTable({
 															onClick={() => deleteCanvas(value.id)}
 														>
 															{t('components.contentTable.buttons.delete')}
+														</DropdownMenuItem>
+													)}
+													{value.isOwner && (
+														<DropdownMenuItem
+															onClick={() => {
+																openModal({
+																	modalState: 'EDIT_CANVAS_ACCESS',
+																	params: { selectedId: value.id },
+																});
+															}}
+														>
+															{t('components.contentTable.buttons.access')}
 														</DropdownMenuItem>
 													)}
 												</DropdownMenuContent>

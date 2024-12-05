@@ -16,6 +16,7 @@ interface ModalState {
 export const MODAL_STATE = {
 	ADD_TAG: 'ADD_TAG',
 	EDIT_TAG: 'EDIT_TAG',
+	EDIT_CANVAS_ACCESS: 'EDIT_CANVAS_ACCESS',
 	REMOVE_TAG: 'REMOVE_TAG',
 	ADD_CANVAS: 'ADD_CANVAS',
 	EDIT_CANVAS: 'EDIT_CANVAS',
@@ -42,7 +43,8 @@ export type ModalPayload =
 				| typeof MODAL_STATE.REMOVE_TAG
 				| typeof MODAL_STATE.EDIT_CANVAS
 				| typeof MODAL_STATE.REMOVE_CANVAS
-				| typeof MODAL_STATE.SHARE_CANVAS_BY_ID;
+				| typeof MODAL_STATE.SHARE_CANVAS_BY_ID
+				| typeof MODAL_STATE.EDIT_CANVAS_ACCESS;
 			params: ModalProps;
 	  }
 	| {

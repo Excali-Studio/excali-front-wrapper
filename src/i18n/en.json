@@ -21,7 +21,8 @@
 				"edit": "Edit",
 				"share": "Share",
 				"delete": "Delete",
-				"load": "Load"
+				"load": "Load",
+				"access": "Access"
 			}
 		},
 		"createCanvasDialog": {
@@ -89,6 +90,12 @@
 				}
 			},
 			"saveCanvasButton": "Save canvas"
+		},
+		"editCanvasAccessDialog": {
+			"title": "Access to dialog",
+			"description": "Edit accesses to canvas",
+			"toast": "Access has been saved.",
+			"close": "Close"
 		},
 		"errorPage": {
 			"title": "Uh-oh!",
