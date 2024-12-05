@@ -135,6 +135,16 @@ export class ExcaliApi {
 		return this.instance.post(`/canvas/${canvasId}/access`, { personId });
 	};
 
+	public static removeAccessById = async ({
+		personId,
+		canvasId,
+	}: canvasAccessByIdDTO) => {
+		return this.instance(`/canvas/${canvasId}/access`, {
+			method: 'DELETE',
+			data: { personId },
+		});
+	};
+
 	public static deleteCanvasById = async (canvasId: Uuid) => {
 		return this.instance.delete(`/canvas/${canvasId}`);
 	};
@@ -163,6 +173,12 @@ export interface CanvasDTO {
 	tags: CanvasTagDTO[];
 	isOwner: boolean;
 	owner: string;
+	canvasAccesses: CanvasAccessesDTO[];
+}
+
+export interface CanvasAccessesDTO {
+	isOwner: boolean;
+	user: UserDTO;
 }
 
 export interface ApiPageInfo {
@@ -214,6 +230,7 @@ export interface UpdateCanvasMetaDTO {
 export interface UserDTO {
 	id: string;
 	email: string;
+	displayName: string;
 }
 
 export interface canvasAccessDTO {
